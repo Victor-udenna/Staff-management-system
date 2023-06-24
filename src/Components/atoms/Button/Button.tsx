@@ -2,7 +2,7 @@
 
 type button = {
     value: string
-    onclick: React.MouseEventHandler<HTMLButtonElement>
+    onclick?: React.MouseEventHandler<HTMLButtonElement>
     classname: string
 }
 

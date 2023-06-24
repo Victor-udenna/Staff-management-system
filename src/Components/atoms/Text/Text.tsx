@@ -1,6 +1,6 @@
 type Text = {
     value: string
-    onclick: React.MouseEventHandler<HTMLParagraphElement>
+    onclick?: React.MouseEventHandler<HTMLParagraphElement>
     classname: string
 }
 

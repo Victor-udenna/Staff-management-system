@@ -1,4 +1,5 @@
 import { InputHTMLAttributes } from "react";
+import './Input.scss';
 
 export interface InputProps extends InputHTMLAttributes<any> {
   useStyle?: boolean;
