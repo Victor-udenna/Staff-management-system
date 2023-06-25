@@ -8,6 +8,11 @@ import HeaderText from "../../atoms/HeaderText/HeaderText";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+
+  // const [userName, setUserNma]
+
+
+
   return (
 <main  className="signin__container">
   <div className="signin__img__container">
@@ -16,8 +21,8 @@ const Login = () => {
 
   <div className="sign__in__form__container">
  <HeaderText  classname="log_in_header" value="Hello Again!"/>   
- <p className="header_text">Welcome back, Enter your information to
-   <br/> log into your account.</p>
+ <div className="header_text"><p>Welcome back, Enter your information to log into your</p>
+ <p> account.</p></div>
 <form className="sign__in__form">
 <div className="sign_in_input_container">
   <p className="label">Email Adress</p>
