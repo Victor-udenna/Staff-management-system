@@ -3,13 +3,11 @@ import Input from "../../atoms/Input/Input";
 import Image from "../../atoms/Image/Image";
 import bgImg from "../../../assets/undraw_sign_in_re_o58h.svg";
 import { Button } from "../../atoms/Button/Button";
-import googleImg from "../../../assets/icons8-google.svg";
 import HeaderText from "../../atoms/HeaderText/HeaderText";
 import { Link } from "react-router-dom";
+import GoogleButton from "../../atoms/GoogleButton/GoogleButton";
 
 const Login = () => {
-
-  // const [userName, setUserNma]
 
 
 
@@ -36,7 +34,7 @@ const Login = () => {
   <Button classname="sign_in_button" value="Log in"/>
   <div className="log__in__link"><span>Don't have an account ?</span> <Link to="/signup"><span>Sign up here</span></Link></div>
 </form>
-<button className="google_btn"><Image alt="icon" className="" image={googleImg}/><span>Log in with google</span></button>
+<GoogleButton value="Continue with Google" onclick={()=>{}}/>
   </div>
 </main>
   )

@@ -79,23 +79,14 @@ input{
     margin-top: 13px;
     margin-bottom: 13px;
     cursor: pointer;
+    transition-duration: 1s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.google_btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    border-radius: 8px;
-    padding: 10px;
-    border: 1px solid #9ca3af;
-    margin-top: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    span{
-        padding-left: 10px;
-    }
+.sign_in_button:hover{
+    background-color: #3033dc;
 }
+
     .label{
         cursor: pointer;
         font-size: 12px;
