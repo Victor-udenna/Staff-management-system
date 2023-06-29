@@ -103,16 +103,26 @@ overflow-y: hidden;
 
 
   .logout_btn{
-    text-align: center;
-    margin-left: 8px;
-    width: 100px;
+    margin: 10px 0 20px 0;
     padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    width: 100%;
+    // 
+    text-align: center;
     display: flex;
     align-items: center;
-    border: 1px solid #e1240f;
     background-color: inherit;
-    border-radius: 10px;
+    border: 1px solid #F5F7FA;
+    cursor: pointer;
+    font-weight: bold;
     .logout_text{
         padding-left: 8.5px;
     }
+  }
+
+  .logout_btn:hover{
+  background-color: #fdf8f8;
+  border: 1px solid #ffcece;
+  color: rgb(30, 27, 27);
   }
