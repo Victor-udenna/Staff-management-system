@@ -1,8 +1,16 @@
+import { memo } from "react";
+import {Navigate} from 'react-router-dom';
+import {auth} from "../Config/firebase-config";
 
-const PrivateRoute = () => {
-  return (
-    <div>PrivateRoute</div>
-  )
+type ChildrenProps = {
+  children: JSX.Element;
+};
+
+
+const PrivateRoute = ({children}: ChildrenProps) => {
+
+const authState = auth.currentUser
+  return authState !== null ? children : <Navigate to="/"/> 
 }
 
-export default PrivateRoute
+export default memo(PrivateRoute)

@@ -1,24 +1,27 @@
 import Text from "../../atoms/Text/Text";
 import { Link } from "react-router-dom";
-import "./Dashboard.scss";
+import "./Overview.scss";
 import {BiHomeCircle, BiHelpCircle} from "react-icons/bi";
 import {BsFileEarmarkText, BsGear, BsCheckCircle} from "react-icons/bs";
 import {GoPeople} from "react-icons/go";
 import {GiOwl} from "react-icons/gi";
 import {RxExit} from "react-icons/rx";
-// import logoImg from "../../../assets/logo.webp";
-// import Image from "../../atoms/Image/Image";
+import {auth} from "../../Config/firebase-config";
 
 
-const Dashboard = () => {
+const Overview = () => {
+
+  if(auth.currentUser !== null){
+    console.log("it will work")
+  } else{
+    console.log("e no work")
+  }
   return (
     <main className="Dashboard_container">
 <nav className="side__bar">
 <div className="link_container">
 <div className="logo_container">
-  {/* <Text classname="logo" value="Staffee"/> */}
   <p><GiOwl size={35}/></p>
-  {/* <Image alt="logo" className="logo_img" image={logoImg}/> */}
 </div>
 <Text classname="list_header" value="General"/>
 <div className="nav__link active"><Link  to=""><span className="icon"><BiHomeCircle size={17} /></span> <span className="link_text">Overview</span></Link></div>
@@ -49,4 +52,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Overview

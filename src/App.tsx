@@ -1,32 +1,28 @@
-import Login from "./Components/Pages/Login/Login"
-import Signup from "./Components/Pages/Signup/Signup"
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import Dashboard from "./Components/Pages/Dashboard/Dashboard";
-import "./App.scss"
+import Login from "./Components/Pages/Login/Login";
+import Signup from "./Components/Pages/Signup/Signup";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import Overview from "./Components/Pages/Overview/Overview";
+import PrivateRoute from "./Components/Config/PrivateRoute";
+import "./App.scss";
 
 function App() {
-
   return (
-<>
-<BrowserRouter>
-<Routes>
-<Route
-path="/"
-element={<Login/>
-}/>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
 
-<Route
-path="/signup"
-element={<Signup/>
-}/>
+          <Route path="/signup" element={<Signup />} />
 
-<Route
-path="/dashboard"
-element={<Dashboard/>
-}/>
-</Routes>
-</BrowserRouter></>
-  )
+          <Route path="*" element={
+            <PrivateRoute>
+              <Overview/>
+            </PrivateRoute>
+          } />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 }
 
-export default App
+export default App;
