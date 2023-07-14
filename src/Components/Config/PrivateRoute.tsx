@@ -10,7 +10,7 @@ type ChildrenProps = {
 const PrivateRoute = ({children}: ChildrenProps) => {
 
 const authState = auth.currentUser
-  return authState !== null ? children : <Navigate to="/"/> 
+  return authState !== null || authState !== "" ? children : <Navigate to="/"/> 
 }
 
 export default memo(PrivateRoute)

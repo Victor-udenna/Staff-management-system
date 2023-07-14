@@ -24,15 +24,15 @@ const Overview = () => {
   <p><GiOwl size={35}/></p>
 </div>
 <Text classname="list_header" value="General"/>
-<div className="nav__link active"><Link  to=""><span className="icon"><BiHomeCircle size={17} /></span> <span className="link_text">Overview</span></Link></div>
-<div className="nav__link"><Link to=""><span className="icon"> <BsFileEarmarkText size={17}/></span> <span className="link_text">Payroll</span></Link></div>
-<div className="nav__link"><Link to=""> <span className="icon"><GoPeople size={17}/> </span><span className="link_text">Employee</span></Link></div>
-<div className="nav__link"><Link to=""> <span className="icon"><BsCheckCircle size={17}/> </span><span className="link_text">Attendance</span></Link></div>
+<div className="nav__link active"><Link  to="/dashboard"><span className="icon"><BiHomeCircle size={17} /></span> <span className="link_text">Overview</span></Link></div>
+<div className="nav__link"><Link to="/payroll"><span className="icon"> <BsFileEarmarkText size={17}/></span> <span className="link_text">Payroll</span></Link></div>
+<div className="nav__link"><Link to="/employee"> <span className="icon"><GoPeople size={17}/> </span><span className="link_text">Employee</span></Link></div>
+<div className="nav__link"><Link to="/attendance"> <span className="icon"><BsCheckCircle size={17}/> </span><span className="link_text">Attendance</span></Link></div>
 
 <div className="others">
 <Text classname="list_header" value="Others"/>
-<div className="nav__link"><Link to=""> <span><BiHelpCircle size={18}/> </span><span className="link_text">Help</span></Link></div>
-<div className="nav__link"><Link to=""> <span><BsGear size={18}/> </span> <span className="link_text">Settings</span></Link></div>
+<div className="nav__link"><Link to="/help"> <span><BiHelpCircle size={18}/> </span><span className="link_text">Help</span></Link></div>
+<div className="nav__link"><Link to="/settings"> <span><BsGear size={18}/> </span> <span className="link_text">Settings</span></Link></div>
 </div>
 </div>
 
