@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import "./Login.scss";
 import Input from "../../atoms/Input/Input";
 import Image from "../../atoms/Image/Image";
