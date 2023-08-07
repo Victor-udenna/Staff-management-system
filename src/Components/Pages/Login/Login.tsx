@@ -1,5 +1,5 @@
 import { useState} from "react";
-import "./Login.scss";
+import './Login.scss';
 import Input from "../../atoms/Input/Input";
 import Image from "../../atoms/Image/Image";
 import bgImg from "../../../assets/undraw_sign_in_re_o58h.svg";
@@ -16,13 +16,15 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(email, password)
+  console.log(email, password);
+  console.log(auth);
 
   const loginFunction = (e: React.FormEvent) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password).then((userdetails) =>{
       const user = userdetails;
       navigate("/dashboard")
+      localStorage.setItem("authState", JSON.stringify(auth.currentUser))
       console.log(user);
     }).catch((error) => {
       const errorCode = error.code;
@@ -35,7 +37,7 @@ const Login = () => {
   
 
   return (
-    <main className="signin__container">
+<main className="signin__container">
       <div className="signin__img__container">
         <Image className="signin__img" image={bgImg} alt="bg-image" />
       </div>

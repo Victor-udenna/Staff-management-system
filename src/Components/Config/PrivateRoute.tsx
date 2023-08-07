@@ -1,6 +1,5 @@
-import { memo } from "react";
+import { memo} from "react";
 import {Navigate} from 'react-router-dom';
-import {auth} from "../Config/firebase-config";
 
 type ChildrenProps = {
   children: JSX.Element;
@@ -9,8 +8,10 @@ type ChildrenProps = {
 
 const PrivateRoute = ({children}: ChildrenProps) => {
 
-const authState = auth.currentUser
-  return authState !== null || authState !== "" ? children : <Navigate to="/"/> 
-}
 
+
+let authState = localStorage.getItem("authState")
+
+return authState !== null  ? children : <Navigate to="/"/> 
+}
 export default memo(PrivateRoute)
