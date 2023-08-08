@@ -1,13 +1,9 @@
 import styled from "styled-components";
 
-const AttendanceStyle = styled.div`
+const PayrollStyle = styled.div`
   * {
     padding: 0;
   }
-
-  // 1 #6365EF
-  // 2 #A5B4FD
-  // 3 #E0E7FF
 
   .container {
     position: relative;
@@ -16,7 +12,7 @@ const AttendanceStyle = styled.div`
     overflow-y: hidden;
   }
 
-  .attendance {
+  .payroll {
     margin-left: 200px;
     padding: 20px;
     width: 100%;
@@ -25,4 +21,4 @@ const AttendanceStyle = styled.div`
   }
 `;
 
-export default AttendanceStyle;
+export default PayrollStyle;

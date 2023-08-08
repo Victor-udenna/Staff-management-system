@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const AttendanceStyle = styled.div`
+const HelpStyle = styled.div`
   * {
     padding: 0;
   }
@@ -16,7 +16,7 @@ const AttendanceStyle = styled.div`
     overflow-y: hidden;
   }
 
-  .attendance {
+  .help {
     margin-left: 200px;
     padding: 20px;
     width: 100%;
@@ -25,4 +25,4 @@ const AttendanceStyle = styled.div`
   }
 `;
 
-export default AttendanceStyle;
+export default HelpStyle;
