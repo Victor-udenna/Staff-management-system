@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Text from "../../atoms/Text/Text";
 import { Link } from "react-router-dom";
 import { BiHomeCircle, BiHelpCircle } from "react-icons/bi";
 import { BsFileEarmarkText, BsGear, BsCheckCircle } from "react-icons/bs";
@@ -72,13 +71,13 @@ const SideBar = () => {
   return (
     <SideBarStyle>
       <nav className="side__bar">
-        <div className="link_container">
+        <div className="general">
           <div className="logo_container">
             <p>
               <GiOwl size={35} />
             </p>
           </div>
-          <Text classname="list_header" value="General" />
+          {/* <Text classname="list_header" value="General" /> */}
           <div className={`nav__link ${overview ? "active" : ""} `}>
             <Link to="/dashboard">
               <span className="icon">
@@ -114,38 +113,38 @@ const SideBar = () => {
               <span className="link_text">Attendance</span>
             </Link>
           </div>
-
-          <div className="others">
-            <Text classname="list_header" value="Others" />
-            <div className={`nav__link ${help ? "active" : ""} `}>
-              <Link to="/help">
-                {" "}
-                <span>
-                  <BiHelpCircle size={18} />{" "}
-                </span>
-                <span className="link_text">Help</span>
-              </Link>
-            </div>
-            <div className={`nav__link ${settings ? "active" : ""} `}>
-              <Link to="/settings">
-                {" "}
-                <span>
-                  <BsGear size={18} />{" "}
-                </span>{" "}
-                <span className="link_text">Settings</span>
-              </Link>
-            </div>
-          </div>
         </div>
+        <div className="others">
+<div>
+<div className={`nav__link ${help ? "active" : ""} `}>
+            <Link to="/help">
+              {" "}
+              <span>
+                <BiHelpCircle size={18} />{" "}
+              </span>
+              <span className="link_text">Help</span>
+            </Link>
+          </div>
+          <div className={`nav__link ${settings ? "active" : ""} `}>
+            <Link to="/settings">
+              {" "}
+              <span>
+                <BsGear size={18} />{" "}
+              </span>{" "}
+              <span className="link_text">Settings</span>
+            </Link>
+          </div>
+</div>
 
-        <div className="link_container logout_container">
-          <button className="logout_btn">
-            {" "}
-            <span className="logout_icon">
-              <RxExit color="red" />
-            </span>{" "}
-            <span className="logout_text">Logout</span>
-          </button>
+          <div className="link_container logout_container">
+            <button className="logout_btn">
+              {" "}
+              <span className="logout_icon">
+                <RxExit color="red" />
+              </span>{" "}
+              <span className="logout_text">Logout</span>
+            </button>
+          </div>
         </div>
       </nav>
     </SideBarStyle>
