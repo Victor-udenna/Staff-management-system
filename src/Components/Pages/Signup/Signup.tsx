@@ -12,30 +12,43 @@ import {auth} from "../../Config/firebase-config"
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
+interface ErrorType {
+  code: number;
+  message: string;
+}
+
 const Signup = () => {
 
 const [username, setUserName] = useState("");
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
+const [iserrorPopup, setErrorPopUp] = useState<boolean>(false);
 
  const navigate = useNavigate();
+ let errorMessage;
 
 const createUser = async (e: React.FormEvent)=>{
 e.preventDefault()
-if (username.length == 0) {
-  alert("name cannot be empty");
-} else {
-  const { user } = await createUserWithEmailAndPassword(auth, email, password)
-  console.log(`User ${user.uid} created`)
-  await updateProfile(user, {
-    displayName: username
-  });
-  console.log("User profile updated")
-  navigate("/");
+try{
+  if (username.length == 0) {
+    alert("name cannot be empty");
+  } else {
+    const { user } = await createUserWithEmailAndPassword(auth, email, password)
+    console.log(`User ${user.uid} created`)
+    await updateProfile(user, {
+      displayName: username
+    });
+    console.log("User profile updated")
+    navigate("/");
+  }
+} catch (error){
+  errorMessage = error as ErrorType;
+  console.log(typeof(error))
+  console.log(errorMessage.message)
 }
 }
 
-console.log(auth.currentUser);
+// console.log(auth.currentUser);
 
   return (
     <main  className="signup__container">

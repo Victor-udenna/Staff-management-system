@@ -11,28 +11,36 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../Config/firebase-config";
 import ErrorPopup from "../../Molecule/ErrorPopup/ErrorPopup";
-
+import SuccessPopup from "../../Molecule/SucessPopup/SuccessPopup";
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [iserrorPopup, setErrorPopUp] = useState<boolean>(false);
+  const [isuccessPopup, setisSuccesspopUP] = useState<boolean>(false);
 
 
-  let errorMessage  ;
+  let errorMessage;
+
 
   const loginFunction = (e: React.FormEvent) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password).then((userdetails) =>{
+      setisSuccesspopUP(true);
       const user = userdetails;
       localStorage.setItem("authState", JSON.stringify(auth.currentUser))
-      navigate("/dashboard")
+      setTimeout(()=>{navigate("/dashboard")}, 1000)
       user
     }).catch((error) => {
       errorMessage = error.message;
-      errorMessage && (
+      // errorMessage && (
+      //   setErrorPopUp(!false)
+      // )
+      if(errorMessage){
         setErrorPopUp(!false)
-      )
+      } else {
+        setisSuccesspopUP(!false)
+      }
     
   });
   };
@@ -41,9 +49,20 @@ const Login = () => {
     setInterval(()=>{ setErrorPopUp(false)}, 3000)
   }
 
+  const succesTimeout =()=>{
+    setInterval(()=>{ setisSuccesspopUP(false)}, 2000)
+  }
+
   useEffect(
     ()=>{
       errorTimeout()
+    },
+    [errorMessage]
+  )
+
+  useEffect(
+    ()=>{
+      succesTimeout()
     },
     [errorMessage]
   )
@@ -54,6 +73,9 @@ const Login = () => {
 { iserrorPopup && (
   <ErrorPopup/>
 )}
+
+{ isuccessPopup && 
+(<SuccessPopup/>)}
   
       <div className="signin__img__container">
         <Image className="signin__img" image={bgImg} alt="bg-image" />
