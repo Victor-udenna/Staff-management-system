@@ -11,7 +11,7 @@ box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.10);
 animation-name: animatemodal;
 animation-duration: .4s;
 
-.error_pop_up{
+.success_pop_up{
     background-color: white;
     display: flex;
     align-items: center;
@@ -25,21 +25,17 @@ animation-duration: .4s;
     color: #60ad2b;
 }
 
-.error_pop_up_text_container{
+.success_pop_up_text_container{
     padding-left: 12px;
 }
 
-.error_pop_up_headertext{
-    color: black;
+.success_pop_up_headertext{
+    color: #9ca3af;
     font-weight: 500;
     font-size: 13px;
     padding-bottom: 5px;
 }
 
-// .error_pop_up_text{
-//     font-size: 12px;
-//     color: #9ca3af;
-// }
 
 @keyframes animatemodal {
     from{

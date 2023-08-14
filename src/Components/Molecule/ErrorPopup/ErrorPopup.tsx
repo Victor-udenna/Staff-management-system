@@ -3,7 +3,12 @@ import {BsXCircle} from "react-icons/bs";
 import HeaderText from '../../atoms/HeaderText/HeaderText';
 import Text from "../../atoms/Text/Text";
 
-const ErrorPopup = () => {
+
+type ErrorPopuptype = {
+  text: string,
+}
+
+const ErrorPopup = ({text} : ErrorPopuptype) => {
 
 
 
@@ -16,7 +21,7 @@ const ErrorPopup = () => {
     <div className=''>
 <div className='error_pop_up_text_container'>
 <HeaderText classname='error_pop_up_headertext' value='Error'/>
-<Text classname="error_pop_up_text" value={"Your email address is invalid"}/>
+<Text classname="error_pop_up_text" value={text}/>
 </div>
     </div>
      </div>

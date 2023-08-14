@@ -1,5 +1,5 @@
-import { useEffect, useState} from "react";
-import './Login.scss';
+import { useEffect, useState } from "react";
+import "./Login.scss";
 import Input from "../../atoms/Input/Input";
 import Image from "../../atoms/Image/Image";
 import bgImg from "../../../assets/undraw_sign_in_re_o58h.svg";
@@ -12,71 +12,70 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../Config/firebase-config";
 import ErrorPopup from "../../Molecule/ErrorPopup/ErrorPopup";
 import SuccessPopup from "../../Molecule/SucessPopup/SuccessPopup";
+import { AuthUser } from "../../Config/Authvariable";
+
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [iserrorPopup, setErrorPopUp] = useState<boolean>(false);
   const [isuccessPopup, setisSuccesspopUP] = useState<boolean>(false);
-
+  const [errorText, setErrorText] = useState<string>("");
 
   let errorMessage;
-
+  let AuthVariable = AuthUser;
 
   const loginFunction = (e: React.FormEvent) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password).then((userdetails) =>{
-      setisSuccesspopUP(true);
-      const user = userdetails;
-      localStorage.setItem("authState", JSON.stringify(auth.currentUser))
-      setTimeout(()=>{navigate("/dashboard")}, 1000)
-      user
-    }).catch((error) => {
-      errorMessage = error.message;
-      // errorMessage && (
-      //   setErrorPopUp(!false)
-      // )
-      if(errorMessage){
-        setErrorPopUp(!false)
-      } else {
-        setisSuccesspopUP(!false)
-      }
-    
-  });
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userdetails) => {
+        setisSuccesspopUP(true);
+        const user = userdetails;
+        if (auth !== null) {
+          sessionStorage.setItem("authState", JSON.stringify(AuthVariable));
+        }
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1000);
+        user;
+      })
+      .catch((error) => {
+        errorMessage = error.message;
+        console.log(errorMessage);
+        if (errorMessage) {
+          setErrorText(errorMessage);
+          setErrorPopUp(!false);
+        } else {
+          setisSuccesspopUP(!false);
+        }
+      });
   };
 
-  const errorTimeout =()=>{
-    setInterval(()=>{ setErrorPopUp(false)}, 3000)
-  }
+  const errorTimeout = () => {
+    setInterval(() => {
+      setErrorPopUp(false);
+    }, 3000);
+  };
 
-  const succesTimeout =()=>{
-    setInterval(()=>{ setisSuccesspopUP(false)}, 2000)
-  }
+  const succesTimeout = () => {
+    setInterval(() => {
+      setisSuccesspopUP(false);
+    }, 2000);
+  };
 
-  useEffect(
-    ()=>{
-      errorTimeout()
-    },
-    [errorMessage]
-  )
+  useEffect(() => {
+    errorTimeout();
+  }, [errorMessage]);
 
-  useEffect(
-    ()=>{
-      succesTimeout()
-    },
-    [errorMessage]
-  )
+  useEffect(() => {
+    succesTimeout();
+  }, [errorMessage]);
 
   return (
-<main className="signin__container">
+    <main className="signin__container">
+      {iserrorPopup && <ErrorPopup text={errorText} />}
+      {isuccessPopup && <SuccessPopup text={"Log in successful"} />}
 
-{ iserrorPopup && (
-  <ErrorPopup/>
-)}
-
-{ isuccessPopup && 
-(<SuccessPopup/>)}
-  
       <div className="signin__img__container">
         <Image className="signin__img" image={bgImg} alt="bg-image" />
       </div>
