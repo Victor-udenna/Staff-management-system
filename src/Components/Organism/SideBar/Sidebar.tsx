@@ -79,7 +79,10 @@ const SideBar = () => {
           </div>
           {/* <Text classname="list_header" value="General" /> */}
           <div className={`nav__link ${overview ? "active" : ""} `}>
+
             <Link to="/dashboard">
+            <div className="active_side_bar">
+</div>
               <span className="icon">
                 <BiHomeCircle size={17} />
               </span>{" "}
@@ -88,6 +91,8 @@ const SideBar = () => {
           </div>
           <div className={`nav__link ${payroll ? "active" : ""} `}>
             <Link to="/payroll">
+            <div className="active_side_bar">
+</div>
               <span className="icon">
                 {" "}
                 <BsFileEarmarkText size={17} />
@@ -97,6 +102,8 @@ const SideBar = () => {
           </div>
           <div className={`nav__link ${employee ? "active" : ""} `}>
             <Link to="/employee">
+            <div className="active_side_bar">
+</div>
               {" "}
               <span className="icon">
                 <GoPeople size={17} />{" "}
@@ -106,6 +113,8 @@ const SideBar = () => {
           </div>
           <div className={`nav__link ${attendance ? "active" : ""} `}>
             <Link to="/attendance">
+            <div className="active_side_bar">
+</div>
               {" "}
               <span className="icon">
                 <BsCheckCircle size={17} />{" "}
@@ -118,6 +127,8 @@ const SideBar = () => {
 <div>
 <div className={`nav__link ${help ? "active" : ""} `}>
             <Link to="/help">
+            <div className="active_side_bar">
+</div>
               {" "}
               <span>
                 <BiHelpCircle size={18} />{" "}
@@ -127,6 +138,8 @@ const SideBar = () => {
           </div>
           <div className={`nav__link ${settings ? "active" : ""} `}>
             <Link to="/settings">
+            <div className="active_side_bar">
+</div>
               {" "}
               <span>
                 <BsGear size={18} />{" "}

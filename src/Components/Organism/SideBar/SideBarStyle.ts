@@ -58,9 +58,10 @@ const SideBarStyle = styled.div`
   .nav__link {
     color: black;
     margin: 10px 0 20px 0;
-    padding: 8px 10px;
+    padding: 8px 12px;
     font-size: 12px;
     width: 100%;
+    border-radius: 4px;
     a:-webkit-any-link {
       text-decoration: none;
       display: flex;
@@ -69,6 +70,9 @@ const SideBarStyle = styled.div`
       color: inherit;
       background-color: inherit;
     }
+    .active_side_bar{
+      display: none;
+    }
     .link_text {
       padding-left: 8.5px;
     }
@@ -76,18 +80,31 @@ const SideBarStyle = styled.div`
 
   .active {
     color: #6365ef;
-    background-color: #e0e7ff;
-    // border: 1px solid #6365EF;
-    border-left: 2px solid #6365ef;
-    border-radius: 0px;
+    // background-color: #e0e7ff;
+    background-color: white;
+
+    border-radius: 4px;
     font-weight: bold;
-    .link_text {
+    position: relative; 
+    .active_side_bar{
+      display: flex;
+      width: 4px;
+      height: 15px;
+      border-radius: 4px;
+      padding: 10px 0px;
+      background-color: #6365ef;
+      position: absolute;
+      left: 0px; 
+      top: 23%;
+    }
+      .link_text {
       color: #6365ef;
     }
   }
 
   .nav__link:hover {
-    background-color: #e6ecff;
+    // background-color: #e6ecff;
+    background-color: #e8e8ed;
   }
 
   .others {

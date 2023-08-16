@@ -41,9 +41,21 @@ const Login = () => {
       })
       .catch((error) => {
         errorMessage = error.message;
-        console.log(errorMessage);
         if (errorMessage) {
-          setErrorText(errorMessage);
+          if (errorMessage === "Firebase: Error (auth/invalid-email).") {
+            setErrorText("Invalid email or password");
+          }
+          if (errorMessage === "Firebase: Error (auth/missing-password).") {
+            setErrorText("Invalid password");
+          }
+          if (
+            errorMessage === "Firebase: Error (auth/network-request-failed)."
+          ) {
+            setErrorText("Network error, try again");
+          }
+          if (errorMessage === "Firebase: Error (auth/user-not-found).") {
+            setErrorText("Wrong email / password");
+          }
           setErrorPopUp(!false);
         } else {
           setisSuccesspopUP(!false);
