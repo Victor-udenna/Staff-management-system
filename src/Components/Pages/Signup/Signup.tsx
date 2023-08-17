@@ -18,6 +18,7 @@ const Signup = () => {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmpassword] = useState("");
   const [iserrorPopup, setErrorPopUp] = useState<boolean>(false);
   const [isuccessPopup, setisSuccesspopUP] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
@@ -25,9 +26,11 @@ const Signup = () => {
 
   const navigate = useNavigate();
   let errorMessage;
+  let verifyPassword = confirmpassword;
+  console.log(verifyPassword);
 
   const createUser = async (e: React.FormEvent) => {
-    setisClicked(true)
+    setisClicked(true);
     e.preventDefault();
     try {
       if (username.length == 0) {
@@ -44,17 +47,18 @@ const Signup = () => {
           displayName: username,
         });
         console.log("User profile updated");
-        setisSuccesspopUP(!false)
+        setisSuccesspopUP(!false);
         setTimeout(() => {
           navigate("/");
         }, 1000);
       }
     } catch (error: any) {
       errorMessage = error.message as any;
-    
+
       if (errorMessage) {
         if (
-          errorMessage === "Firebase: Password should be at least 6 characters (auth/weak-password)."
+          errorMessage ===
+          "Firebase: Password should be at least 6 characters (auth/weak-password)."
         ) {
           setErrorText("Weak password");
         }
@@ -92,7 +96,6 @@ const Signup = () => {
     succesTimeout();
   }, [errorMessage]);
 
-
   return (
     <main className="signup__container">
       {iserrorPopup && <ErrorPopup text={errorText} />}
@@ -127,17 +130,35 @@ const Signup = () => {
               }}
             />
           </div>
-          <div className="sign_up_input_container">
-            <p className="label">Password</p>
-            <Input
-              type="password"
-              required={true}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setPassword(e.target.value);
-              }}
-            />
+          <div className="input_sub_container">
+            <div className="sign_up_input_container">
+              <p className="label">Password</p>
+              <Input
+                type="password"
+                className="password_input"
+                required={true}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </div>
+            <div className="sign_up_input_container">
+              <p className="label"> Confirm Password</p>
+              <Input
+                type="password"
+                className="password_input"
+                required={true}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setConfirmpassword(e.target.value);
+                }}
+              />
+            </div>
           </div>
-          <Button classname="sign_up_button" isloading={isclicked} value="Create Account" />
+          <Button
+            classname="sign_up_button"
+            isloading={isclicked}
+            value="Create Account"
+          />
           <div className="log__in__link">
             <span>Already have an account yet ?</span>{" "}
             <Link to="/">
