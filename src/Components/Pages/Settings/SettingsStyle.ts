@@ -17,7 +17,7 @@ const SettingsStyle = styled.div`
   }
 
   .settings {
-    margin-left: 200px;
+    margin-left: 18%;
     padding: 20px;
     width: 100%;
     overflow: hidden;

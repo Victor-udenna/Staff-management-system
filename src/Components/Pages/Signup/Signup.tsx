@@ -11,7 +11,6 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Config/firebase-config";
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { AuthUser } from "../../Config/Authvariable";
 import ErrorPopup from "../../Molecule/ErrorPopup/ErrorPopup";
 import SuccessPopup from "../../Molecule/SucessPopup/SuccessPopup";
 
@@ -22,12 +21,13 @@ const Signup = () => {
   const [iserrorPopup, setErrorPopUp] = useState<boolean>(false);
   const [isuccessPopup, setisSuccesspopUP] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
+  const [isclicked, setisClicked] = useState<boolean>(false);
 
   const navigate = useNavigate();
   let errorMessage;
-  let AuthVariable = AuthUser;
 
   const createUser = async (e: React.FormEvent) => {
+    setisClicked(true)
     e.preventDefault();
     try {
       if (username.length == 0) {
@@ -62,8 +62,10 @@ const Signup = () => {
           setErrorText("Network error, Try again");
         }
         setErrorPopUp(!false);
+        setisClicked(!true);
       } else {
         setisSuccesspopUP(!false);
+        setisClicked(!true);
       }
 
       console.log(errorMessage);
@@ -135,7 +137,7 @@ const Signup = () => {
               }}
             />
           </div>
-          <Button classname="sign_up_button" value="Create Account" />
+          <Button classname="sign_up_button" isloading={isclicked} value="Create Account" />
           <div className="log__in__link">
             <span>Already have an account yet ?</span>{" "}
             <Link to="/">

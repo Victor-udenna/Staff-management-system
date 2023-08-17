@@ -14,6 +14,7 @@ import ErrorPopup from "../../Molecule/ErrorPopup/ErrorPopup";
 import SuccessPopup from "../../Molecule/SucessPopup/SuccessPopup";
 import { AuthUser } from "../../Config/Authvariable";
 
+
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -21,11 +22,13 @@ const Login = () => {
   const [iserrorPopup, setErrorPopUp] = useState<boolean>(false);
   const [isuccessPopup, setisSuccesspopUP] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
+  const [isclicked, setisClicked] = useState<boolean>(false);
 
   let errorMessage;
   let AuthVariable = AuthUser;
 
   const loginFunction = (e: React.FormEvent) => {
+    setisClicked(true)
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userdetails) => {
@@ -41,11 +44,12 @@ const Login = () => {
       })
       .catch((error) => {
         errorMessage = error.message;
+        console.log(errorMessage)
         if (errorMessage) {
           if (errorMessage === "Firebase: Error (auth/invalid-email).") {
             setErrorText("Invalid email or password");
           }
-          if (errorMessage === "Firebase: Error (auth/missing-password).") {
+          if (errorMessage === "Firebase: Error (auth/missing-password)." || errorMessage === "Firebase: Error (auth/wrong-password).") {
             setErrorText("Invalid password");
           }
           if (
@@ -55,10 +59,14 @@ const Login = () => {
           }
           if (errorMessage === "Firebase: Error (auth/user-not-found).") {
             setErrorText("Wrong email / password");
-          }
+          } if (errorMessage === "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)."){
+            setErrorText("Account temporarily disabled, Pls try again later")
+          }    
           setErrorPopUp(!false);
+          setisClicked(!true);
         } else {
           setisSuccesspopUP(!false);
+          setisClicked(!true);
         }
       });
   };
@@ -118,7 +126,7 @@ const Login = () => {
               }}
             />
           </div>
-          <Button classname="sign_in_button" value="Log in" />
+          <Button classname="sign_in_button" isloading={isclicked} value="Log in" />
           <div className="log__in__link">
             <span>Don't have an account ?</span>{" "}
             <Link to="/signup">

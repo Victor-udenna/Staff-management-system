@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { BiHomeCircle, BiHelpCircle } from "react-icons/bi";
 import { BsFileEarmarkText, BsGear, BsCheckCircle } from "react-icons/bs";
 import { GoPeople } from "react-icons/go";
 import { GiOwl } from "react-icons/gi";
 import { RxExit } from "react-icons/rx";
-import SideBarStyle from "./SideBarStyle";
-import { useLocation } from "react-router-dom";
+import SideBarStyle from "./SideBarStyle";;
+import {auth} from "../../Config/firebase-config";
+import { signOut } from "firebase/auth";
 
 const SideBar = () => {
   const [overview, setOverview] = useState(false);
@@ -17,6 +18,8 @@ const SideBar = () => {
   const [settings, setSettings] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
+
 
   const getLocation = () => {
     if (location.pathname.includes("dashboard")) {
@@ -68,6 +71,19 @@ const SideBar = () => {
     getLocation();
   }, []);
 
+  const logoutFunction = async  ()=>{
+  try{
+    await signOut(auth)
+    console.log("wow")
+    sessionStorage.clear()
+    setTimeout(()=>{
+    navigate('/')
+    }, 2000)
+  } catch(err){
+    console.error(err)
+  }
+  }
+
   return (
     <SideBarStyle>
       <nav className="side__bar">
@@ -77,7 +93,6 @@ const SideBar = () => {
               <GiOwl size={35} />
             </p>
           </div>
-          {/* <Text classname="list_header" value="General" /> */}
           <div className={`nav__link ${overview ? "active" : ""} `}>
 
             <Link to="/dashboard">
@@ -150,7 +165,7 @@ const SideBar = () => {
 </div>
 
           <div className="link_container logout_container">
-            <button className="logout_btn">
+            <button className="logout_btn" onClick={logoutFunction}>
               {" "}
               <span className="logout_icon">
                 <RxExit color="red" />

@@ -14,7 +14,7 @@ const SideBarStyle = styled.div`
     top: 0;
     left: 0;
     bottom: 0px;
-    width: 220px;
+    width: 18%;
     padding: 10px 10px 10px 10px;
     height: 100vh;
     display: flex;
