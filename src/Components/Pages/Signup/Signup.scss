@@ -24,8 +24,10 @@
 
 .signup__container {
   display: grid;
-  grid-template-columns: 38% 62%;
+  grid-template-columns: 40% 60%;
   height: 100vh;
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .signup__img__container {
