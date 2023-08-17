@@ -104,11 +104,11 @@ const Signup = () => {
         <Image className="signup__img" image={bgImg} alt="bg-image" />
       </div>
       <div className="sign__up__form__container">
-        <HeaderText classname="sign_up_header" value="Hello!" />
-        <div className="header_text">
+        <HeaderText classname="sign_up_header" value="Create an account" />
+        {/* <div className="header_text">
           <p>Fill in the necesarry details below to create your</p>
           <p> account.</p>
-        </div>
+        </div> */}
         <form className="sign__up__form" onSubmit={createUser}>
           <div className="sign_up_input_container">
             <p className="label">User name</p>
@@ -153,6 +153,11 @@ const Signup = () => {
                 }}
               />
             </div>
+          </div>
+          
+          <div className="show_password">
+          <input id="show_password" type="checkbox"/>
+            <label htmlFor="show_password">show password</label>
           </div>
           <Button
             classname="sign_up_button"
