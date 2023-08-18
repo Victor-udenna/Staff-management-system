@@ -23,6 +23,8 @@ const Signup = () => {
   const [isuccessPopup, setisSuccesspopUP] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
   const [isclicked, setisClicked] = useState<boolean>(false);
+  const [showpassword, setShowpassword] = useState<string>("password");
+  const [showpasswordtext, setshowpasswordText] = useState<string>("show password");
 
   const navigate = useNavigate();
   let errorMessage;
@@ -75,6 +77,17 @@ const Signup = () => {
       console.log(errorMessage);
     }
   };
+
+  const showPasswordFunc =(e : any)=>{
+    if(e.target.checked){
+   setShowpassword("text")
+   setshowpasswordText("hide password")
+    } else{
+     setShowpassword("password")
+     setshowpasswordText("show password")
+    }
+    }
+
 
   const errorTimeout = () => {
     setInterval(() => {
@@ -134,7 +147,7 @@ const Signup = () => {
             <div className="sign_up_input_container">
               <p className="label">Password</p>
               <Input
-                type="password"
+                type={showpassword}
                 className="password_input"
                 required={true}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -145,7 +158,7 @@ const Signup = () => {
             <div className="sign_up_input_container">
               <p className="label"> Confirm Password</p>
               <Input
-                type="password"
+                type={showpassword}
                 className="password_input"
                 required={true}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -156,8 +169,8 @@ const Signup = () => {
           </div>
           
           <div className="show_password">
-          <input id="show_password" type="checkbox"/>
-            <label htmlFor="show_password">show password</label>
+          <input id="show_password" type="checkbox" onChange={showPasswordFunc}/>
+          <label htmlFor="show_password">{showpasswordtext}</label>
           </div>
           <Button
             classname="sign_up_button"

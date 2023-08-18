@@ -23,6 +23,8 @@ const Login = () => {
   const [isuccessPopup, setisSuccesspopUP] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
   const [isclicked, setisClicked] = useState<boolean>(false);
+  const [showpassword, setShowpassword] = useState<string>("password")
+  const [showpasswordtext, setshowpasswordText] = useState<string>("show password")
 
   let errorMessage;
   let AuthVariable = AuthUser;
@@ -70,6 +72,16 @@ const Login = () => {
         }
       });
   };
+
+  const showPasswordFunc =(e : any)=>{
+    if(e.target.checked){
+   setShowpassword("text")
+   setshowpasswordText("hide password")
+    } else{
+     setShowpassword("password")
+     setshowpasswordText("show password")
+    }
+    }
 
   const errorTimeout = () => {
     setInterval(() => {
@@ -120,11 +132,15 @@ const Login = () => {
           <div className="sign_in_input_container">
             <p className="label">Password</p>
             <Input
-              type="password"
+              type={showpassword}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setPassword(e.target.value);
               }}
             />
+          </div>
+          <div className="show_password">
+          <input id="show_password" type="checkbox" onChange={showPasswordFunc}/>
+            <label htmlFor="show_password">{showpasswordtext}</label>
           </div>
           <Button classname="sign_in_button" isloading={isclicked} value="Log in" />
           <div className="log__in__link">

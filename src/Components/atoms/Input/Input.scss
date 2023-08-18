@@ -5,6 +5,6 @@ input{
     color: grey;
 }
 
-input:focus{
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus{
     outline: 1.4px solid #A5B4FD ;
 }
