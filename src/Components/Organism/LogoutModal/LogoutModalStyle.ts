@@ -78,17 +78,18 @@ gap: 16px;
     display: flex;
     height: 44px;
     padding: 10px 16px;
+    width: 100px;
     justify-content: center;
     align-items: center;
     border: none;
     border-radius: 4px;
-    background: #E0E7FF;
+    background: #e3fae3;
     font-family: Montserrat;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
-    color: #6365EF;
+    color: #228B22;
     cursor: pointer;   
 }
 
@@ -101,7 +102,7 @@ justify-content: center;
 align-items: center;
 border: none;
 border-radius: 4px;
-background: #6365EF;
+background: #228B22;
 font-family: Montserrat;
 font-size: 14px;
 font-style: normal;
@@ -109,6 +110,14 @@ font-weight: 600;
 line-height: 150%;
 color: #fff;
 cursor: pointer;       
+}
+
+.logout__action__btn:hover{
+ background-color: #355E3B;
+}
+
+.modal__close__btn:hover{
+background-color:  #d1ffd1;   
 }
 
 

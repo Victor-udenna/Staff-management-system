@@ -4,7 +4,7 @@ import Image from "../../atoms/Image/Image";
 import HeaderText from "../../atoms/HeaderText/HeaderText";
 import Input from "../../atoms/Input/Input";
 import { Button } from "../../atoms/Button/Button";
-import bgImg from "../../../assets/undraw_account_re_o7id.svg";
+import bgImg from "../../../assets/create_account_img.svg";
 import { Link } from "react-router-dom";
 import GoogleButton from "../../atoms/GoogleButton/GoogleButton";
 import { createUserWithEmailAndPassword } from "firebase/auth";

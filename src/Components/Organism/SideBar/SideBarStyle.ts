@@ -45,14 +45,14 @@ import styled from "styled-components";
     text-align: center;
     padding-bottom: 30px;
     padding-top: 10px;
-    color: #6365ef;
+    color: #228B22
   }
 
   .logo {
     font-family: "Chivo Mono", monospace;
     font-weight: bold;
     font-size: 30px;
-    color: #6365ef;
+    color: #228B22;
   }
 
   .nav__link {
@@ -79,7 +79,7 @@ import styled from "styled-components";
   }
 
   .active {
-    color: #6365ef;
+    color: #228B22;
     // background-color: #e0e7ff;
     background-color: white;
 
@@ -92,13 +92,13 @@ import styled from "styled-components";
       height: 15px;
       border-radius: 4px;
       padding: 10px 0px;
-      background-color: #6365ef;
+      background-color: #228B22;
       position: absolute;
       left: 0px; 
       top: 23%;
     }
       .link_text {
-      color: #6365ef;
+      color: #228B22;
     }
   }
 
