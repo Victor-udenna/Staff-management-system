@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SideBarStyle = styled.div`
+ export const SideBarStyle = styled.div`
   * {
     padding: 0;
   }
@@ -144,4 +144,4 @@ const SideBarStyle = styled.div`
   }
 `;
 
-export default SideBarStyle;
+// export  SideBarStyle;

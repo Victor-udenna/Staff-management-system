@@ -5,9 +5,10 @@ import { BsFileEarmarkText, BsGear, BsCheckCircle } from "react-icons/bs";
 import { GoPeople } from "react-icons/go";
 import { GiOwl } from "react-icons/gi";
 import { RxExit } from "react-icons/rx";
-import SideBarStyle from "./SideBarStyle";;
+import {SideBarStyle} from "./SideBarStyle";;
 import {auth} from "../../Config/firebase-config";
 import { signOut } from "firebase/auth";
+import LogoutModal from "../LogoutModal/LogoutModal";
 
 const SideBar = () => {
   const [overview, setOverview] = useState(false);
@@ -16,10 +17,12 @@ const SideBar = () => {
   const [attendance, setAttendance] = useState(false);
   const [help, setHelp] = useState(false);
   const [settings, setSettings] = useState(false);
+  const [islogoutopen, setislogoutOpen] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
-
+  
 
   const getLocation = () => {
     if (location.pathname.includes("dashboard")) {
@@ -72,7 +75,9 @@ const SideBar = () => {
   }, []);
 
   const logoutFunction = async  ()=>{
+  setLoader(true)
   try{
+    setLoader(true)
     await signOut(auth)
     console.log("wow")
     sessionStorage.clear()
@@ -81,11 +86,29 @@ const SideBar = () => {
     }, 2000)
   } catch(err){
     console.error(err)
+    setLoader(false)
   }
+  }
+
+  const openLogout =()=>{
+  setislogoutOpen(true)  
+  }
+
+  const closeLogout =()=>{
+    setislogoutOpen(false)
   }
 
   return (
     <SideBarStyle>
+    {
+      islogoutopen && (
+        <LogoutModal
+        isloading={loader}
+        logoutFunc={logoutFunction}
+         closeModal={closeLogout}/>
+    )
+    }
+
       <nav className="side__bar">
         <div className="general">
           <div className="logo_container">
@@ -165,7 +188,7 @@ const SideBar = () => {
 </div>
 
           <div className="link_container logout_container">
-            <button className="logout_btn" onClick={logoutFunction}>
+            <button className="logout_btn" onClick={openLogout}>
               {" "}
               <span className="logout_icon">
                 <RxExit color="red" />
