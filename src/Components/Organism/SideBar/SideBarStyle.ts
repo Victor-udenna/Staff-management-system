@@ -21,7 +21,7 @@ import styled from "styled-components";
     flex-direction: column;
     justify-content: stretch;
     align-items: stretch;
-    gap: 10px;
+    gap: 5px;
   }
 
   .general {
@@ -75,6 +75,7 @@ import styled from "styled-components";
     }
     .link_text {
       padding-left: 8.5px;
+      font-weight: 500;
     }
   }
 
@@ -99,12 +100,8 @@ import styled from "styled-components";
     }
       .link_text {
       color: #228B22;
+      font-weight: 600;
     }
-  }
-
-  .nav__link:hover {
-    // background-color: #e6ecff;
-    background-color: #e8e8ed;
   }
 
   .others {
@@ -124,7 +121,6 @@ import styled from "styled-components";
     border-radius: 10px;
     font-size: 12px;
     width: 100%;
-    //
     text-align: center;
     display: flex;
     align-items: center;
@@ -138,8 +134,8 @@ import styled from "styled-components";
   }
 
   .logout_btn:hover {
-    background-color: #fdf8f8;
-    border: 1px solid #ffcece;
+    background-color: #e3fae3;
+    border: 1px solid #228B22;
     color: rgb(30, 27, 27);
   }
 `;

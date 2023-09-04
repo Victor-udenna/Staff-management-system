@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { BiHomeCircle, BiHelpCircle } from "react-icons/bi";
+import { BiHomeCircle, BiHelpCircle, BiMessageDetail } from "react-icons/bi";
 import { BsFileEarmarkText, BsGear, BsCheckCircle } from "react-icons/bs";
 import { GoPeople } from "react-icons/go";
 import { GiOwl } from "react-icons/gi";
@@ -17,6 +17,7 @@ const SideBar = () => {
   const [attendance, setAttendance] = useState(false);
   const [help, setHelp] = useState(false);
   const [settings, setSettings] = useState(false);
+  const [communication, setCommunication] = useState(false);
   const [islogoutopen, setislogoutOpen] = useState(false);
   const [loader, setLoader] = useState(false);
 
@@ -67,6 +68,15 @@ const SideBar = () => {
       setAttendance(false);
       setHelp(false);
       setSettings(true);
+    }
+    else if (location.pathname.includes("Communication")) {
+      setOverview(false);
+      setPayroll(false);
+      setEmployee(false);
+      setAttendance(false);
+      setHelp(false);
+      setSettings(false);
+      setCommunication(true);
     }
   };
 
@@ -160,6 +170,20 @@ const SideBar = () => {
               <span className="link_text">Attendance</span>
             </Link>
           </div>
+
+          <div className={`nav__link ${communication ? "active" : ""} `}>
+            <Link to="/Communication">
+            <div className="active_side_bar">
+</div>
+              {" "}
+              <span className="icon">
+                <BiMessageDetail size={17} />{" "}
+              </span>
+              <span className="link_text">Communications</span>
+            </Link>
+          </div>
+
+
         </div>
         <div className="others">
 <div>
@@ -191,7 +215,7 @@ const SideBar = () => {
             <button className="logout_btn" onClick={openLogout}>
               {" "}
               <span className="logout_icon">
-                <RxExit color="red" />
+                <RxExit color="#228B22" />
               </span>{" "}
               <span className="logout_text">Logout</span>
             </button>
