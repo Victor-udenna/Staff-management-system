@@ -15,18 +15,18 @@ import styled from "styled-components";
     left: 0;
     bottom: 0px;
     width: 18%;
-    padding: 10px 10px 10px 10px;
+    padding: 0px 10px 0px 10px;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
     align-items: stretch;
-    gap: 5px;
+    gap: 8px;
   }
 
   .general {
     background-color: #f5f7fa;
-    border-radius: 7px;
+    border-radius: 0px 0px 7px 7px;
     padding: 10px 10px 0px 10px;
     height: 100%;
   }
@@ -36,7 +36,7 @@ import styled from "styled-components";
     flex-direction: column;
     justify-content: space-between;
     background-color: #f5f7fa;
-    border-radius: 7px;
+    border-radius: 7px 7px 0px 0px;
     padding: 0px 10px 0px 10px;
     height: 100%;
   }
