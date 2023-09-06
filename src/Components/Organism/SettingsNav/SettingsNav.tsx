@@ -35,7 +35,7 @@ const SettingsNav = () => {
         </div>
 
         <div className="settings__menu__container">
-          <div className="settings__menu__item menu_1">
+          <div className="active settings__menu__item menu_1">
             <div className="settings__menu__item__header">
               <div className="icon__wrapper">
                 <CgProfile />

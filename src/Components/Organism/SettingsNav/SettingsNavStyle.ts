@@ -64,8 +64,8 @@ const SettingNavStyle = styled.div`
   }
 
   .settings__menu__item {
-    background-color: green;
     padding-top: 16px;
+   color: #546680;     
   }
 
   .settings__menu__item__header {
@@ -75,12 +75,13 @@ const SettingNavStyle = styled.div`
 
   .icon__wrapper {
     margin-top: 2px;
-    background-color: red;
+    background-color: #f5f7fa;
     padding: 5px;
     border-radius: 7px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #546680;
   }
 
   .icon__wrapper {
@@ -111,14 +112,31 @@ const SettingNavStyle = styled.div`
   .settings__menu__item__header__text {
     font-size: 15px;
   }
-
   .settings__menu__item__description {
     padding-left: 46px;
     padding-top: 5px;
     padding-bottom: 16px;
     font-size: 13px;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #546680;
   }
+
+
+  .active.settings__menu__item{
+    color: black;
+    .settings__menu__item__description {
+    border-bottom: 1px solid #228b22;    
+    }
+
+
+    .icon__wrapper {
+    color: #228b22 ;
+      }
+
+    .settings__menu__item__header__text {
+     font-weight: 600;
+      }
+  } 
+
 `;
 
 export default SettingNavStyle;
