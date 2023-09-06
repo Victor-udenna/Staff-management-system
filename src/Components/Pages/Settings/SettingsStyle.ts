@@ -61,67 +61,10 @@ const SettingsStyle = styled.div`
     margin-bottom: 24px;
   }
 
-  .profile__card {
-    background-color: #228b22;
-    background-color: #355e3b;
-    width: fit-content;
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 16px;
-    margin-right: 20px;
-  }
 
-  .profile__percentage__container {
-    width: 82px;
-    height: 82px;
-    padding: 3px;
-    border: 3px solid #fff;
-    background-color: #228b22;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    font-size: 18px;
-    font-weight: 600;
-  }
 
-  .profile__card__header {
-    font-weight: 600;
-    color: #fff;
-    font-size: 15px;
-    padding-bottom: 8px;
-  }
 
-  .profile__card__text {
-    font-size: 12px;
-    color: #fff;
-  }
 
-  .profile__card__sub__container {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .complete__profile__button {
-    width: 100%;
-    padding: 10px;
-    font-size: 13px;
-    background-color: white;
-    font-weight: 600;
-    border: none;
-    border-radius: 16px;
-    margin-top: 22px;
-    color: #228b22;
-    cursor: pointer;
-  }
-
-  .complete__profile__button:hover {
-    background-color: honeydew;
-  }
 `;
 
 export default SettingsStyle;
