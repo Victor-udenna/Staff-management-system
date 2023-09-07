@@ -65,7 +65,8 @@ const SettingNavStyle = styled.div`
 
   .settings__menu__item {
     padding-top: 16px;
-   color: #546680;     
+   color: #546680; 
+   cursor: pointer;    
   }
 
   .settings__menu__item__header {

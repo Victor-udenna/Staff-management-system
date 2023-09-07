@@ -1,21 +1,21 @@
-import SideBar from "../../Organism/SideBar/Sidebar";
-import SettingsStyle from "./SettingsStyle";
-import { auth } from "../../Config/firebase-config";
-import { CiWarning } from "react-icons/ci";
-import HeaderText from "../../atoms/HeaderText/HeaderText";
 import SettingsNav from "../../Organism/SettingsNav/SettingsNav";
+import SideBar from "../../Organism/SideBar/Sidebar";
+import AccountActivityyStyle from "./AccountActivityStyle";
+import HeaderText from "../../atoms/HeaderText/HeaderText";
+import { CiWarning } from "react-icons/ci";
+import { auth } from "../../Config/firebase-config"
 
-
-const Settings = () => {
-  let userEmail = auth.currentUser?.email;
-  let isEmailVerified = auth.currentUser?.emailVerified;
+const AccountActivity = () => {
+    let userEmail = auth.currentUser?.email;
+    let isEmailVerified = auth.currentUser?.emailVerified;
 
   return (
-    <SettingsStyle>
+    <AccountActivityyStyle>
       <main className="container">
         <SideBar />
-        <section className="settings">
-          {!isEmailVerified && (
+        <section className="settings__activity">
+
+        {!isEmailVerified && (
             <div className="verify__email__status">
               <CiWarning size={23} />
               <div>
@@ -25,21 +25,19 @@ const Settings = () => {
                 </p>
               </div>
             </div>
-          )}
+          )}       
 
           <section className="settings__sub__container">
-
-           <SettingsNav/> 
-           
+            <SettingsNav />
             <div className="setting__details__container">
-              <HeaderText classname="header__text" value="Account Settings" />
-              Lorem ipsum dolor sit amet 
+              <HeaderText classname="header__text" value="Account Activity" />
+              Lorem ipsum dolor sit amet
             </div>
           </section>
         </section>
       </main>
-    </SettingsStyle>
+    </AccountActivityyStyle>
   );
 };
 
-export default Settings;
+export default AccountActivity;

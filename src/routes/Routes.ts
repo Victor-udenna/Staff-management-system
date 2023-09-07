@@ -5,6 +5,8 @@ import Payroll from "../Components/Pages/Payroll/Payroll";
 import Attendance from "../Components/Pages/Attendance/Attendance";
 import Help from "../Components/Pages/Help/Help";
 import Communication from "../Components/Pages/Communication/Communication";
+import AccountSecurity from "../Components/Pages/AccountSecurity/AccountSecurity";
+import AccountActivity from "../Components/Pages/AccountActivity/AccountActivity";
 
 const routes = [
   {
@@ -58,6 +60,20 @@ const routes = [
         {
             path: "/communication",
             component: Communication,
+        },
+    ]
+  } ,{
+    elements: [
+        {
+            path: "/settings/security",
+            component: AccountSecurity,
+        },
+    ]
+  },{
+    elements: [
+        {
+            path: "/settings/activity",
+            component: AccountActivity,
         },
     ]
   }

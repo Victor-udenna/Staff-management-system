@@ -1,11 +1,59 @@
 import Text from "../../atoms/Text/Text";
+import { useState, useEffect } from "react";
 import HeaderText from "../../atoms/HeaderText/HeaderText";
 import { Button } from "../../atoms/Button/Button";
 import { AiOutlineRight } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
+import {BiSolidLockAlt} from "react-icons/bi";
+import {PiBellSimpleFill} from "react-icons/pi";
+import {MdAccountCircle} from "react-icons/md";
 import SettingNavStyle from "./SettingsNavStyle";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const SettingsNav = () => {
+
+const [settings, setsettings] = useState<boolean>(false);
+const [settingsSecurity, setsettingsSecurity] = useState<boolean>(false);
+const [settingActivity, setSettingsActivity] = useState<boolean>(false); 
+
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+const getLocation =()=>{
+  if(location.pathname == "/settings"){
+    setsettings(true);
+    setsettingsSecurity(false)
+    setSettingsActivity(false)
+  } else if (location.pathname.includes("security")){
+    setsettings(false);
+    setsettingsSecurity(true)
+    setSettingsActivity(false)
+  } else if(location.pathname.includes("activity")){
+    setsettings(false);
+    setsettingsSecurity(false)
+    setSettingsActivity(true)
+  }
+}
+
+const gotoSettings =()=>{
+navigate("/settings")
+}
+
+const gotosettingsSecurity =()=>{
+  navigate("/settings/security")
+  }
+
+  const gotosettingsActivity =()=>{
+    navigate("/settings/activity")
+    }  
+
+
+useEffect(() => {
+  getLocation();
+}, []);
+
+
+
   return (
     <SettingNavStyle>
       <div className="settings__menu">
@@ -35,10 +83,10 @@ const SettingsNav = () => {
         </div>
 
         <div className="settings__menu__container">
-          <div className="active settings__menu__item menu_1">
+        <div onClick={gotoSettings} className={`settings__menu__item menu_1 ${settings ? "active" : ""}`}>
             <div className="settings__menu__item__header">
               <div className="icon__wrapper">
-                <CgProfile />
+                <MdAccountCircle />
               </div>
               <Text
                 classname="settings__menu__item__header__text"
@@ -54,10 +102,10 @@ const SettingsNav = () => {
             />
           </div>
 
-          <div className="settings__menu__item menu_2">
+          <div onClick={gotosettingsSecurity} className={`settings__menu__item menu_2 ${settingsSecurity ? "active" : ""}`}>
             <div className="settings__menu__item__header">
               <div className="icon__wrapper">
-                <CgProfile />
+                <BiSolidLockAlt />
               </div>
               <Text
                 classname="settings__menu__item__header__text"
@@ -73,10 +121,10 @@ const SettingsNav = () => {
             />
           </div>
 
-          <div className="settings__menu__item menu_3">
+          <div onClick={gotosettingsActivity} className={`settings__menu__item menu_3 ${settingActivity ? "active" : ""}`}>
             <div className="settings__menu__item__header">
               <div className="icon__wrapper">
-                <CgProfile />
+                <PiBellSimpleFill />
               </div>
               <Text
                 classname="settings__menu__item__header__text"
