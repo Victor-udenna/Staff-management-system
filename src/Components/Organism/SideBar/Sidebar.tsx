@@ -5,8 +5,8 @@ import { BsFileEarmarkText, BsGear, BsCheckCircle } from "react-icons/bs";
 import { GoPeople } from "react-icons/go";
 import { GiOwl } from "react-icons/gi";
 import { RxExit } from "react-icons/rx";
-import {SideBarStyle} from "./SideBarStyle";;
-import {auth} from "../../Config/firebase-config";
+import { SideBarStyle } from "./SideBarStyle";
+import { auth } from "../../Config/firebase-config";
 import { signOut } from "firebase/auth";
 import LogoutModal from "../LogoutModal/LogoutModal";
 
@@ -23,7 +23,6 @@ const SideBar = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  
 
   const getLocation = () => {
     if (location.pathname.includes("dashboard")) {
@@ -68,8 +67,7 @@ const SideBar = () => {
       setAttendance(false);
       setHelp(false);
       setSettings(true);
-    }
-    else if (location.pathname.includes("Communication")) {
+    } else if (location.pathname.includes("Communication")) {
       setOverview(false);
       setPayroll(false);
       setEmployee(false);
@@ -84,40 +82,37 @@ const SideBar = () => {
     getLocation();
   }, []);
 
-  const logoutFunction = async  ()=>{
-  setLoader(true)
-  try{
-    setLoader(true)
-    await signOut(auth)
-    console.log("wow")
-    sessionStorage.clear()
-    setTimeout(()=>{
-    navigate('/')
-    }, 2000)
-  } catch(err){
-    console.error(err)
-    setLoader(false)
-  }
-  }
+  const logoutFunction = async () => {
+    setLoader(true);
+    try {
+      setLoader(true);
+      await signOut(auth);
+      sessionStorage.clear();
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (err) {
+      setLoader(false);
+    }
+  };
 
-  const openLogout =()=>{
-  setislogoutOpen(true)  
-  }
+  const openLogout = () => {
+    setislogoutOpen(true);
+  };
 
-  const closeLogout =()=>{
-    setislogoutOpen(false)
-  }
+  const closeLogout = () => {
+    setislogoutOpen(false);
+  };
 
   return (
     <SideBarStyle>
-    {
-      islogoutopen && (
+      {islogoutopen && (
         <LogoutModal
-        isloading={loader}
-        logoutFunc={logoutFunction}
-         closeModal={closeLogout}/>
-    )
-    }
+          isloading={loader}
+          logoutFunc={logoutFunction}
+          closeModal={closeLogout}
+        />
+      )}
 
       <nav className="side__bar">
         <div className="general">
@@ -127,10 +122,8 @@ const SideBar = () => {
             </p>
           </div>
           <div className={`nav__link ${overview ? "active" : ""} `}>
-
             <Link to="/dashboard">
-            <div className="active_side_bar">
-</div>
+              <div className="active_side_bar"></div>
               <span className="icon">
                 <BiHomeCircle size={17} />
               </span>{" "}
@@ -139,8 +132,7 @@ const SideBar = () => {
           </div>
           <div className={`nav__link ${payroll ? "active" : ""} `}>
             <Link to="/payroll">
-            <div className="active_side_bar">
-</div>
+              <div className="active_side_bar"></div>
               <span className="icon">
                 {" "}
                 <BsFileEarmarkText size={17} />
@@ -150,9 +142,7 @@ const SideBar = () => {
           </div>
           <div className={`nav__link ${employee ? "active" : ""} `}>
             <Link to="/employee">
-            <div className="active_side_bar">
-</div>
-              {" "}
+              <div className="active_side_bar"></div>{" "}
               <span className="icon">
                 <GoPeople size={17} />{" "}
               </span>
@@ -161,9 +151,7 @@ const SideBar = () => {
           </div>
           <div className={`nav__link ${attendance ? "active" : ""} `}>
             <Link to="/attendance">
-            <div className="active_side_bar">
-</div>
-              {" "}
+              <div className="active_side_bar"></div>{" "}
               <span className="icon">
                 <BsCheckCircle size={17} />{" "}
               </span>
@@ -173,43 +161,35 @@ const SideBar = () => {
 
           <div className={`nav__link ${communication ? "active" : ""} `}>
             <Link to="/Communication">
-            <div className="active_side_bar">
-</div>
-              {" "}
+              <div className="active_side_bar"></div>{" "}
               <span className="icon">
                 <BiMessageDetail size={17} />{" "}
               </span>
               <span className="link_text">Communications</span>
             </Link>
           </div>
-
-
         </div>
         <div className="others">
-<div>
-<div className={`nav__link ${help ? "active" : ""} `}>
-            <Link to="/help">
-            <div className="active_side_bar">
-</div>
-              {" "}
-              <span>
-                <BiHelpCircle size={18} />{" "}
-              </span>
-              <span className="link_text">Help</span>
-            </Link>
+          <div>
+            <div className={`nav__link ${help ? "active" : ""} `}>
+              <Link to="/help">
+                <div className="active_side_bar"></div>{" "}
+                <span>
+                  <BiHelpCircle size={18} />{" "}
+                </span>
+                <span className="link_text">Help</span>
+              </Link>
+            </div>
+            <div className={`nav__link ${settings ? "active" : ""} `}>
+              <Link to="/settings">
+                <div className="active_side_bar"></div>{" "}
+                <span>
+                  <BsGear size={18} />{" "}
+                </span>{" "}
+                <span className="link_text">Settings</span>
+              </Link>
+            </div>
           </div>
-          <div className={`nav__link ${settings ? "active" : ""} `}>
-            <Link to="/settings">
-            <div className="active_side_bar">
-</div>
-              {" "}
-              <span>
-                <BsGear size={18} />{" "}
-              </span>{" "}
-              <span className="link_text">Settings</span>
-            </Link>
-          </div>
-</div>
 
           <div className="link_container logout_container">
             <button className="logout_btn" onClick={openLogout}>

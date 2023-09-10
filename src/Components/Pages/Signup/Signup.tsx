@@ -24,7 +24,8 @@ const Signup = () => {
   const [errorText, setErrorText] = useState<string>("");
   const [isclicked, setisClicked] = useState<boolean>(false);
   const [showpassword, setShowpassword] = useState<string>("password");
-  const [showpasswordtext, setshowpasswordText] = useState<string>("show password");
+  const [showpasswordtext, setshowpasswordText] =
+    useState<string>("show password");
 
   const navigate = useNavigate();
   let errorMessage;
@@ -44,11 +45,9 @@ const Signup = () => {
           email,
           password
         );
-        console.log(`User ${user.uid} created`);
         await updateProfile(user, {
           displayName: username,
         });
-        console.log("User profile updated");
         setisSuccesspopUP(!false);
         setTimeout(() => {
           navigate("/");
@@ -73,21 +72,18 @@ const Signup = () => {
         setisSuccesspopUP(!false);
         setisClicked(!true);
       }
-
-      console.log(errorMessage);
     }
   };
 
-  const showPasswordFunc =(e : any)=>{
-    if(e.target.checked){
-   setShowpassword("text")
-   setshowpasswordText("hide password")
-    } else{
-     setShowpassword("password")
-     setshowpasswordText("show password")
+  const showPasswordFunc = (e: any) => {
+    if (e.target.checked) {
+      setShowpassword("text");
+      setshowpasswordText("hide password");
+    } else {
+      setShowpassword("password");
+      setshowpasswordText("show password");
     }
-    }
-
+  };
 
   const errorTimeout = () => {
     setInterval(() => {
@@ -118,10 +114,6 @@ const Signup = () => {
       </div>
       <div className="sign__up__form__container">
         <HeaderText classname="sign_up_header" value="Create an account" />
-        {/* <div className="header_text">
-          <p>Fill in the necesarry details below to create your</p>
-          <p> account.</p>
-        </div> */}
         <form className="sign__up__form" onSubmit={createUser}>
           <div className="sign_up_input_container">
             <p className="label">User name</p>
@@ -167,10 +159,14 @@ const Signup = () => {
               />
             </div>
           </div>
-          
+
           <div className="show_password">
-          <input id="show_password" type="checkbox" onChange={showPasswordFunc}/>
-          <label htmlFor="show_password">{showpasswordtext}</label>
+            <input
+              id="show_password"
+              type="checkbox"
+              onChange={showPasswordFunc}
+            />
+            <label htmlFor="show_password">{showpasswordtext}</label>
           </div>
           <Button
             classname="sign_up_button"
