@@ -6,8 +6,14 @@ import userIMG from "../../../assets/user.jpeg";
 import Image from "../../atoms/Image/Image";
 import Input from "../../atoms/Input/Input";
 import { VscMultipleWindows } from "react-icons/vsc";
+import {auth} from "../../Config/firebase-config";
+import {PiWarningCircleFill} from "react-icons/pi";
+import {BsFillCheckCircleFill} from "react-icons/bs";
 
 const Settings = () => {
+ const isEmailverified  = auth.currentUser?.emailVerified;
+ console.log(isEmailverified)
+
   return (
     <SettingsStyle>
       <main className="container">
@@ -47,11 +53,13 @@ const Settings = () => {
               </div>
               <div className="input__container">
                 <label htmlFor="">Change Email</label>
-
                 <div className="change__password__container">
                   <Input className="change__password" type="email" />
                   <Button value="Update" classname="change__password__button" />
                 </div>
+
+                { !isEmailverified ?
+                 <div className="email__status"> <span>Email is not verified</span> <PiWarningCircleFill size={13} color={"orange"}  /></div> : <div className="email__status"><span>Email is verified</span> <BsFillCheckCircleFill size={13} color={"green"}/></div>}
               </div>
             </div>
           </div>

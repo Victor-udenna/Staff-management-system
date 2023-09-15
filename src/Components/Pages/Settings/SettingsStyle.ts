@@ -209,6 +209,15 @@ const SettingsStyle = styled.div`
       cursor: pointer;
     }
   }
+
+
+  .email__status{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+  }
+
 `;
 
 export default SettingsStyle;
