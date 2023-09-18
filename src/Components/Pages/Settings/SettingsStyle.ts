@@ -155,6 +155,7 @@ const SettingsStyle = styled.div`
       border: 1px solid #355e3b;
       width: 105px;
       border-radius: 7px;
+      cursor: pointer;
       p {
         font-size: 14px;
       }
@@ -210,13 +211,6 @@ const SettingsStyle = styled.div`
     }
   }
 
-
-  .email__status{
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-  }
 
 `;
 

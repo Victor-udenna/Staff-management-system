@@ -1,3 +1,4 @@
+import { useState } from "react";
 import SideBar from "../../Organism/SideBar/Sidebar";
 import SettingsStyle from "./SettingsStyle";
 import Text from "../../atoms/Text/Text";
@@ -6,16 +7,30 @@ import userIMG from "../../../assets/user.jpeg";
 import Image from "../../atoms/Image/Image";
 import Input from "../../atoms/Input/Input";
 import { VscMultipleWindows } from "react-icons/vsc";
-import {auth} from "../../Config/firebase-config";
-import {PiWarningCircleFill} from "react-icons/pi";
-import {BsFillCheckCircleFill} from "react-icons/bs";
+import EmailVerification from "../../Molecule/EmailVerification/EmailVerification";
+import ViewActivityModal from "../../Organism/ViewActivityModal/ViewActivityModal";
 
 const Settings = () => {
- const isEmailverified  = auth.currentUser?.emailVerified;
- console.log(isEmailverified)
+
+const [isActivityModal, setActivityModal] = useState(false);
+
+const openActivityModal =()=>{
+  setActivityModal(true)
+}
+
+const closeActivityModal =()=>{
+  setActivityModal(false)
+}
 
   return (
     <SettingsStyle>
+
+      {isActivityModal && (
+   <ViewActivityModal
+   closeModal={closeActivityModal}/>
+        )
+      }
+
       <main className="container">
         <SideBar />
         <section className="settings">
@@ -57,9 +72,7 @@ const Settings = () => {
                   <Input className="change__password" type="email" />
                   <Button value="Update" classname="change__password__button" />
                 </div>
-
-                { !isEmailverified ?
-                 <div className="email__status"> <span>Email is not verified</span> <PiWarningCircleFill size={13} color={"orange"}  /></div> : <div className="email__status"><span>Email is verified</span> <BsFillCheckCircleFill size={13} color={"green"}/></div>}
+                {<EmailVerification/>}
               </div>
             </div>
           </div>
@@ -89,7 +102,7 @@ const Settings = () => {
                 <Text classname="recent__activity__text" value="Active" />
               </div>
 
-              <button id="view__activity__btn">
+              <button id="view__activity__btn" onClick={openActivityModal}>
                 <Text classname="" value="view all" />
                 <VscMultipleWindows size={20} />
               </button>
