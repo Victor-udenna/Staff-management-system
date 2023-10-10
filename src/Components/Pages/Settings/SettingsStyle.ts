@@ -47,7 +47,7 @@ const SettingsStyle = styled.div`
   .status__icon {
     width: 15px;
     height: 15px;
-    background-color: #0c8e0c;
+    background-color: #afe1af;
     border-radius: 50%;
     position: absolute;
     bottom: 8px;

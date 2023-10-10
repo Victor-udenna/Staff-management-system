@@ -1,18 +1,19 @@
-import { useState } from "react";
+import { useState} from "react";
 import SideBar from "../../Organism/SideBar/Sidebar";
 import SettingsStyle from "./SettingsStyle";
 import Text from "../../atoms/Text/Text";
 import { Button } from "../../atoms/Button/Button";
-import userIMG from "../../../assets/user.jpeg";
 import Image from "../../atoms/Image/Image";
 import Input from "../../atoms/Input/Input";
 import { VscMultipleWindows } from "react-icons/vsc";
 import EmailVerification from "../../Molecule/EmailVerification/EmailVerification";
 import ViewActivityModal from "../../Organism/ViewActivityModal/ViewActivityModal";
+import { auth } from "../../Config/firebase-config";
 
 const Settings = () => {
 
 const [isActivityModal, setActivityModal] = useState(false);
+const userName = auth.currentUser?.displayName;
 
 const openActivityModal =()=>{
   setActivityModal(true)
@@ -21,6 +22,9 @@ const openActivityModal =()=>{
 const closeActivityModal =()=>{
   setActivityModal(false)
 }
+
+const userImg = `https://ui-avatars.com/api/?name=${userName}+${""}&background=${"228B22"}&color=fff&font-size=${0.33}&bold=${true}`;
+
 
   return (
     <SettingsStyle>
@@ -38,7 +42,7 @@ const closeActivityModal =()=>{
             <Text classname="section__header__text" value="Profile Photo" />
             <div className="profile__photo__wrapper">
               <div className="user__img__container">
-                <Image className="user__img" alt="" image={userIMG} />
+                <Image className="user__img" alt="" image={userImg} />
                 <div className="status__icon"></div>
               </div>
               <div>
@@ -57,7 +61,8 @@ const closeActivityModal =()=>{
               value="Personal Information"
             />
 
-            <div className="personal__information__wrapper">
+         <form>
+         <div className="personal__information__wrapper">
               <div className="input__container">
                 <label htmlFor="display__name">First Name</label>
                 <Input id="displa__name" type="text" />
@@ -75,6 +80,7 @@ const closeActivityModal =()=>{
                 {<EmailVerification/>}
               </div>
             </div>
+         </form>
           </div>
 
           <div className="recent__activity__container">
@@ -109,8 +115,9 @@ const closeActivityModal =()=>{
             </div>
             <div></div>
           </div>
-
-          <div className="security__container">
+<form>
+  
+<div className="security__container">
             <Text classname="section__header__text" value="Security" />
             <div className="personal__information__wrapper">
               <div className="input__container">
@@ -131,6 +138,7 @@ const closeActivityModal =()=>{
               </div>
             </div>
           </div>
+</form>
 
           <div className="confirm__changes__container">
             <Button classname="revert__changes__btn" value="Revert Changes" />
