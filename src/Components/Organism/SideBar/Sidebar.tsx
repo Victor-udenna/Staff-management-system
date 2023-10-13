@@ -165,7 +165,7 @@ const SideBar = () => {
               <span className="icon">
                 <BiMessageDetail size={17} />{" "}
               </span>
-              <span className="link_text">Communications</span>
+              <span className="link_text">Chats</span>
             </Link>
           </div>
         </div>

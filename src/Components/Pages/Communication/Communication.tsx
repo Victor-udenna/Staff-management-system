@@ -1,15 +1,21 @@
 import CommunicationStyle from './CommunicationStyle';
-import Text from "../../atoms/Text/Text";
 import SideBar from '../../Organism/SideBar/Sidebar';
+import Chatlist from '../../Organism/Chatlist/Chatlist';
+import Chat from '../../Organism/Chat/Chat';
+import Text from '../../atoms/Text/Text';
 
 const Communication = () => {
   return (
     <CommunicationStyle>
             <main className="container">
         <SideBar />
-        <section className="help">
-          <Text classname="" value={"Communication"} />
+<section className='communication'>
+  <Text classname="header_text" value="Chats"/>
+<section className="communication_sub_container">
+          <Chatlist/>
+          <Chat/>
         </section>
+</section>
       </main>
     </CommunicationStyle>
   )

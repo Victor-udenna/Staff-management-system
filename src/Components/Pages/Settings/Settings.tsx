@@ -23,7 +23,7 @@ const closeActivityModal =()=>{
   setActivityModal(false)
 }
 
-const userImg = `https://ui-avatars.com/api/?name=${userName}+${""}&background=${"228B22"}&color=fff&font-size=${0.33}&bold=${true}`;
+const userImg = `https://ui-avatars.com/api/?name=${userName}+${""}&background=${"228B22"}&color=fff&font-size=${0.33}&bold=${true}`; 
 
 
   return (

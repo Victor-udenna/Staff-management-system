@@ -1,0 +1,189 @@
+[
+    {
+      "user_id": 1,
+      "first_name": "Mona",
+      "last_name": "Sidworth",
+      "email": "msidworth0@unc.edu",
+      "phone_number": "279-333-5831",
+      "location": "remote",
+      "gender": "female",
+      "job_title": "Staff Scientist",
+      "employment_type": "fulltime",
+      "messages": [
+        {
+          "message_id": 1,
+          "content": "Hello, I'll be working from home today.",
+          "timestamp": "2023-10-12 09:00:00"
+        },
+        {
+          "message_id": 2,
+          "content": "I have completed the project tasks.",
+          "timestamp": "2023-10-11 15:30:00"
+        }
+      ],
+      "active": true,
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80"
+    },
+    {
+      "user_id": 2,
+      "first_name": "Alfi",
+      "last_name": "Stowgill",
+      "email": "astowgill1@cbsnews.com",
+      "phone_number": "341-747-5036",
+      "location": "remote",
+      "gender": "male",
+      "job_title": "Payment Adjustment Coordinator",
+      "employment_type": "contract",
+      "messages": [
+        {
+          "message_id": 3,
+          "content": "Please review the payment records.",
+          "timestamp": "2023-10-12 10:15:00"
+        },
+        {
+          "message_id": 4,
+          "content": "I will attend the meeting remotely.",
+          "timestamp": "2023-10-11 14:45:00"
+        }
+      ],
+      "active": true,
+      "image": "https://plus.unsplash.com/premium_photo-1689539137236-b68e436248de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+    },
+    {
+      "user_id": 3,
+      "first_name": "Freida",
+      "last_name": "Laise",
+      "email": "flaise2@about.com",
+      "phone_number": "369-241-5434",
+      "location": "remote",
+      "gender": "female",
+      "job_title": "Business Systems Development Analyst",
+      "employment_type": "fulltime",
+      "messages": [
+        {
+          "message_id": 5,
+          "content": "I need assistance with a software issue.",
+          "timestamp": "2023-10-12 11:30:00"
+        }
+      ],
+      "active": true,
+      "image": "https://content.latest-hairstyles.com/wp-content/uploads/curly-lob-with-volume-on-top-and-layers-for-african-american-ladies.jpg"
+    },
+    {
+      "user_id": 4,
+      "first_name": "Waylan",
+      "last_name": "O'Lagen",
+      "email": "wolagen3@yellowbook.com",
+      "phone_number": "513-396-0870",
+      "location": "remote",
+      "gender": "male",
+      "job_title": "Product Engineer",
+      "employment_type": "fulltime",
+      "messages": [],
+      "active": false,
+      "image": "https://plus.unsplash.com/premium_photo-1689977871600-e755257fb5f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+    },
+    {
+      "user_id": 5,
+      "first_name": "Darill",
+      "last_name": "Mosley",
+      "email": "dmosley4@domainmarket.com",
+      "phone_number": "234-276-1180",
+      "location": "onsite",
+      "gender": "male",
+      "job_title": "GIS Technical Architect",
+      "employment_type": "contract",
+      "messages": [
+        {
+          "message_id": 6,
+          "content": "I've updated the GIS data.",
+          "timestamp": "2023-10-12 13:00:00"
+        }
+      ],
+      "active": true,
+      "image": null
+    },
+    {
+      "user_id": 6,
+      "first_name": "Isabelle",
+      "last_name": "Prater",
+      "email": "iprater5@facebook.com",
+      "phone_number": "959-470-2890",
+      "location": "remote",
+      "gender": "female",
+      "job_title": "Business Systems Development Analyst",
+      "employment_type": "contract",
+      "messages": [],
+      "active": false,
+      "image": "https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+    },
+    {
+      "user_id": 7,
+      "first_name": "Ware",
+      "last_name": "Widmoor",
+      "email": "wwidmoor6@reddit.com",
+      "phone_number": "342-538-3719",
+      "location": "remote",
+      "gender": "female",
+      "job_title": "Senior Financial Analyst",
+      "employment_type": "contract",
+      "messages": [],
+      "active": false,
+      "image": null
+    },
+    {
+      "user_id": 8,
+      "first_name": "Marven",
+      "last_name": "Risom",
+      "email": "mrisom7@cbc.ca",
+      "phone_number": "675-946-2834",
+      "location": "remote",
+      "gender": "male",
+      "job_title": "Librarian",
+      "employment_type": "fulltime",
+      "messages": [],
+      "active": false,
+      "image": "https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+    },
+    {
+      "user_id": 9,
+      "first_name": "Bessy",
+      "last_name": "Litzmann",
+      "email": "blitzmann8@icio.us",
+      "phone_number": "838-287-9684",
+      "location": "remote",
+      "gender": "female",
+      "job_title": "Structural Engineer",
+      "employment_type": "fulltime",
+      "messages": [],
+      "active": false,
+      "image": null
+    },
+    {
+      "user_id": 10,
+      "first_name": "Donnie",
+      "last_name": "Jedrzejewicz",
+      "email": "djedrzejewicz9@army.mil",
+      "phone_number": "994-464-3915",
+      "location": "remote",
+      "gender": "female",
+      "job_title": "VP Accounting",
+      "employment_type": "contract",
+      "messages": [],
+      "active": false,
+      "image": "https://images.unsplash.com/photo-1480429370139-e0132c086e2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWFufGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+    },
+    {
+      "user_id": 11,
+      "first_name": "Fancie",
+      "last_name": "Marielle",
+      "email": "fmariellea@admin.ch",
+      "phone_number": "933-489-5098",
+      "location": "remote",
+      "gender": "female",
+      "job_title": "Office Assistant IV",
+      "employment_type": "fulltime",
+      "messages": [],
+      "active": true,
+      "image": "https://images.unsplash.com/photo-1664575602554-2087b04935a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+    }]
