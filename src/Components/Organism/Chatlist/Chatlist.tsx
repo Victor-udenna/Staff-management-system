@@ -10,7 +10,6 @@ import Gravatar from "../../atoms/Gravatar/Gravatar";
 const Chatlist = () => {
 
 const [selectChat, setSelectedchat] = useState<string>("");
-const [lastText, setLasttext] = useState<string>("")
 
 const formatTime =(chatDate: string)=>{
   const date = new Date(chatDate);
