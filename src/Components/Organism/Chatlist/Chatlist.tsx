@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Input from "../../atoms/Input/Input"
 import Chatliststyle from "./ChatlistStyle"
-import userImg from "../../../assets/user.jpeg";
 import Image from "../../atoms/Image/Image";
 import Text from "../../atoms/Text/Text";
 import Chatlistdata from "../../../assets/data/Chatlistdata.json";
@@ -11,6 +10,7 @@ import Gravatar from "../../atoms/Gravatar/Gravatar";
 const Chatlist = () => {
 
 const [selectChat, setSelectedchat] = useState<string>("");
+const [lastText, setLasttext] = useState<string>("")
 
 const formatTime =(chatDate: string)=>{
   const date = new Date(chatDate);
@@ -24,18 +24,20 @@ const handleChatselect =(id: string)=>{
   setSelectedchat(id)
 }
 
+const formatMessagelength =(message: string)=>{
+if(message.length > 35){
+  let formatedText= message.slice(0, 35) + " ...";
+   return formatedText;
+} else{
+  return message
+}
+}
+
   return (
 <Chatliststyle>
 <div className="chat_list">
 <Input className="search__input" placeholder="Search Work space" type="search"/>
    <div className="chat_item_container">
-{/* <div className="chat_item active">
-<Image className="chat_img" alt="chat_img" image={userImg}/>
-<div>
-<Text classname="message_name" value="simone smith"/>   
-<Text classname="last_text" value="Lorem ipsum dolor sit amet consectetur"/> 
-</div>
-</div> */}
 {Chatlistdata.map((item: any)=>{
 return(
     <div onClick={()=>{handleChatselect(item.user_id)}} className={`chat_item ${selectChat == item.user_id ? "active" : ""}`}>
@@ -46,7 +48,7 @@ return(
  <div className={item.active ? "active_status_icon" : "inactive_status_icon"}></div>  
 <div>
 <Text classname="message_name" value={item.first_name  + " " + item.last_name}/>   
-<Text classname="last_text" value={item.messages.length > 0 ? item.messages[item.messages.length -1].content : item.first_name + " " + item.last_name + " " + "joined this work space"}/> 
+<Text classname="last_text" value={item.messages.length > 0 ? formatMessagelength(item.messages[item.messages.length -1].content) : item.first_name + " " + item.last_name + " " + "joined this work space"}/> 
 </div>
 {item.messages.length > 0 ? <div className="message_count">{item.messages.length}</div> : ""}
 {item.messages.length > 0 ?<div className="message_time">{formatTime(item.messages[item.messages.length -1].timestamp)}</div> : ""}
