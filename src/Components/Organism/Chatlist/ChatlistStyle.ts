@@ -48,8 +48,8 @@ padding: 12px;
 gap: 12px;
 margin: 12px 2px;
 border-bottom: 1px solid #dfe6df;
-// border-top: 1px solid #dfe6df;
 position: relative;
+cursor: context-menu;
 .message_name{
     font-size 10px;
     padding-bottom: 4px;
@@ -92,6 +92,30 @@ position: relative;
     position: absolute;
     left: 45px;
     bottom: 10px;
+}
+
+.message_count{
+background-color: #228B22;
+color: white;
+width: 15px;
+height: 15px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 10px;
+padding: 2px;
+position: absolute;
+right: 4px;
+top: 20px;
+}
+
+.message_time{
+font-size: 11px;  
+color: #228B22;
+position: absolute;
+right: 0px;
+top: 40px;
 }
 
 `;
