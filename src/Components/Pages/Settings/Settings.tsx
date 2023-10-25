@@ -8,7 +8,7 @@ import Input from "../../atoms/Input/Input";
 import { VscMultipleWindows } from "react-icons/vsc";
 import EmailVerification from "../../Molecule/EmailVerification/EmailVerification";
 import ViewActivityModal from "../../Organism/ViewActivityModal/ViewActivityModal";
-import { auth } from "../../Config/firebase-config";
+import { auth } from "../../../Config/firebase-config";
 
 const Settings = () => {
 
@@ -115,7 +115,7 @@ const userImg = `https://ui-avatars.com/api/?name=${userName}+${""}&background=$
             </div>
             <div></div>
           </div>
-<form>
+<form className="security_container_form">
   
 <div className="security__container">
             <Text classname="section__header__text" value="Security" />

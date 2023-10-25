@@ -171,12 +171,15 @@ const SettingsStyle = styled.div`
     }
   }
 
+  .security_container_form{
+    border-bottom: 1px solid #9ca3af;
+  }
+
   .security__container {
     display: flex;
     align-items: flex-start;
     width: 70%;
     gap: 240px;
-    border-bottom: 1px solid #9ca3af;
     padding: 40px 0px 40px 0px;
   }
 

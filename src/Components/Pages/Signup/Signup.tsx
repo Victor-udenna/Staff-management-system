@@ -8,7 +8,7 @@ import bgImg from "../../../assets/create_account_img.svg";
 import { Link } from "react-router-dom";
 import GoogleButton from "../../atoms/GoogleButton/GoogleButton";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../Config/firebase-config";
+import { auth } from "../../../Config/firebase-config";
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import ErrorPopup from "../../Molecule/ErrorPopup/ErrorPopup";

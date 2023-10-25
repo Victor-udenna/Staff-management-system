@@ -1,7 +1,7 @@
 import Text from "../../atoms/Text/Text";
 import ViewActivityModalStyle from "./ViewActivityModalStyle";
 import { VscCollapseAll } from "react-icons/vsc";
-import {auth} from "../../Config/firebase-config";
+import {auth} from "../../../Config/firebase-config";
 
 
 type ViewActicityModalType = {

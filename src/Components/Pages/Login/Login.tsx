@@ -9,10 +9,10 @@ import { Link } from "react-router-dom";
 import GoogleButton from "../../atoms/GoogleButton/GoogleButton";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../Config/firebase-config";
+import { auth } from "../../../Config/firebase-config";
 import ErrorPopup from "../../Molecule/ErrorPopup/ErrorPopup";
 import SuccessPopup from "../../Molecule/SucessPopup/SuccessPopup";
-import { AuthUser } from "../../Config/Authvariable";
+import { AuthUser } from "../../../Config/Authvariable";
 
 
 const Login = () => {

@@ -17,17 +17,26 @@ const Chatliststyle = styled.div`
     width: 0 !important
   }
 
+  .chat__input_container{
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    padding: 7px 0px;
+  }
+
 .search__input{
-width: 99%;
+width: 70%;
 border-radius: 4px;
+height: 34px;
 border: 1.4px solid #dfe6df;
 font-size: 12px;
 padding: 8px 12px;   
 color: grey; 
-margin: 2px 2px 16px 2px;
-position: sticky;
-top: 0px;
-z-index: 1;
+margin: 2px 2px 0px 2px;
 }
 
 input[type="search"]:focus{
@@ -40,6 +49,34 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
+
+.create__space_btn{
+ background-color: #fff;
+ width: 15%;
+ height: 34px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ border-radius: 4px;
+ border: 1px solid #afe1af;
+ cursor: pointer
+}
+
+.filter_btn{
+  background-color: #fff;
+  width: 15%;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid #afe1af ;
+  cursor: pointer;
+ }
+
+ .filter_btn:hover, .create__space_btn:hover{
+  background-color: honeydew;
+ }
 
 .chat_item{
 display: flex;

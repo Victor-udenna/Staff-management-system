@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { auth } from "../../Config/firebase-config";
+import { auth } from "../../../Config/firebase-config";
 import { PiWarningCircleFill } from "react-icons/pi";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { Button } from "../../atoms/Button/Button";

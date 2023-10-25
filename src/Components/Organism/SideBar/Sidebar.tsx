@@ -6,7 +6,7 @@ import { GoPeople } from "react-icons/go";
 import { GiOwl } from "react-icons/gi";
 import { RxExit } from "react-icons/rx";
 import { SideBarStyle } from "./SideBarStyle";
-import { auth } from "../../Config/firebase-config";
+import { auth } from "../../../Config/firebase-config";
 import { signOut } from "firebase/auth";
 import LogoutModal from "../LogoutModal/LogoutModal";
 

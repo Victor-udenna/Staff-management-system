@@ -5,11 +5,18 @@ import Image from "../../atoms/Image/Image";
 import Text from "../../atoms/Text/Text";
 import Chatlistdata from "../../../assets/data/Chatlistdata.json";
 import Gravatar from "../../atoms/Gravatar/Gravatar";
+import { HiMiniUserGroup } from "react-icons/hi2";
+import {IoFilter} from "react-icons/io5";
+import { saveData } from "../../../redux/actions/DataAction";
+import { useDispatch, useSelector} from "react-redux";
+import { TypedDispatch,RootStore } from "../../../Config/configstore";
 
 
 const Chatlist = () => {
 
 const [selectChat, setSelectedchat] = useState<string>("");
+const dispatch: TypedDispatch = useDispatch();
+
 
 const formatTime =(chatDate: string)=>{
   const date = new Date(chatDate);
@@ -19,8 +26,10 @@ const formatTime =(chatDate: string)=>{
   return formattedTime;
 }
 
-const handleChatselect =(id: string)=>{
+const handleChatselect = async (id: string)=>{
   setSelectedchat(id)
+ await dispatch(saveData({id: id}))
+
 }
 
 const formatMessagelength =(message: string)=>{
@@ -32,14 +41,27 @@ if(message.length > 35){
 }
 }
 
+const state = useSelector((state: RootStore)=> state);
+console.log(state)
+
+let chatId = state.dataReducer.result.data.id;
+
   return (
 <Chatliststyle>
 <div className="chat_list">
+<div className="chat__input_container">
 <Input className="search__input" placeholder="Search Work space" type="search"/>
+<div className="create__space_btn">
+  <HiMiniUserGroup color='228B22'/>
+</div>
+<div className="filter_btn">
+  <IoFilter color='228B22'/>
+</div>
+</div>
    <div className="chat_item_container">
-{Chatlistdata.map((item: any)=>{
+{Chatlistdata.map((item: any, i)=>{
 return(
-    <div onClick={()=>{handleChatselect(item.user_id)}} className={`chat_item ${selectChat == item.user_id ? "active" : ""}`}>
+    <div key={i} onClick={()=>{handleChatselect(item.user_id)}} className={`chat_item ${selectChat == item.user_id || chatId == item.user_id ? "active" : ""}`}>
       {item.image == null ? 
       <Gravatar className="chat_img" firstname={item.first_name} lastname={item.last_name} background="random" size={0.33}/>
       : <Image className="chat_img" image={item.image} alt="user_img"/> 

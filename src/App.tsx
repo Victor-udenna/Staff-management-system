@@ -1,7 +1,7 @@
 import Login from "./Components/Pages/Login/Login";
 import Signup from "./Components/Pages/Signup/Signup";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import PrivateRoute from "./Components/Config/PrivateRoute";
+import PrivateRoute from "./Config/PrivateRoute";
 import RoutePaths from "./routes";
 import "./App.scss";
 
