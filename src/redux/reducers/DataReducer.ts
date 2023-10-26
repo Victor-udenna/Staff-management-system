@@ -11,7 +11,7 @@ const defaultState : DefaultState = {
 };
 
 
-const stepReducer = (state: DefaultState = defaultState , action: DataDispatchType)=>{
+const dataReducer = (state: DefaultState = defaultState , action: DataDispatchType)=>{
 
 switch(action.type){
  case SAVE_DATA: 
@@ -37,4 +37,4 @@ switch(action.type){
 
 };
 
-export default stepReducer;
+export default dataReducer;

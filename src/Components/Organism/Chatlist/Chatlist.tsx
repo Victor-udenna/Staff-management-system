@@ -42,8 +42,6 @@ if(message.length > 35){
 }
 
 const state = useSelector((state: RootStore)=> state);
-console.log(state)
-
 let chatId = state.dataReducer.result.data.id;
 
   return (
