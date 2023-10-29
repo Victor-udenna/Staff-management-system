@@ -3,7 +3,6 @@ import thunk ,{ThunkDispatch} from "redux-thunk";
 import { persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from 'redux-persist';
-
 import { rootReducer } from "../redux/reducers/reducer";
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 

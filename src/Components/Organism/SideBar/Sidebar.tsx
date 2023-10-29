@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { BiHomeCircle, BiHelpCircle, BiMessageDetail } from "react-icons/bi";
+import { BiHelpCircle, BiMessageDetail } from "react-icons/bi";
 import { BsFileEarmarkText, BsGear, BsCheckCircle } from "react-icons/bs";
-import { GoPeople } from "react-icons/go";
+import { GoPeople, GoHome } from "react-icons/go";
 import { GiOwl } from "react-icons/gi";
 import { RxExit } from "react-icons/rx";
 import { SideBarStyle } from "./SideBarStyle";
 import { auth } from "../../../Config/firebase-config";
 import { signOut } from "firebase/auth";
 import LogoutModal from "../LogoutModal/LogoutModal";
+import { clearChat } from "../../../redux/actions/ChatAction";
+import { clearData } from "../../../redux/actions/DataAction";
+import { TypedDispatch } from "../../../Config/configstore";
+import { useDispatch } from "react-redux";
 
 const SideBar = () => {
   const [overview, setOverview] = useState(false);
@@ -23,6 +27,9 @@ const SideBar = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  const dispatch : TypedDispatch = useDispatch();
+
 
   const getLocation = () => {
     if (location.pathname.includes("dashboard")) {
@@ -88,6 +95,9 @@ const SideBar = () => {
       setLoader(true);
       await signOut(auth);
       sessionStorage.clear();
+      await dispatch(clearChat())
+      await dispatch(clearData())
+      // clearCha
       setTimeout(() => {
         navigate("/");
       }, 2000);
@@ -125,7 +135,7 @@ const SideBar = () => {
             <Link to="/dashboard">
               <div className="active_side_bar"></div>
               <span className="icon">
-                <BiHomeCircle size={17} />
+                <GoHome size={17} />
               </span>{" "}
               <span className="link_text">Overview</span>
             </Link>

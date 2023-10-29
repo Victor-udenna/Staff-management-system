@@ -7,9 +7,9 @@ import Chatlistdata from "../../../assets/data/Chatlistdata.json";
 import Gravatar from "../../atoms/Gravatar/Gravatar";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import {IoFilter} from "react-icons/io5";
-import { saveData } from "../../../redux/actions/DataAction";
 import { useDispatch, useSelector} from "react-redux";
 import { TypedDispatch,RootStore } from "../../../Config/configstore";
+import { saveChat } from "../../../redux/actions/ChatAction";
 
 
 const Chatlist = () => {
@@ -28,7 +28,7 @@ const formatTime =(chatDate: string)=>{
 
 const handleChatselect = async (id: string)=>{
   setSelectedchat(id)
- await dispatch(saveData({id: id}))
+ await dispatch(saveChat({id: id}))
 
 }
 
@@ -42,7 +42,7 @@ if(message.length > 35){
 }
 
 const state = useSelector((state: RootStore)=> state);
-let chatId = state.dataReducer.result.data.id;
+let chatId = state.chatReducer.result.data.id;
 
   return (
 <Chatliststyle>
