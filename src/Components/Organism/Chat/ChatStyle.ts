@@ -75,11 +75,17 @@ width: 100%;
     padding: 8px;
     border-radius: 4px;
     border: 1px solid #dfe6df;
+    cursor: pointer;
+    }
+
+    .user_avatar_container{
+     width: 45px;
+     height: 40px;   
     }
     
     .chat_avatar{
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 40px;
     border-radius: 4px;    
     }
     
@@ -130,6 +136,20 @@ width: 100%;
 
 }
 
+.message__container{
+ 
+    .welcome__message{
+        text-align: center;
+        margin: 28px auto 0px auto;  
+        font-size: 12px;
+        width: fit-content;
+        background-color:  honeydew; 
+        color: #000;
+        padding: 8px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    }
+}
 
 `
 

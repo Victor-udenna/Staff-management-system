@@ -17,7 +17,7 @@ const Gravatar = ({
 }: AvatarProps): JSX.Element => {
     return (
         <>
-            <img className={className} src={`https://ui-avatars.com/api/?name=${firstname}+${lastname}&background=${background}&color=ffffff&size=${size}&rounded=true&bold=${true}`} alt="avatar"/>
+            <img className={className} src={`https://ui-avatars.com/api/?name=${firstname}+${lastname}&background=${background}&color=ffffff&size=${size}&bold=${true}`} alt="avatar"/>
         </>
     );
 };
