@@ -44,8 +44,10 @@ if(message.length > 35){
 const state = useSelector((state: RootStore)=> state);
 let chatId = state.chatReducer.result.data.id;
 
+
   return (
 <Chatliststyle>
+<Text classname="header_text" value="Chats"/>  
 <div className="chat_list">
 <div className="chat__input_container">
 <Input className="search__input" placeholder="Search Work space" type="search"/>
