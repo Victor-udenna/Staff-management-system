@@ -13,14 +13,16 @@ import Gravatar from "../../atoms/Gravatar/Gravatar";
 const Chat = () => {
 
   const [chatdata, setchatData] = useState<any>();
+  const [messages, setMessages] = useState<any>();
   const state = useSelector((state: RootStore) => state);
 
   let chatId = state.chatReducer.result.data.id;
   
-  const getChatdata =()=>{
+  const getChatdata = async ()=>{
     Chatlistdata.map((item: any)=>{
     if(item.user_id == chatId){
       setchatData(item)
+      setMessages(item.messages)
     } else{
       ""
     }
@@ -30,7 +32,8 @@ const Chat = () => {
   useEffect(()=>{
   getChatdata()
   }, [chatId])
- console.log(chatdata)
+
+
 
 
   return (
@@ -79,6 +82,12 @@ const Chat = () => {
             <div className="message__container">
   <Text classname="welcome__message" value={chatdata ? chatdata.first_name + " " + chatdata.last_name + " " + "joined this work space" : ""} />
             </div>
+
+            {messages !== undefined && messages.length > 0 ? 
+            messages.map((message: any)=>{
+         return    <p>{message.content}</p> 
+            })
+          : ""}
 
           </section>
         )}

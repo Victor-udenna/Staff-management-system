@@ -7,9 +7,9 @@ import { Button } from "../../atoms/Button/Button";
 import HeaderText from "../../atoms/HeaderText/HeaderText";
 import { Link } from "react-router-dom";
 import GoogleButton from "../../atoms/GoogleButton/GoogleButton";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../../../Config/firebase-config";
+import { auth, googleProvider } from "../../../Config/firebase-config";
 import ErrorPopup from "../../Molecule/ErrorPopup/ErrorPopup";
 import SuccessPopup from "../../Molecule/SucessPopup/SuccessPopup";
 import { AuthUser } from "../../../Config/Authvariable";
@@ -72,6 +72,14 @@ const Login = () => {
         }
       });
   };
+
+  const loginWithGoogle = async ()=>{
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const showPasswordFunc =(e : any)=>{
     if(e.target.checked){
@@ -150,7 +158,7 @@ const Login = () => {
             </Link>
           </div>
         </form>
-        <GoogleButton value="Continue with Google" onclick={() => {}} />
+        <GoogleButton value="Continue with Google" onclick={loginWithGoogle} />
       </div>
     </main>
   );
