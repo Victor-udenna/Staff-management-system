@@ -26,3 +26,5 @@ function App() {
 }
 
 export default App;
+
+// `npm run dev -- --host or npm run start -- --host`

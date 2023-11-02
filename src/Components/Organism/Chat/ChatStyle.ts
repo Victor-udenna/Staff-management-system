@@ -137,6 +137,11 @@ width: 100%;
 }
 
 .message__container{
+    padding: 16px;
+
+  .message_sub_container{
+  padding-top: 30px;  
+  }  
  
     .welcome__message{
         text-align: center;
@@ -149,6 +154,40 @@ width: 100%;
         border-radius: 4px;
         box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
     }
+}
+
+.message{
+    display: flex;
+    gap: 16px;
+    align-items: start;
+    padding-bottom: 16px;
+    img{
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+    }
+    .message_text_container{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 3px;
+     p{
+        font-size: 12px;
+     }
+
+     .message_time{
+        color: grey;
+     }
+
+     .message_name{
+        font-weight: bold;
+     }
+    }
+
+    .message_content{
+      font-size: 14px;  
+    }
+
 }
 
 `

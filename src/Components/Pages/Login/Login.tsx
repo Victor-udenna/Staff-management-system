@@ -76,6 +76,12 @@ const Login = () => {
   const loginWithGoogle = async ()=>{
     try {
       await signInWithPopup(auth, googleProvider);
+      if (auth !== null) {
+        sessionStorage.setItem("authState", JSON.stringify(AuthVariable));
+      }
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1000);
     } catch (error) {
       console.log(error);
     }
