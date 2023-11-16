@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const CommunicationStyle = styled.div`
-
-* {
+  * {
     padding: 0;
   }
 
@@ -10,16 +9,16 @@ const CommunicationStyle = styled.div`
     position: relative;
     display: flex;
     justify-content: space-between;
-    overflow: hidden;
+    height: 100vh;
   }
 
-  .header_text{
+  .header_text {
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: 140%;
-    letter-spacing: -0.36px;  
-    color: #051226; 
+    letter-spacing: -0.36px;
+    color: #051226;
     font-size: 24px;
     padding: 0px 0px 28px 0px;
   }
@@ -35,10 +34,9 @@ const CommunicationStyle = styled.div`
     gap: 20px;
   }
 
-// .communication_sub_container{
+  // .communication_sub_container{
 
-// }
+  // }
+`;
 
-`
-
-export default CommunicationStyle
+export default CommunicationStyle;

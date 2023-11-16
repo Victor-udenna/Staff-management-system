@@ -14,7 +14,6 @@ import ErrorPopup from "../../Molecule/ErrorPopup/ErrorPopup";
 import SuccessPopup from "../../Molecule/SucessPopup/SuccessPopup";
 import { AuthUser } from "../../../Config/Authvariable";
 
-
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -23,14 +22,15 @@ const Login = () => {
   const [isuccessPopup, setisSuccesspopUP] = useState<boolean>(false);
   const [errorText, setErrorText] = useState<string>("");
   const [isclicked, setisClicked] = useState<boolean>(false);
-  const [showpassword, setShowpassword] = useState<string>("password")
-  const [showpasswordtext, setshowpasswordText] = useState<string>("show password")
+  const [showpassword, setShowpassword] = useState<string>("password");
+  const [showpasswordtext, setshowpasswordText] =
+    useState<string>("show password");
 
   let errorMessage;
   let AuthVariable = AuthUser;
 
   const loginFunction = (e: React.FormEvent) => {
-    setisClicked(true)
+    setisClicked(true);
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userdetails) => {
@@ -46,12 +46,15 @@ const Login = () => {
       })
       .catch((error) => {
         errorMessage = error.message;
-        console.log(errorMessage)
+        console.log(errorMessage);
         if (errorMessage) {
           if (errorMessage === "Firebase: Error (auth/invalid-email).") {
             setErrorText("Invalid email or password");
           }
-          if (errorMessage === "Firebase: Error (auth/missing-password)." || errorMessage === "Firebase: Error (auth/wrong-password).") {
+          if (
+            errorMessage === "Firebase: Error (auth/missing-password)." ||
+            errorMessage === "Firebase: Error (auth/wrong-password)."
+          ) {
             setErrorText("Invalid password");
           }
           if (
@@ -61,9 +64,13 @@ const Login = () => {
           }
           if (errorMessage === "Firebase: Error (auth/user-not-found).") {
             setErrorText("Wrong email / password");
-          } if (errorMessage === "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)."){
-            setErrorText("Account temporarily disabled, Pls try again later")
-          }    
+          }
+          if (
+            errorMessage ===
+            "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)."
+          ) {
+            setErrorText("Account temporarily disabled, Pls try again later");
+          }
           setErrorPopUp(!false);
           setisClicked(!true);
         } else {
@@ -73,7 +80,7 @@ const Login = () => {
       });
   };
 
-  const loginWithGoogle = async ()=>{
+  const loginWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
       if (auth !== null) {
@@ -81,21 +88,21 @@ const Login = () => {
       }
       setTimeout(() => {
         navigate("/dashboard");
-      }, 1000);
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  const showPasswordFunc =(e : any)=>{
-    if(e.target.checked){
-   setShowpassword("text")
-   setshowpasswordText("hide password")
-    } else{
-     setShowpassword("password")
-     setshowpasswordText("show password")
+  const showPasswordFunc = (e: any) => {
+    if (e.target.checked) {
+      setShowpassword("text");
+      setshowpasswordText("hide password");
+    } else {
+      setShowpassword("password");
+      setshowpasswordText("show password");
     }
-    }
+  };
 
   const errorTimeout = () => {
     setInterval(() => {
@@ -153,10 +160,18 @@ const Login = () => {
             />
           </div>
           <div className="show_password">
-          <input id="show_password" type="checkbox" onChange={showPasswordFunc}/>
+            <input
+              id="show_password"
+              type="checkbox"
+              onChange={showPasswordFunc}
+            />
             <label htmlFor="show_password">{showpasswordtext}</label>
           </div>
-          <Button classname="sign_in_button" isloading={isclicked} value="Log in" />
+          <Button
+            classname="sign_in_button"
+            isloading={isclicked}
+            value="Log in"
+          />
           <div className="log__in__link">
             <span>Don't have an account ?</span>{" "}
             <Link to="/signup">

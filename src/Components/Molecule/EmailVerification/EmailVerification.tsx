@@ -19,6 +19,9 @@ const EmailVerification = () => {
     return () => unsubscribe();
   }, []);
 
+  const isVerified = auth.currentUser?.emailVerified;
+  console.log(isVerified)
+
   
   const handleSendVerificationEmail = () => {
     if (user) {
@@ -36,7 +39,7 @@ const EmailVerification = () => {
   return (
     <EmailVerificationStyle>
       <div>
-        {!user?.emailVerified ? (
+        {!isVerified ? (
           <div className="email__status">
             {" "}
             <span>Email is not verified</span>{" "}

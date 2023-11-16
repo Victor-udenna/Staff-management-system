@@ -9,10 +9,15 @@ import { BsChevronDown } from "react-icons/bs";
 import Chatlistdata from "../../../assets/data/Chatlistdata.json";
 import { useEffect, useState } from "react";
 import Gravatar from "../../atoms/Gravatar/Gravatar";
+import { IoIosSend } from "react-icons/io";
+import { FaMicrophone } from "react-icons/fa";
+import { LuSmilePlus } from "react-icons/lu";
+import { GoPlus } from "react-icons/go";
 
 const Chat = () => {
   const [chatdata, setchatData] = useState<any>();
   const [messages, setMessages] = useState<any>();
+  const [inputValue, setInputValue] = useState<string>("");
   const state = useSelector((state: RootStore) => state);
 
   let chatId = state.chatReducer.result.data.id;
@@ -39,6 +44,18 @@ const Chat = () => {
   useEffect(() => {
     getChatdata();
   }, [chatId]);
+
+  const handleChange = (event: any) => {
+    setInputValue(event.target.value);
+    autoResize(event.target);
+  };
+
+  const autoResize = (element: any) => {
+    element.style.height = "34px";
+    element.style.height = element.scrollHeight + "px";
+  };
+
+  console.log(inputValue);
 
   return (
     <ChatStyle>
@@ -152,6 +169,36 @@ const Chat = () => {
                       );
                     })
                   : ""}
+              </div>
+            </div>
+
+            <div className="chat__input__container">
+              <div className="message_action_button_container">
+                <button>
+                  <GoPlus />
+                </button>
+                <button>
+                  <LuSmilePlus />
+                </button>
+              </div>
+              <textarea
+                style={{ height: "34px", overflow: "hidden" }}
+                value={inputValue}
+                onChange={handleChange}
+                className="auto-height message_box"
+                placeholder="Type something..."
+                autoFocus={true}
+              />
+              <div className="message_action_button_container_2">
+                {inputValue ? (
+                  <button className="send__message__btn">
+                    <IoIosSend color={"#228B22"} />
+                  </button>
+                ) : (
+                  <button className="send__voice__btn">
+                    <FaMicrophone />
+                  </button>
+                )}
               </div>
             </div>
           </section>

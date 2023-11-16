@@ -14,6 +14,7 @@ const Settings = () => {
 
 const [isActivityModal, setActivityModal] = useState(false);
 const userName = auth.currentUser?.displayName;
+const userImg = auth.currentUser?.photoURL;
 
 const openActivityModal =()=>{
   setActivityModal(true)
@@ -23,7 +24,7 @@ const closeActivityModal =()=>{
   setActivityModal(false)
 }
 
-const userImg = `https://ui-avatars.com/api/?name=${userName}+${""}&background=${"228B22"}&color=fff&font-size=${0.33}&bold=${true}`; 
+const userAvatar = `https://ui-avatars.com/api/?name=${userName}+${""}&background=${"228B22"}&color=fff&font-size=${0.33}&bold=${true}`; 
 
 
   return (
@@ -42,7 +43,11 @@ const userImg = `https://ui-avatars.com/api/?name=${userName}+${""}&background=$
             <Text classname="section__header__text" value="Profile Photo" />
             <div className="profile__photo__wrapper">
               <div className="user__img__container">
-                <Image className="user__img" alt="" image={userImg} />
+                { userImg ? 
+               <Image className="user__img" alt="" image={userImg} />
+                :
+                <Image className="user__img" alt="" image={userAvatar} />
+                }          
                 <div className="status__icon"></div>
               </div>
               <div>
