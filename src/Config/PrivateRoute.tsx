@@ -10,7 +10,7 @@ const PrivateRoute = ({children}: ChildrenProps) => {
 
 
 
-let authState = sessionStorage.getItem("authState")
+const authState = sessionStorage.getItem("authState")
 
 return authState !== null  ? children : <Navigate to="/"/> 
 }

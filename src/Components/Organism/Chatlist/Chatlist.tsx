@@ -34,7 +34,7 @@ const handleChatselect = async (id: string)=>{
 
 const formatMessagelength =(message: string)=>{
 if(message.length > 35){
-  let formatedText= message.slice(0, 35) + " ...";
+  const formatedText= message.slice(0, 35) + " ...";
    return formatedText;
 } else{
   return message
@@ -42,7 +42,7 @@ if(message.length > 35){
 }
 
 const state = useSelector((state: RootStore)=> state);
-let chatId = state.chatReducer.result.data.id;
+const chatId = state.chatReducer.result.data.id;
 
 
   return (

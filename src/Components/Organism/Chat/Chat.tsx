@@ -20,7 +20,7 @@ const Chat = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const state = useSelector((state: RootStore) => state);
 
-  let chatId = state.chatReducer.result.data.id;
+  const chatId = state.chatReducer.result.data.id;
 
   const getChatdata = async () => {
     Chatlistdata.map((item: any) => {

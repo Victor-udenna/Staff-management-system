@@ -27,7 +27,7 @@ const Login = () => {
     useState<string>("show password");
 
   let errorMessage;
-  let AuthVariable = AuthUser;
+  const AuthVariable = AuthUser;
 
   const loginFunction = (e: React.FormEvent) => {
     setisClicked(true);

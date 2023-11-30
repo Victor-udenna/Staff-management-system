@@ -7,12 +7,13 @@ import { Button } from "../../atoms/Button/Button";
 import bgImg from "../../../assets/create_account_img.svg";
 import { Link } from "react-router-dom";
 import GoogleButton from "../../atoms/GoogleButton/GoogleButton";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../Config/firebase-config";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../../../Config/firebase-config";
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import ErrorPopup from "../../Molecule/ErrorPopup/ErrorPopup";
 import SuccessPopup from "../../Molecule/SucessPopup/SuccessPopup";
+import { AuthUser } from "../../../Config/Authvariable";
 
 const Signup = () => {
   const [username, setUserName] = useState("");
@@ -29,8 +30,10 @@ const Signup = () => {
 
   const navigate = useNavigate();
   let errorMessage;
-  let verifyPassword = confirmpassword;
+  const verifyPassword = confirmpassword;
   console.log(verifyPassword);
+
+    const AuthVariable = AuthUser;
 
   const createUser = async (e: React.FormEvent) => {
     setisClicked(true);
@@ -104,6 +107,22 @@ const Signup = () => {
   useEffect(() => {
     succesTimeout();
   }, [errorMessage]);
+
+
+  const loginWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      if (auth !== null) {
+        sessionStorage.setItem("authState", JSON.stringify(AuthVariable));
+      }
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  };  
+
 
   return (
     <main className="signup__container">
@@ -180,7 +199,7 @@ const Signup = () => {
             </Link>
           </div>
         </form>
-        <GoogleButton value="Sign up with Google" onclick={() => {}} />
+        <GoogleButton value="Sign up with Google" onclick={loginWithGoogle} />
       </div>
     </main>
   );
