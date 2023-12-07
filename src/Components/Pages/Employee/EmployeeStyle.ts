@@ -1,13 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const EmployeeStyle = styled.div`
   * {
     padding: 0;
   }
-
-  // 1 #6365EF
-  // 2 #A5B4FD
-  // 3 #E0E7FF
 
   .container {
     position: relative;
@@ -23,6 +19,17 @@ const EmployeeStyle = styled.div`
     overflow: hidden;
     color: black;
   }
-`;
 
-export default EmployeeStyle;
+  .header_text {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: -0.36px;
+    color: #051226;
+    font-size: 24px;
+    padding: 0px 0px 28px 0px;
+  }
+`
+
+export default EmployeeStyle

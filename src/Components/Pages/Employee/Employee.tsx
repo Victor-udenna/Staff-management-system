@@ -1,7 +1,8 @@
-import DashboardHeader from "../../Organism/DashboardHeader/DashboardHeader";
-import SideBar from "../../Organism/SideBar/Sidebar";
-import Text from "../../atoms/Text/Text";
-import EmployeeStyle from "./EmployeeStyle";
+import EmployeeAnalysis from '../../Molecule/EmployeeAnalysis/EmployeeAnalysis'
+import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
+import SideBar from '../../Organism/SideBar/Sidebar'
+import Text from '../../atoms/Text/Text'
+import EmployeeStyle from './EmployeeStyle'
 
 const Employee = () => {
   return (
@@ -9,12 +10,13 @@ const Employee = () => {
       <main className="container">
         <SideBar />
         <section className="employee">
-          <DashboardHeader/>
-          <Text classname="" value={"Employee"} />
+          <DashboardHeader />
+          <Text classname="header_text" value={'Employee'} />
+          <EmployeeAnalysis />
         </section>
       </main>
     </EmployeeStyle>
-  );
-};
+  )
+}
 
-export default Employee;
+export default Employee
