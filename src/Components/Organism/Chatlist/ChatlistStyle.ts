@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const Chatliststyle = styled.div`
 
@@ -155,6 +155,6 @@ right: 0px;
 top: 40px;
 }
 
-`;
+`
 
-export default Chatliststyle;
+export default Chatliststyle

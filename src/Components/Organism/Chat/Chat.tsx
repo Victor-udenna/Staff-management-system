@@ -1,61 +1,59 @@
-import ChatStyle from "./ChatStyle";
-import EmptychatImg from "../../../assets/Message Empty state.svg";
-import Image from "../../atoms/Image/Image";
-import Text from "../../atoms/Text/Text";
-import { RootStore } from "../../../Config/configstore";
-import { useSelector } from "react-redux";
-import { RiHeadphoneFill } from "react-icons/ri";
-import { BsChevronDown } from "react-icons/bs";
-import Chatlistdata from "../../../assets/data/Chatlistdata.json";
-import { useEffect, useState } from "react";
-import Gravatar from "../../atoms/Gravatar/Gravatar";
-import { IoIosSend } from "react-icons/io";
-import { FaMicrophone } from "react-icons/fa";
-import { LuSmilePlus } from "react-icons/lu";
-import { GoPlus } from "react-icons/go";
+import ChatStyle from './ChatStyle'
+import EmptychatImg from '../../../assets/Message Empty state.svg'
+import Image from '../../atoms/Image/Image'
+import Text from '../../atoms/Text/Text'
+import { RootStore } from '../../../Config/configstore'
+import { useSelector } from 'react-redux'
+import { RiHeadphoneFill } from 'react-icons/ri'
+import { BsChevronDown } from 'react-icons/bs'
+import Chatlistdata from '../../../assets/data/Chatlistdata.json'
+import { useEffect, useState } from 'react'
+import Gravatar from '../../atoms/Gravatar/Gravatar'
+import { IoIosSend } from 'react-icons/io'
+import { FaMicrophone } from 'react-icons/fa'
+import { LuSmilePlus } from 'react-icons/lu'
+import { GoPlus } from 'react-icons/go'
 
 const Chat = () => {
-  const [chatdata, setchatData] = useState<any>();
-  const [messages, setMessages] = useState<any>();
-  const [inputValue, setInputValue] = useState<string>("");
-  const state = useSelector((state: RootStore) => state);
+  const [chatdata, setchatData] = useState<any>()
+  const [messages, setMessages] = useState<any>()
+  const [inputValue, setInputValue] = useState<string>('')
+  const state = useSelector((state: RootStore) => state)
 
-  const chatId = state.chatReducer.result.data.id;
+  const chatId = state.chatReducer.result.data.id
 
   const getChatdata = async () => {
     Chatlistdata.map((item: any) => {
       if (item.user_id == chatId) {
-        setchatData(item);
-        setMessages(item.messages);
+        setchatData(item)
+        setMessages(item.messages)
       } else {
-        ("");
+        ;('')
       }
-    });
-  };
+    })
+  }
 
   const formatTime = (chatDate: string) => {
-    const date = new Date(chatDate);
-    const minutes = String(date.getHours()).padStart(2, "0");
-    const seconds = String(date.getMinutes()).padStart(2, "0");
-    const formattedTime = `${minutes}:${seconds}`;
-    return formattedTime;
-  };
+    const date = new Date(chatDate)
+    const minutes = String(date.getHours()).padStart(2, '0')
+    const seconds = String(date.getMinutes()).padStart(2, '0')
+    const formattedTime = `${minutes}:${seconds}`
+    return formattedTime
+  }
 
   useEffect(() => {
-    getChatdata();
-  }, [chatId]);
+    getChatdata()
+  }, [chatId])
 
   const handleChange = (event: any) => {
-    setInputValue(event.target.value);
-    autoResize(event.target);
-  };
+    setInputValue(event.target.value)
+    autoResize(event.target)
+  }
 
   const autoResize = (element: any) => {
-    element.style.height = "34px";
-    element.style.height = element.scrollHeight + "px";
-  };
-
-  console.log(inputValue);
+    element.style.height = '34px'
+    element.style.height = element.scrollHeight + 'px'
+  }
 
   return (
     <ChatStyle>
@@ -77,13 +75,13 @@ const Chat = () => {
                     <Image
                       alt=""
                       className="chat_avatar"
-                      image={chatdata ? chatdata.image : ""}
+                      image={chatdata ? chatdata.image : ''}
                     />
                   ) : (
                     <Gravatar
                       className="chat_avatar"
-                      firstname={chatdata ? chatdata.first_name : ""}
-                      lastname={chatdata ? chatdata.last_name : ""}
+                      firstname={chatdata ? chatdata.first_name : ''}
+                      lastname={chatdata ? chatdata.last_name : ''}
                       background="random"
                       size={0.33}
                     />
@@ -94,13 +92,13 @@ const Chat = () => {
                     classname="chat_name"
                     value={
                       chatdata
-                        ? chatdata.first_name + " " + chatdata.last_name
-                        : " "
+                        ? chatdata.first_name + ' ' + chatdata.last_name
+                        : ' '
                     }
                   />
                   <Text
                     classname="company_role"
-                    value={chatdata ? chatdata.job_title : ""}
+                    value={chatdata ? chatdata.job_title : ''}
                   />
                 </div>
 
@@ -124,11 +122,11 @@ const Chat = () => {
                 value={
                   chatdata
                     ? chatdata.first_name +
-                      " " +
+                      ' ' +
                       chatdata.last_name +
-                      " " +
-                      "joined this work space"
-                    : ""
+                      ' ' +
+                      'joined this work space'
+                    : ''
                 }
               />
 
@@ -142,13 +140,13 @@ const Chat = () => {
                               <Image
                                 alt=""
                                 className=""
-                                image={chatdata ? chatdata.image : ""}
+                                image={chatdata ? chatdata.image : ''}
                               />
                             ) : (
                               <Gravatar
                                 className=""
-                                firstname={chatdata ? chatdata.first_name : ""}
-                                lastname={chatdata ? chatdata.last_name : ""}
+                                firstname={chatdata ? chatdata.first_name : ''}
+                                lastname={chatdata ? chatdata.last_name : ''}
                                 background="random"
                                 size={0.33}
                               />
@@ -157,18 +155,18 @@ const Chat = () => {
                           <div>
                             <div className="message_text_container">
                               <p className="message_name">
-                                {chatdata.first_name + " " + chatdata.last_name}
+                                {chatdata.first_name + ' ' + chatdata.last_name}
                               </p>
                               <p className="message_time">
                                 {formatTime(message.timestamp)}
-                              </p>{" "}
+                              </p>{' '}
                             </div>
                             <p className="message_content">{message.content}</p>
                           </div>
                         </div>
-                      );
+                      )
                     })
-                  : ""}
+                  : ''}
               </div>
             </div>
 
@@ -182,7 +180,7 @@ const Chat = () => {
                 </button>
               </div>
               <textarea
-                style={{ height: "34px", overflow: "hidden" }}
+                style={{ height: '34px', overflow: 'hidden' }}
                 value={inputValue}
                 onChange={handleChange}
                 className="auto-height message_box"
@@ -192,7 +190,7 @@ const Chat = () => {
               <div className="message_action_button_container_2">
                 {inputValue ? (
                   <button className="send__message__btn">
-                    <IoIosSend color={"#228B22"} />
+                    <IoIosSend color={'#228B22'} />
                   </button>
                 ) : (
                   <button className="send__voice__btn">
@@ -205,7 +203,7 @@ const Chat = () => {
         )}
       </section>
     </ChatStyle>
-  );
-};
+  )
+}
 
-export default Chat;
+export default Chat

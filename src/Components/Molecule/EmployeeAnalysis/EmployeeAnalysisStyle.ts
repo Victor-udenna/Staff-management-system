@@ -17,6 +17,8 @@ const EmployeeAnalysisStyle = styled.div`
     display: flex;
     align-items: start;
     gap: 30px;
+    border: 1px solid #dfe6df;
+    cursor: pointer;
   }
 
   .analysis_header {
@@ -37,7 +39,7 @@ const EmployeeAnalysisStyle = styled.div`
 
   .total {
     .count {
-      color: #228b22;
+      color: #000000;
     }
   }
 

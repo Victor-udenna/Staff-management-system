@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const ChatStyle = styled.div`
   .chat_container {
@@ -268,6 +268,6 @@ const ChatStyle = styled.div`
  } 
  }
   }
-`;
+`
 
-export default ChatStyle;
+export default ChatStyle

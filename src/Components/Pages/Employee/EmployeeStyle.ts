@@ -28,7 +28,7 @@ const EmployeeStyle = styled.div`
     letter-spacing: -0.36px;
     color: #051226;
     font-size: 24px;
-    padding: 0px 0px 28px 0px;
+    padding: 24px 0px 40px 0px;
   }
 `
 
