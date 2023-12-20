@@ -31,7 +31,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
       <table>
         <thead>
           <tr>
-            <th className='header__input'>
+            <th className="header__input">
               <input type="checkbox" />
             </th>
             <th>Name</th>
@@ -44,7 +44,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
         </thead>
         <tbody>
           {employeedata.map((employee: any) => (
-            <tr key={employee.id}>
+            <tr>
               <td>
                 <input type="checkbox" />
               </td>

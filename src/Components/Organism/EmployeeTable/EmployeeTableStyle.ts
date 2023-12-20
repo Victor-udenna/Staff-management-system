@@ -9,8 +9,16 @@ const EmployeeTableStyle = styled.div`
 
   th,
   td {
-    padding: 12px 10px;
     text-align: left;
+  }
+
+  th {
+    border-bottom: 1px solid #dfe6df;
+    padding: 16px 10px;
+  }
+
+  td{
+    padding: 12px 10px;
   }
 
   .header__input {

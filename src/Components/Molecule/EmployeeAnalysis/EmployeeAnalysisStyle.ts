@@ -19,6 +19,7 @@ const EmployeeAnalysisStyle = styled.div`
     gap: 30px;
     border: 1px solid #dfe6df;
     cursor: pointer;
+    background-color: white;
   }
 
   .analysis_header {
@@ -59,6 +60,22 @@ const EmployeeAnalysisStyle = styled.div`
     .count {
       color: orange;
     }
+  }
+
+  .analysis_card.total.is_active {
+    border: 1px solid #dfe6df;
+  }
+
+  .analysis_card.active.is_active {
+    border: 1.4px solid #228b22;
+  }
+
+  .analysis_card.inactive.is_active {
+    border: 1.4px solid red;
+  }
+
+  .analysis_card.pending.is_active {
+    border: 1.4px solid orange;
   }
 `
 
