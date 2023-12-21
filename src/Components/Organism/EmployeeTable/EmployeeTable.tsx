@@ -37,8 +37,8 @@ const EmployeeTable = ({ employeedata }: dataType) => {
             <th>Name</th>
             <th>Email Address</th>
             <th>Role</th>
-            <th>Status</th>
             <th>Date joined</th>
+            <th>Status</th>
             <th className="more__header">more</th>
           </tr>
         </thead>
@@ -63,8 +63,8 @@ const EmployeeTable = ({ employeedata }: dataType) => {
               </td>
               <td>{formatmaillength(employee.email)}</td>
               <td>{formatrolelength(employee.job_title)}</td>
-              <td>{employee.location}</td>
               <td>17-December 2023</td>
+              <td>{employee.location}</td>
               <td className="more__icon">
                 <BsThreeDots />
               </td>
