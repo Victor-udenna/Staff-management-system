@@ -68,40 +68,50 @@ const EmployeeTableStyle = styled.div`
     background-color: rgb(245, 247, 250);
   }
 
-  .pop__up__container {
-    position: relative;
-  }
-
   .popup__btn {
     background-color: inherit;
     border: none;
     position: relative;
     z-index: 0px;
+    cursor: pointer;
   }
 
   .pop__up {
     position: absolute;
     top: 40px;
     background-color: white;
+    animation: show-bg 0.2s linear forwards;
     z-index: 100;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    width: 200px;
-    left: 0px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 2px 3px 0 rgba(0, 0, 0, 0.06);
+    width: 120px;
+    right: 0px;
+    border-radius: 4px;
+    padding: 4px;
+
+    @keyframes show-bg {
+      0% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
 
     button {
       padding: 10px;
       border: none;
-    }
-    .view__btn {
-       background-color: inherit;
+      border-radius: 4px;
+      background-color: inherit;
       cursor: pointer;
       width: 100%;
     }
 
-    .edit__btn {
-      background-color: inherit;
-      cursor: pointer;
-      width: 100%;
+    button:hover {
+      background-color: #f5f7fa;
     }
   }
 `

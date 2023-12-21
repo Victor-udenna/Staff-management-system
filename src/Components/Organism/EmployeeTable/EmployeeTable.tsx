@@ -109,6 +109,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
                             <div className='pop__up'>
                              <Button classname='view__btn' value='view'/>
                              <Button classname='edit__btn' value='edit'/>
+                             <Button classname='status__btn' value='Deactivate'/>
                             </div>
                           ) }
                 </div>
