@@ -7,7 +7,7 @@ import { FaUserMinus } from 'react-icons/fa'
 import { useState } from 'react'
 
 const EmployeeAnalysis = () => {
-  const [filterText, setFilterText] = useState<string>('')
+  const [filterText, setFilterText] = useState<string>('all')
 
   console.log(filterText)
 
@@ -23,8 +23,8 @@ const EmployeeAnalysis = () => {
           }`}
         >
           <div>
-            <Text classname="analysis_header" value="All Employee" />
-            <Text classname="count" value={20} />
+            <Text classname="analysis_header" value="20" />
+            <Text classname="count" value={"All Employee"} />
           </div>
           <MdPeople size={20} />
         </button>
@@ -37,8 +37,8 @@ const EmployeeAnalysis = () => {
           }`}
         >
           <div>
-            <Text classname="analysis_header" value="Active Employee" />
-            <Text classname="count" value={11} />
+            <Text classname="analysis_header" value="11" />
+            <Text classname="count" value={"Active Employee"} />
           </div>
           <FaUserCheck color="#228b22" size={17} />
         </button>
@@ -51,8 +51,8 @@ const EmployeeAnalysis = () => {
           }`}
         >
           <div>
-            <Text classname="analysis_header" value="Inactive Employee" />
-            <Text classname="count" value={5} />
+            <Text classname="analysis_header" value="5" />
+            <Text classname="count" value={"Inactive Employee"} />
           </div>
           <FaUserMinus color="red" size={17} />
         </button>
@@ -65,8 +65,8 @@ const EmployeeAnalysis = () => {
           }`}
         >
           <div>
-            <Text classname="analysis_header" value="Pending Employee" />
-            <Text classname="count" value={4} />
+            <Text classname="analysis_header" value="4" />
+            <Text classname="count" value={"Pending Employee"} />
           </div>
           <FaUserClock color="orange" size={17} />
         </button>

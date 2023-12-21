@@ -17,7 +17,7 @@ const EmployeeTableStyle = styled.div`
     padding: 16px 10px;
   }
 
-  td{
+  td {
     padding: 12px 10px;
   }
 
@@ -64,7 +64,7 @@ const EmployeeTableStyle = styled.div`
   }
 
   tbody tr:hover {
-    background-color: #f5f5f5;
+    background-color: rgb(245, 247, 250);
   }
 `
 
