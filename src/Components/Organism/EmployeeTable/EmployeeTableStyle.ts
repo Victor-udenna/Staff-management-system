@@ -61,10 +61,48 @@ const EmployeeTableStyle = styled.div`
   tbody tr {
     transition: background-color 0.3s ease;
     cursor: pointer;
+    position: relative;
   }
 
   tbody tr:hover {
     background-color: rgb(245, 247, 250);
+  }
+
+  .pop__up__container {
+    position: relative;
+  }
+
+  .popup__btn {
+    background-color: inherit;
+    border: none;
+    position: relative;
+    z-index: 0px;
+  }
+
+  .pop__up {
+    position: absolute;
+    top: 40px;
+    background-color: white;
+    z-index: 100;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    width: 200px;
+    left: 0px;
+
+    button {
+      padding: 10px;
+      border: none;
+    }
+    .view__btn {
+       background-color: inherit;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .edit__btn {
+      background-color: inherit;
+      cursor: pointer;
+      width: 100%;
+    }
   }
 `
 

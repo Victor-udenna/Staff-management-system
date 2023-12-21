@@ -1,13 +1,38 @@
+import { useState } from 'react'
 import Gravatar from '../../atoms/Gravatar/Gravatar'
 import Text from '../../atoms/Text/Text'
 import EmployeeTableStyle from './EmployeeTableStyle'
 import { BsThreeDots } from 'react-icons/bs'
+import { Button } from '../../atoms/Button/Button'
 
 type dataType = {
   employeedata: any
 }
 
 const EmployeeTable = ({ employeedata }: dataType) => {
+  let timeOutId: any = null
+  const [selectedMenu, setSelectedMenu] = useState(false)
+  const [selectedId, setSelectedId] = useState('')
+
+  const onClickHandler = (value: boolean, id: string) => {
+    if (selectedMenu !== false) {
+      setSelectedMenu(false)
+      return id
+    }
+    setSelectedMenu(value)
+    setSelectedId(id)
+  }
+
+  const onBlurHandler = () => {
+    timeOutId = setTimeout(() => {
+      setSelectedMenu(false)
+    })
+  }
+
+  const onFocusHandler = () => {
+    clearTimeout(timeOutId)
+  }
+
   const formatrolelength = (message: string) => {
     if (message.length > 15) {
       const formatedText = message.slice(0, 15) + ' ...'
@@ -66,7 +91,27 @@ const EmployeeTable = ({ employeedata }: dataType) => {
               <td>17-December 2023</td>
               <td>{employee.location}</td>
               <td className="more__icon">
-                <BsThreeDots />
+                <div
+                className='pop__up__container'
+                  onBlur={() => onBlurHandler()}
+                  onFocus={() => onFocusHandler()}
+                >
+                  <button
+                    aria-haspopup="true"
+                    onClick={() => onClickHandler(true, employee.user_id)}
+                    aria-expanded={selectedMenu}
+                    className='popup__btn'
+                  >
+                    <span><BsThreeDots /></span>
+                  </button>
+                  {selectedMenu !== false &&
+                          selectedId === employee.user_id && (
+                            <div className='pop__up'>
+                             <Button classname='view__btn' value='view'/>
+                             <Button classname='edit__btn' value='edit'/>
+                            </div>
+                          ) }
+                </div>
               </td>
             </tr>
           ))}
