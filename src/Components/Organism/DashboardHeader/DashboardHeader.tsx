@@ -8,7 +8,7 @@ import Text from '../../atoms/Text/Text'
 
 type headerProp = {
   searchterm?: string
-  buttonaction?: () => void
+  buttonaction: any
   submit?: () => void
   buttontext?: string
   placeholder?: string
@@ -17,6 +17,7 @@ type headerProp = {
 const DashboardHeader = ({
   placeholder,
   buttontext,
+  buttonaction,
 }: headerProp) => {
   return (
     <DashboardHeaderStyle>
@@ -32,7 +33,9 @@ const DashboardHeader = ({
           </div>
         </div>
         <div className="dashboard__sub__container">
-          <button className="dahsboard__header__button">{buttontext}</button>
+          <button onClick={buttonaction} className="dahsboard__header__button">
+            {buttontext}
+          </button>
           <div>
             <BiMessageDetail size={20} />
           </div>

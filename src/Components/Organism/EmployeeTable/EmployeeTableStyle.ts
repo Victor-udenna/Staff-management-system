@@ -69,7 +69,7 @@ const EmployeeTableStyle = styled.div`
   }
 
   .popup__btn {
-    background-color: inherit;
+    background-color: white;
     border: none;
     position: relative;
     z-index: 0px;
