@@ -1,6 +1,6 @@
-import OverviewStyle from "./OverviewStyle";
-import SideBar from "../../Organism/SideBar/Sidebar";
-import DashboardHeader from "../../Organism/DashboardHeader/DashboardHeader";
+import OverviewStyle from './OverviewStyle'
+import SideBar from '../../Organism/SideBar/Sidebar'
+import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
 
 const Overview = () => {
   return (
@@ -8,7 +8,7 @@ const Overview = () => {
       <main className="Dashboard_container">
         <SideBar />
         <section className="overview">
-        <DashboardHeader/>
+          <DashboardHeader buttonaction={() => {}} />
           <div>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde iste
             voluptate laboriosam ab, molestiae nulla dolor optio deserunt quos
@@ -19,7 +19,7 @@ const Overview = () => {
         </section>
       </main>
     </OverviewStyle>
-  );
-};
+  )
+}
 
-export default Overview;
+export default Overview

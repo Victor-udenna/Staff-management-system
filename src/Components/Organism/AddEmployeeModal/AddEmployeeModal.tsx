@@ -19,10 +19,16 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
     { value: 'Internship', label: 'Internship Employment' },
   ]
 
+  const locationTypeOptions = [
+    { value: 'onsite', label: 'Onsite' },
+    { value: 'remote', label: 'Remote' },
+    { value: 'hybrid', label: 'Hybrid' },
+  ]
+
   const customStyles = {
     control: (provided: any) => ({
       ...provided,
-      width: 269,
+      width: 271,
       border: '1.4px solid #dfe6df',
     }),
     input: (provided: any) => ({
@@ -78,7 +84,7 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
 
             <div className="modal__input__container">
               <label htmlFor="name">Employment Type</label>
-              <Select options={employmentTypeOptions} styles={customStyles} />
+              <Select options={locationTypeOptions} styles={customStyles} />
             </div>
 
             <div className="modal__input__container">
