@@ -16,9 +16,22 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
     { value: 'full_time', label: 'Full-Time Employment' },
     { value: 'part_time', label: 'Part-Time Employment' },
     { value: 'temporary', label: 'Temporary or Fixed-Term Employment' },
-    { value: 'Internship', label: 'Internship Employment' }
-    ,
+    { value: 'Internship', label: 'Internship Employment' },
   ]
+
+  const customStyles = {
+    control: (provided: any) => ({
+      ...provided,
+      width: 269,
+      border: '1.4px solid #dfe6df',
+    }),
+    input: (provided: any) => ({
+      ...provided,
+      '&:focus': {
+        outline: '1.4px solid #afe1af',
+      },
+    }),
+  }
 
   return (
     <AddemployeeModalStyle>
@@ -54,23 +67,23 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
               <label htmlFor="name">Email</label>
               <Input id="name" />
             </div>
-
             <div className="modal__input__container">
-              <label htmlFor="name">Employment type</label>
-              <Select options={employmentTypeOptions} />
+              <label htmlFor="name">Mobile</label>
+              <Input id="name" />
             </div>
             <div className="modal__input__container">
               <label htmlFor="name">Job title</label>
-              <Input id="name" />
+              <Select options={employmentTypeOptions} styles={customStyles} />
+            </div>
+
+            <div className="modal__input__container">
+              <label htmlFor="name">Employment Type</label>
+              <Select options={employmentTypeOptions} styles={customStyles} />
             </div>
 
             <div className="modal__input__container">
               <label htmlFor="name">Location</label>
-              <Input id="name" />
-            </div>
-            <div className="modal__input__container">
-              <label htmlFor="name">Location</label>
-              <Input id="name" />
+              <Select options={employmentTypeOptions} styles={customStyles} />
             </div>
           </form>
           <div className="modal__footer">

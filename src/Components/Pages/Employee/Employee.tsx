@@ -9,7 +9,7 @@ import Chatlistdata from '../../../assets/data/Chatlistdata.json'
 import AddEmployeeModal from '../../Organism/AddEmployeeModal/AddEmployeeModal'
 
 const Employee = () => {
-  const [isaddModal, setAddmodal] = useState(true)
+  const [isaddModal, setAddmodal] = useState(false)
 
   const closeAddemployeeModal = () => {
     setAddmodal(false)

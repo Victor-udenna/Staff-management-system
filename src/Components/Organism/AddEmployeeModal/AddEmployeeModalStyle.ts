@@ -30,7 +30,7 @@ const AddemployeeModalStyle = styled.div`
   }
   .modal-content {
     position: relative;
-    width: 600px;
+    width: 605px;
     background: #fff;
     padding: 24px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.09);
@@ -66,7 +66,7 @@ const AddemployeeModalStyle = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 12px;
+    gap: 15px;
   }
 
   .modal__input__container {
