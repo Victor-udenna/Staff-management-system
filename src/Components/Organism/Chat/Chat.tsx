@@ -55,6 +55,8 @@ const Chat = () => {
     element.style.height = element.scrollHeight + 'px'
   }
 
+  console.log(chatdata)
+
   return (
     <ChatStyle>
       <section className="chat_container">
