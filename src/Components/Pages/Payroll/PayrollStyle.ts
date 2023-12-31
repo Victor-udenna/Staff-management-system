@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const PayrollStyle = styled.div`
   * {
@@ -19,6 +19,6 @@ const PayrollStyle = styled.div`
     overflow: hidden;
     color: black;
   }
-`;
+`
 
-export default PayrollStyle;
+export default PayrollStyle

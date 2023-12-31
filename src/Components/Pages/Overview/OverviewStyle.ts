@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const OverviewStyle = styled.div`
   * {
@@ -16,12 +16,12 @@ const OverviewStyle = styled.div`
     overflow-y: hidden;
   }
 
-  .overview{
+  .overview {
     margin-left: 18%;
     padding: 20px;
     width: 100%;
     overflow: hidden;
   }
-`;
+`
 
-export default OverviewStyle;
+export default OverviewStyle

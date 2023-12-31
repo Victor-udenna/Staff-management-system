@@ -1,17 +1,13 @@
-import { memo} from "react";
-import {Navigate} from 'react-router-dom';
+import { memo } from 'react'
+import { Navigate } from 'react-router-dom'
 
 type ChildrenProps = {
-  children: JSX.Element;
-};
+  children: JSX.Element
+}
 
+const PrivateRoute = ({ children }: ChildrenProps) => {
+  const authState = sessionStorage.getItem('authState')
 
-const PrivateRoute = ({children}: ChildrenProps) => {
-
-
-
-const authState = sessionStorage.getItem("authState")
-
-return authState !== null  ? children : <Navigate to="/"/> 
+  return authState !== null ? children : <Navigate to="/" />
 }
 export default memo(PrivateRoute)

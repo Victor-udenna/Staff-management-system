@@ -1,40 +1,33 @@
-import { useState} from "react";
-import SideBar from "../../Organism/SideBar/Sidebar";
-import SettingsStyle from "./SettingsStyle";
-import Text from "../../atoms/Text/Text";
-import { Button } from "../../atoms/Button/Button";
-import Image from "../../atoms/Image/Image";
-import Input from "../../atoms/Input/Input";
-import { VscMultipleWindows } from "react-icons/vsc";
-import EmailVerification from "../../Molecule/EmailVerification/EmailVerification";
-import ViewActivityModal from "../../Organism/ViewActivityModal/ViewActivityModal";
-import { auth } from "../../../Config/firebase-config";
+import { useState } from 'react'
+import SideBar from '../../Organism/SideBar/Sidebar'
+import SettingsStyle from './SettingsStyle'
+import Text from '../../atoms/Text/Text'
+import { Button } from '../../atoms/Button/Button'
+import Image from '../../atoms/Image/Image'
+import Input from '../../atoms/Input/Input'
+import { VscMultipleWindows } from 'react-icons/vsc'
+import EmailVerification from '../../Molecule/EmailVerification/EmailVerification'
+import ViewActivityModal from '../../Organism/ViewActivityModal/ViewActivityModal'
+import { auth } from '../../../Config/firebase-config'
 
 const Settings = () => {
+  const [isActivityModal, setActivityModal] = useState(false)
+  const userName = auth.currentUser?.displayName
+  const userImg = auth.currentUser?.photoURL
 
-const [isActivityModal, setActivityModal] = useState(false);
-const userName = auth.currentUser?.displayName;
-const userImg = auth.currentUser?.photoURL;
+  const openActivityModal = () => {
+    setActivityModal(true)
+  }
 
-const openActivityModal =()=>{
-  setActivityModal(true)
-}
+  const closeActivityModal = () => {
+    setActivityModal(false)
+  }
 
-const closeActivityModal =()=>{
-  setActivityModal(false)
-}
-
-const userAvatar = `https://ui-avatars.com/api/?name=${userName}+${""}&background=${"228B22"}&color=fff&font-size=${0.33}&bold=${true}`; 
-
+  const userAvatar = `https://ui-avatars.com/api/?name=${userName}+${''}&background=${'228B22'}&color=fff&font-size=${0.33}&bold=${true}`
 
   return (
     <SettingsStyle>
-
-      {isActivityModal && (
-   <ViewActivityModal
-   closeModal={closeActivityModal}/>
-        )
-      }
+      {isActivityModal && <ViewActivityModal closeModal={closeActivityModal} />}
 
       <main className="container">
         <SideBar />
@@ -43,11 +36,11 @@ const userAvatar = `https://ui-avatars.com/api/?name=${userName}+${""}&backgroun
             <Text classname="section__header__text" value="Profile Photo" />
             <div className="profile__photo__wrapper">
               <div className="user__img__container">
-                { userImg ? 
-               <Image className="user__img" alt="" image={userImg} />
-                :
-                <Image className="user__img" alt="" image={userAvatar} />
-                }          
+                {userImg ? (
+                  <Image className="user__img" alt="" image={userImg} />
+                ) : (
+                  <Image className="user__img" alt="" image={userAvatar} />
+                )}
                 <div className="status__icon"></div>
               </div>
               <div>
@@ -66,26 +59,29 @@ const userAvatar = `https://ui-avatars.com/api/?name=${userName}+${""}&backgroun
               value="Personal Information"
             />
 
-         <form>
-         <div className="personal__information__wrapper">
-              <div className="input__container">
-                <label htmlFor="display__name">First Name</label>
-                <Input id="displa__name" type="text" />
-              </div>
-              <div className="input__container">
-                <label htmlFor="email">Last Name</label>
-                <Input className="email" type="text" />
-              </div>
-              <div className="input__container">
-                <label htmlFor="">Change Email</label>
-                <div className="change__password__container">
-                  <Input className="change__password" type="email" />
-                  <Button value="Update" classname="change__password__button" />
+            <form>
+              <div className="personal__information__wrapper">
+                <div className="input__container">
+                  <label htmlFor="display__name">First Name</label>
+                  <Input id="displa__name" type="text" />
                 </div>
-                {<EmailVerification/>}
+                <div className="input__container">
+                  <label htmlFor="email">Last Name</label>
+                  <Input className="email" type="text" />
+                </div>
+                <div className="input__container">
+                  <label htmlFor="">Change Email</label>
+                  <div className="change__password__container">
+                    <Input className="change__password" type="email" />
+                    <Button
+                      value="Update"
+                      classname="change__password__button"
+                    />
+                  </div>
+                  {<EmailVerification />}
+                </div>
               </div>
-            </div>
-         </form>
+            </form>
           </div>
 
           <div className="recent__activity__container">
@@ -120,30 +116,32 @@ const userAvatar = `https://ui-avatars.com/api/?name=${userName}+${""}&backgroun
             </div>
             <div></div>
           </div>
-<form className="security_container_form">
-  
-<div className="security__container">
-            <Text classname="section__header__text" value="Security" />
-            <div className="personal__information__wrapper">
-              <div className="input__container">
-                <label htmlFor="display__name">Old password</label>
-                <Input id="displa__name" type="text" />
-              </div>
-              <div className="input__container">
-                <label htmlFor="email">New password</label>
-                <Input className="email" type="text" />
-              </div>
-              <div className="input__container">
-                <label htmlFor="">Confirm New Password</label>
+          <form className="security_container_form">
+            <div className="security__container">
+              <Text classname="section__header__text" value="Security" />
+              <div className="personal__information__wrapper">
+                <div className="input__container">
+                  <label htmlFor="display__name">Old password</label>
+                  <Input id="displa__name" type="text" />
+                </div>
+                <div className="input__container">
+                  <label htmlFor="email">New password</label>
+                  <Input className="email" type="text" />
+                </div>
+                <div className="input__container">
+                  <label htmlFor="">Confirm New Password</label>
 
-                <div className="change__password__container">
-                  <Input className="change__password" type="email" />
-                  <Button value="Update" classname="change__password__button" />
+                  <div className="change__password__container">
+                    <Input className="change__password" type="email" />
+                    <Button
+                      value="Update"
+                      classname="change__password__button"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-</form>
+          </form>
 
           <div className="confirm__changes__container">
             <Button classname="revert__changes__btn" value="Revert Changes" />
@@ -152,7 +150,7 @@ const userAvatar = `https://ui-avatars.com/api/?name=${userName}+${""}&backgroun
         </section>
       </main>
     </SettingsStyle>
-  );
-};
+  )
+}
 
-export default Settings;
+export default Settings

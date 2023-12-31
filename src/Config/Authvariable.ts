@@ -1,4 +1,4 @@
-export  const AuthUser = {
-    isUserloggedIn: true,
-    isUserVerified: true
+export const AuthUser = {
+  isUserloggedIn: true,
+  isUserVerified: true,
 }

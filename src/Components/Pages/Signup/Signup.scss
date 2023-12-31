@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 // 1 #6365EF
@@ -35,7 +35,7 @@
 }
 
 .signup__img__container {
-  background-color: #228B22;
+  background-color: #228b22;
   img {
     width: 80%;
     height: fit-content;
@@ -56,9 +56,6 @@
     font-weight: bold;
     padding-bottom: 24px;
   }
-
-
-
 
   .sign_up_input_container {
     padding-top: 10px;
@@ -92,7 +89,7 @@
     padding: 12px;
     border-radius: 10px;
     font-weight: bold;
-    background-color: #228B22;
+    background-color: #228b22;
     color: white;
     border: 0;
     margin-top: 13px;
@@ -103,7 +100,7 @@
   }
 
   .sign_up_button:hover {
-    background-color: #355E3B;
+    background-color: #355e3b;
   }
 
   .label {
@@ -120,7 +117,7 @@
     font-size: 13px;
   }
   a:-webkit-any-link {
-    color:  #228B22;
+    color: #228b22;
     text-decoration: none;
     font-weight: bold;
     font-size: 14px;
@@ -128,23 +125,23 @@
   }
 }
 
-.show_password{
-    display: flex;
-    padding: 0px 5px;
-    label{
-        line-height: 160%;
-        text-align: center;
-        color: #9ca3af;
-        font-size: 13.5px;
-        padding-left: 5px;
-        cursor: pointer;
-    }
-    input[type = "checkbox"]{
-        width: 15px;
-        border: 0px;
-        padding: 0px;
-        border-radius: 10px;
-        cursor: pointer;
-        padding: 10px;
-    }
+.show_password {
+  display: flex;
+  padding: 0px 5px;
+  label {
+    line-height: 160%;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 13.5px;
+    padding-left: 5px;
+    cursor: pointer;
+  }
+  input[type='checkbox'] {
+    width: 15px;
+    border: 0px;
+    padding: 0px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px;
+  }
 }
