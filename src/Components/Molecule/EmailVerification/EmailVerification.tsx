@@ -47,7 +47,7 @@ const EmailVerification = () => {
             <Button
               classname="send__verification__button"
               value="Send Verification Email"
-              onclick={handleSendVerificationEmail}
+              onclick={()=>{handleSendVerificationEmail}}
             />
           </div>
         ) : (

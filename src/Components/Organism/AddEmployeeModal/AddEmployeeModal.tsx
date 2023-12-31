@@ -256,16 +256,8 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
               </div>
             </div>
             <div className="modal__footer">
-              <Button
-                buttonType={'reset'}
-                classname="cancel__create__btn"
-                value="Reset"
-              />
-              <Button
-                buttonType={'submit'}
-                classname="create__employee__btn"
-                value="Add employee"
-              />
+              <Button classname="cancel__create__btn" value="Close" />
+              <Button classname="create__employee__btn" value="Add employee" />
             </div>
           </form>
         </div>

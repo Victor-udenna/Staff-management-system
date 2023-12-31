@@ -1,27 +1,16 @@
 import buttonLoaderImg from '../../../assets/loading_1.gif'
 
-type ButtonProps = {
+type button = {
   value: string
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  onclick?: React.MouseEventHandler<HTMLButtonElement>
   classname: string
-  isLoading?: boolean
-  buttonType?: React.ButtonHTMLAttributes<HTMLButtonElement> | any
+  isloading?: boolean
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  value,
-  onClick,
-  classname,
-  buttonType, // Use the new name here
-  isLoading,
-}: ButtonProps) => {
+export const Button = ({ value, onclick, classname, isloading }: button) => {
   return (
-    <button className={classname} type={buttonType} onClick={onClick}>
-      {isLoading ? (
-        <img width={15} src={buttonLoaderImg} alt="Loading" />
-      ) : (
-        value
-      )}
+    <button className={classname} onClick={onclick}>
+      {isloading ? <img width={15} src={buttonLoaderImg} /> : value}
     </button>
   )
 }
