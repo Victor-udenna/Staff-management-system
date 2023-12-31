@@ -87,6 +87,7 @@ const AddemployeeModalStyle = styled.div`
     font-size: 13px;
     font-weight: 500;
     padding-bottom: 6px;
+    cursor: pointer;
   }
 
   .modal__footer {
@@ -101,6 +102,7 @@ const AddemployeeModalStyle = styled.div`
       padding: 10px;
       font-weight: 600;
       border-radius: 4px;
+      cursor: pointer;
     }
   }
 
