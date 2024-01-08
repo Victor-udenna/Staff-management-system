@@ -34,8 +34,8 @@ const Login = () => {
   const AuthVariable = AuthUser
 
   const saveAuthState = async () => {
-    if(auth.currentUser){
-      dispatch(saveAuth(auth.currentUser))
+    if (auth.currentUser) {
+      await dispatch(saveAuth(auth.currentUser))
     }
   }
 
@@ -135,14 +135,6 @@ const Login = () => {
   useEffect(() => {
     succesTimeout()
   }, [errorMessage])
-
-  // useEffect(()=>{
-  //  if(auth !== null){
-  // dispatch(saveAuth(auth))
-  //  }
-  // }, [auth])
-
-  console.log(auth);
 
   return (
     <main className="signin__container">

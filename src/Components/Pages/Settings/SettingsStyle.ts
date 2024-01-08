@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const SettingsStyle = styled.div`
   .container {
@@ -171,7 +171,7 @@ const SettingsStyle = styled.div`
     }
   }
 
-  .security_container_form{
+  .security_container_form {
     border-bottom: 1px solid #9ca3af;
   }
 
@@ -213,8 +213,6 @@ const SettingsStyle = styled.div`
       cursor: pointer;
     }
   }
+`
 
-
-`;
-
-export default SettingsStyle;
+export default SettingsStyle
