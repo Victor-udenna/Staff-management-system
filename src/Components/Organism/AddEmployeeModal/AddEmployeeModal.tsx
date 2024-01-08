@@ -9,6 +9,7 @@ import Text from '../../atoms/Text/Text'
 import Select from 'react-select'
 import { addDoc, collection } from 'firebase/firestore'
 import { auth, db } from '../../../Config/firebase-config'
+import SuccessPopup from '../../Molecule/SucessPopup/SuccessPopup'
 
 type AddemployeeType = {
   closeModal: any
@@ -67,6 +68,9 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
     status: '',
   })
 
+  const [isloading, setisLoading] = useState(false)
+  const [succesmessage, setSuccessmessage] = useState(false)
+
   const customStyles = {
     control: (provided: any) => ({
       ...provided,
@@ -110,8 +114,8 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
 
   const createEmployee = async (e: React.FormEvent) => {
     e.preventDefault()
-
     try {
+      setisLoading(true)
       await addDoc(employeeDataList, {
         createdById: auth.currentUser?.uid,
         email: fields.email,
@@ -124,27 +128,35 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
         phone_number: fields.phone_number,
         status: 'pending',
       })
-      setFields({
-        email: '',
-        employment_type: '',
-        first_name: '',
-        is_active: false,
-        job_title: '',
-        last_name: '',
-        location: '',
-        phone_number: 0,
-        status: '',
-      })
-      closeModal()
+      setSuccessmessage(true)
+      setTimeout(() => {
+        closeModal()
+      }, 1000)
     } catch (err) {
       console.log(err)
+      setisLoading(false)
     }
+  }
+
+  const resetForm = () => {
+    setFields({
+      email: '',
+      employment_type: '',
+      first_name: '',
+      is_active: false,
+      job_title: '',
+      last_name: '',
+      location: '',
+      phone_number: 0,
+      status: '',
+    })
   }
 
   console.log(fields)
 
   return (
     <AddemployeeModalStyle>
+      {succesmessage && <SuccessPopup text={'Employee added succesfully'} />}
       <div className="modal-container">
         <div className="modal-content">
           <div className="modal__header">
@@ -256,8 +268,16 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
               </div>
             </div>
             <div className="modal__footer">
-              <Button classname="cancel__create__btn" value="Close" />
-              <Button classname="create__employee__btn" value="Add employee" />
+              <Button
+                onclick={resetForm}
+                classname="cancel__create__btn"
+                value="Reset"
+              />
+              <Button
+                isloading={isloading}
+                classname="create__employee__btn"
+                value="Add employee"
+              />
             </div>
           </form>
         </div>
