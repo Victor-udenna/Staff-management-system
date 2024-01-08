@@ -10,7 +10,7 @@ const persistConfig = {
   key: 'root',
   storage,
   stateReconciler: autoMergeLevel2,
-  blacklist: ['datareducer'],
+  blacklist: [],
 }
 
 // const {persistReducer} = require('redux-persist');
