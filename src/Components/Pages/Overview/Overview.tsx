@@ -1,8 +1,13 @@
 import OverviewStyle from './OverviewStyle'
 import SideBar from '../../Organism/SideBar/Sidebar'
 import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
+import { RootStore } from '../../../Config/configstore'
+import { useSelector } from 'react-redux'
 
 const Overview = () => {
+
+  const state = useSelector((state: RootStore)=> state)
+  console.log(state);
   return (
     <OverviewStyle>
       <main className="Dashboard_container">

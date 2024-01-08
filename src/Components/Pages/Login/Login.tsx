@@ -1,133 +1,153 @@
-import { useEffect, useState } from "react";
-import "./Login.scss";
-import Input from "../../atoms/Input/Input";
-import Image from "../../atoms/Image/Image";
-import bgImg from "../../../assets/undraw_sign_in_re_o58h.svg";
-import { Button } from "../../atoms/Button/Button";
-import HeaderText from "../../atoms/HeaderText/HeaderText";
-import { Link } from "react-router-dom";
-import GoogleButton from "../../atoms/GoogleButton/GoogleButton";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { auth, googleProvider } from "../../../Config/firebase-config";
-import ErrorPopup from "../../Molecule/ErrorPopup/ErrorPopup";
-import SuccessPopup from "../../Molecule/SucessPopup/SuccessPopup";
-import { AuthUser } from "../../../Config/Authvariable";
+import { useEffect, useState } from 'react'
+import './Login.scss'
+import Input from '../../atoms/Input/Input'
+import Image from '../../atoms/Image/Image'
+import bgImg from '../../../assets/undraw_sign_in_re_o58h.svg'
+import { Button } from '../../atoms/Button/Button'
+import HeaderText from '../../atoms/HeaderText/HeaderText'
+import { Link } from 'react-router-dom'
+import GoogleButton from '../../atoms/GoogleButton/GoogleButton'
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
+import { auth, googleProvider } from '../../../Config/firebase-config'
+import ErrorPopup from '../../Molecule/ErrorPopup/ErrorPopup'
+import SuccessPopup from '../../Molecule/SucessPopup/SuccessPopup'
+import { AuthUser } from '../../../Config/Authvariable'
+import { useDispatch } from 'react-redux'
+import { saveAuth } from '../../../redux/actions/SaveAction'
+import { TypedDispatch } from '../../../Config/configstore'
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [iserrorPopup, setErrorPopUp] = useState<boolean>(false);
-  const [isuccessPopup, setisSuccesspopUP] = useState<boolean>(false);
-  const [errorText, setErrorText] = useState<string>("");
-  const [isclicked, setisClicked] = useState<boolean>(false);
-  const [showpassword, setShowpassword] = useState<string>("password");
+  const navigate = useNavigate()
+  const dispatch: TypedDispatch = useDispatch()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [iserrorPopup, setErrorPopUp] = useState<boolean>(false)
+  const [isuccessPopup, setisSuccesspopUP] = useState<boolean>(false)
+  const [errorText, setErrorText] = useState<string>('')
+  const [isclicked, setisClicked] = useState<boolean>(false)
+  const [showpassword, setShowpassword] = useState<string>('password')
   const [showpasswordtext, setshowpasswordText] =
-    useState<string>("show password");
+    useState<string>('show password')
 
-  let errorMessage;
-  const AuthVariable = AuthUser;
+  let errorMessage
+  const AuthVariable = AuthUser
 
-  const loginFunction = (e: React.FormEvent) => {
-    setisClicked(true);
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
+  const saveAuthState = async () => {
+    if(auth.currentUser){
+      dispatch(saveAuth(auth.currentUser))
+    }
+  }
+
+  const loginFunction = async (e: React.FormEvent) => {
+    setisClicked(true)
+    e.preventDefault()
+    await signInWithEmailAndPassword(auth, email, password)
       .then((userdetails) => {
-        setisSuccesspopUP(true);
-        const user = userdetails;
+        setisSuccesspopUP(true)
+        const user = userdetails
         if (auth !== null) {
-          sessionStorage.setItem("authState", JSON.stringify(AuthVariable));
+          sessionStorage.setItem('authState', JSON.stringify(AuthVariable))
         }
         setTimeout(() => {
-          navigate("/dashboard");
-        }, 1000);
-        user;
+          saveAuthState()
+          navigate('/dashboard')
+        }, 1000)
+        user
       })
       .catch((error) => {
-        errorMessage = error.message;
-        console.log(errorMessage);
+        errorMessage = error.message
         if (errorMessage) {
-          if (errorMessage === "Firebase: Error (auth/invalid-email).") {
-            setErrorText("Invalid email or password");
+          if (errorMessage === 'Firebase: Error (auth/invalid-email).') {
+            setErrorText('Invalid email or password')
           }
           if (
-            errorMessage === "Firebase: Error (auth/missing-password)." ||
-            errorMessage === "Firebase: Error (auth/wrong-password)."
+            errorMessage === 'Firebase: Error (auth/missing-password).' ||
+            errorMessage === 'Firebase: Error (auth/wrong-password).'
           ) {
-            setErrorText("Invalid password");
+            setErrorText('Invalid password')
           }
           if (
-            errorMessage === "Firebase: Error (auth/network-request-failed)."
+            errorMessage === 'Firebase: Error (auth/network-request-failed).'
           ) {
-            setErrorText("Network error, try again");
+            setErrorText('Network error, try again')
           }
-          if (errorMessage === "Firebase: Error (auth/user-not-found).") {
-            setErrorText("Wrong email / password");
+          if (errorMessage === 'Firebase: Error (auth/user-not-found).') {
+            setErrorText('Wrong email / password')
           }
           if (
             errorMessage ===
-            "Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests)."
+            'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).'
           ) {
-            setErrorText("Account temporarily disabled, Pls try again later");
+            setErrorText('Account temporarily disabled, Pls try again later')
           }
-          setErrorPopUp(!false);
-          setisClicked(!true);
+          setErrorPopUp(!false)
+          setisClicked(!true)
         } else {
-          setisSuccesspopUP(!false);
-          setisClicked(!true);
+          setisSuccesspopUP(!false)
+          setisClicked(!true)
         }
-      });
-  };
+      })
+  }
 
   const loginWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      await signInWithPopup(auth, googleProvider)
       if (auth !== null) {
-        sessionStorage.setItem("authState", JSON.stringify(AuthVariable));
+        sessionStorage.setItem('authState', JSON.stringify(AuthVariable))
       }
+
       setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
+        saveAuthState()
+        navigate('/dashboard')
+      }, 2000)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const showPasswordFunc = (e: any) => {
     if (e.target.checked) {
-      setShowpassword("text");
-      setshowpasswordText("hide password");
+      setShowpassword('text')
+      setshowpasswordText('hide password')
     } else {
-      setShowpassword("password");
-      setshowpasswordText("show password");
+      setShowpassword('password')
+      setshowpasswordText('show password')
     }
-  };
+  }
 
   const errorTimeout = () => {
     setInterval(() => {
-      setErrorPopUp(false);
-    }, 3000);
-  };
+      setErrorPopUp(false)
+    }, 3000)
+  }
 
   const succesTimeout = () => {
     setInterval(() => {
-      setisSuccesspopUP(false);
-    }, 2000);
-  };
+      setisSuccesspopUP(false)
+    }, 2000)
+  }
 
   useEffect(() => {
-    errorTimeout();
-  }, [errorMessage]);
+    errorTimeout()
+  }, [errorMessage])
 
   useEffect(() => {
-    succesTimeout();
-  }, [errorMessage]);
+    succesTimeout()
+  }, [errorMessage])
+
+  // useEffect(()=>{
+  //  if(auth !== null){
+  // dispatch(saveAuth(auth))
+  //  }
+  // }, [auth])
+
+  console.log(auth);
 
   return (
     <main className="signin__container">
       {iserrorPopup && <ErrorPopup text={errorText} />}
-      {isuccessPopup && <SuccessPopup text={"Log in successful"} />}
+      {isuccessPopup && <SuccessPopup text={'Log in successful'} />}
 
       <div className="signin__img__container">
         <Image className="signin__img" image={bgImg} alt="bg-image" />
@@ -145,7 +165,7 @@ const Login = () => {
             <Input
               type="email"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setEmail(e.target.value);
+                setEmail(e.target.value)
               }}
             />
           </div>
@@ -155,7 +175,7 @@ const Login = () => {
             <Input
               type={showpassword}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setPassword(e.target.value);
+                setPassword(e.target.value)
               }}
             />
           </div>
@@ -173,7 +193,7 @@ const Login = () => {
             value="Log in"
           />
           <div className="log__in__link">
-            <span>Don't have an account ?</span>{" "}
+            <span>Don't have an account ?</span>{' '}
             <Link to="/signup">
               <span>Sign up here</span>
             </Link>
@@ -182,7 +202,7 @@ const Login = () => {
         <GoogleButton value="Continue with Google" onclick={loginWithGoogle} />
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
