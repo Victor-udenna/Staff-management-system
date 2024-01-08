@@ -5,7 +5,11 @@ import { BsFillCheckCircleFill } from "react-icons/bs";
 import { Button } from "../../atoms/Button/Button";
 import EmailVerificationStyle from "./EmailVerificationStyle";
 
-const EmailVerification = () => {
+interface emailverificationType {
+isVerified : boolean
+}
+
+const EmailVerification = ({isVerified}: emailverificationType) => {
   const [user, setUser] = useState<any>();
 
   useEffect(() => {
@@ -19,8 +23,6 @@ const EmailVerification = () => {
     return () => unsubscribe();
   }, []);
 
-  const isVerified = auth.currentUser?.emailVerified;
-  console.log(isVerified)
 
   
   const handleSendVerificationEmail = () => {

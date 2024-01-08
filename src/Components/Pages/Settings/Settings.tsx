@@ -8,13 +8,16 @@ import Input from '../../atoms/Input/Input'
 import { VscMultipleWindows } from 'react-icons/vsc'
 import EmailVerification from '../../Molecule/EmailVerification/EmailVerification'
 import ViewActivityModal from '../../Organism/ViewActivityModal/ViewActivityModal'
-import { auth } from '../../../Config/firebase-config'
+import { useSelector } from 'react-redux';
+import { RootStore } from '../../../Config/configstore'
 
 const Settings = () => {
   const [isActivityModal, setActivityModal] = useState(false)
-  const userName = auth.currentUser?.displayName
-  const userImg = auth.currentUser?.photoURL
 
+  const state = useSelector((state: RootStore)=> state.saveAuthReducer)
+  const userName = state.result.data.displayName
+  const userImg = state.result.data.photoURL
+  const isverified = state.result.data.emailVerified;
   const openActivityModal = () => {
     setActivityModal(true)
   }
@@ -78,7 +81,7 @@ const Settings = () => {
                       classname="change__password__button"
                     />
                   </div>
-                  {<EmailVerification />}
+                  {<EmailVerification  isVerified={isverified}/>}
                 </div>
               </div>
             </form>

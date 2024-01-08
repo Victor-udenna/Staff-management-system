@@ -8,8 +8,10 @@ import HeaderText from '../../atoms/HeaderText/HeaderText'
 import Text from '../../atoms/Text/Text'
 import Select from 'react-select'
 import { addDoc, collection } from 'firebase/firestore'
-import { auth, db } from '../../../Config/firebase-config'
+import { db } from '../../../Config/firebase-config'
 import SuccessPopup from '../../Molecule/SucessPopup/SuccessPopup'
+import { RootStore } from '../../../Config/configstore'
+import { useSelector } from 'react-redux'
 
 type AddemployeeType = {
   closeModal: any
@@ -29,6 +31,9 @@ interface UserData {
 
 const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
   const employeeDataList = collection(db, 'Employees')
+
+  const state = useSelector((state: RootStore) => state.saveAuthReducer)
+  const createdById = state.result.data.uid
 
   const employmentTypeOptions: any = [
     { value: 'full_time', label: 'Full-Time Employment' },
@@ -117,7 +122,7 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
     try {
       setisLoading(true)
       await addDoc(employeeDataList, {
-        createdById: auth.currentUser?.uid,
+        createdById: createdById,
         email: fields.email,
         employment_type: fields.employment_type.value,
         first_name: fields.first_name,
@@ -151,8 +156,6 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
       status: '',
     })
   }
-
-  console.log(fields)
 
   return (
     <AddemployeeModalStyle>
