@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import PopupModalStyle from './PopupModalStyle'
 import Image from '../../atoms/Image/Image'
 import successGif from '../../../assets/success-animation.gif'
