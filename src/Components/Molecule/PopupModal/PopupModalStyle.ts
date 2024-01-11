@@ -39,7 +39,7 @@ const PopupModalStyle = styled.div`
   .success__header__text{
   font-weight: 600;
   font-size: 24px;
-  color: green;
+  color: #228b22;
   padding-bottom: 20px;
   }
 

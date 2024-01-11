@@ -8,23 +8,22 @@ import Text from '../../atoms/Text/Text'
 interface PopupModalprop {
     headerText: string
     text: string
+    closeSuccessModal: ()=> void
+    reloadPage: ()=> void
 }
 
-const PopupModal = ({headerText, text}: PopupModalprop) => {
-  const [isOpen, setIsOpen] = useState(true)
+const PopupModal = ({headerText, text, closeSuccessModal, reloadPage}: PopupModalprop) => {
 
-    useEffect(() => {
-      const timeoutId = setTimeout(() => {
-        setIsOpen(false);
-        window.location.reload();
-      }, 2000);
-
-      return () => clearTimeout(timeoutId);
-    }, []);
+useEffect(()=>{
+window.setTimeout(()=> {
+closeSuccessModal()
+reloadPage()
+}, 3000)
+}, [])
 
   return (
     <PopupModalStyle>
-      <div className={`modal ${isOpen ? 'open' : 'closed'}`}>
+      <div className="modal open">
         <div className="modal-content">
           <div className="gif__container">
             <Image

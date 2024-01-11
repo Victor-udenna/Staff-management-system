@@ -165,7 +165,7 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
 
   useEffect(() => {
     errorTimeout()
-  }, [iserror]);
+  }, []);
 
   return (
     <AddemployeeModalStyle>
