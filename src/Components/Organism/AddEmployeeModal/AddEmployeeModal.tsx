@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AddemployeeModalStyle from './AddEmployeeModalStyle'
 import { IoCloseSharp } from 'react-icons/io5'
 import { BsBuildingAdd } from 'react-icons/bs'
@@ -9,12 +9,13 @@ import Text from '../../atoms/Text/Text'
 import Select from 'react-select'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../../../Config/firebase-config'
-import SuccessPopup from '../../Molecule/SucessPopup/SuccessPopup'
+import ErrorPopup from '../../Molecule/ErrorPopup/ErrorPopup'
 import { RootStore } from '../../../Config/configstore'
 import { useSelector } from 'react-redux'
 
 type AddemployeeType = {
-  closeModal: any
+  closeModal: () => void;
+  showSuccessModal: () => void;
 }
 
 interface UserData {
@@ -29,7 +30,7 @@ interface UserData {
   status: string
 }
 
-const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
+const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => {
   const employeeDataList = collection(db, 'Employees')
 
   const state = useSelector((state: RootStore) => state.saveAuthReducer)
@@ -74,7 +75,7 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
   })
 
   const [isloading, setisLoading] = useState(false)
-  const [succesmessage, setSuccessmessage] = useState(false)
+  const [iserror, setError] = useState(false)
 
   const customStyles = {
     control: (provided: any) => ({
@@ -133,13 +134,12 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
         phone_number: fields.phone_number,
         status: 'pending',
       })
-      setSuccessmessage(true)
-      setTimeout(() => {
         closeModal()
-      }, 1000)
+        showSuccessModal()
     } catch (err) {
       console.log(err)
       setisLoading(false)
+      setError(true)
     }
   }
 
@@ -157,9 +157,19 @@ const AddEmployeeModal = ({ closeModal }: AddemployeeType) => {
     })
   }
 
+  const errorTimeout = () => {
+    setInterval(() => {
+      setError(false)
+    }, 3000)
+  };
+
+  useEffect(() => {
+    errorTimeout()
+  }, [iserror]);
+
   return (
     <AddemployeeModalStyle>
-      {succesmessage && <SuccessPopup text={'Employee added succesfully'} />}
+      {iserror && <ErrorPopup text={'An error occured pls try again'} />}
       <div className="modal-container">
         <div className="modal-content">
           <div className="modal__header">

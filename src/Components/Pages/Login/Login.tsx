@@ -134,7 +134,7 @@ const Login = () => {
 
   useEffect(() => {
     succesTimeout()
-  }, [errorMessage])
+  }, [errorMessage]);
 
   return (
     <main className="signin__container">

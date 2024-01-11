@@ -7,12 +7,18 @@ import Text from '../../atoms/Text/Text'
 import EmployeeStyle from './EmployeeStyle'
 import Chatlistdata from '../../../assets/data/Chatlistdata.json'
 import AddEmployeeModal from '../../Organism/AddEmployeeModal/AddEmployeeModal'
+import PopupModal from '../../Molecule/PopupModal/PopupModal'
 
 const Employee = () => {
   const [isaddModal, setAddmodal] = useState(false)
+  const [isSuccessModal, setSuccessModal] = useState(false)
 
   const closeAddemployeeModal = () => {
     setAddmodal(false)
+  }
+
+  const openSuccessModal=()=>{
+    setSuccessModal(true)
   }
 
   const openAddemployeeModal = () => {
@@ -21,7 +27,8 @@ const Employee = () => {
 
   return (
     <EmployeeStyle>
-      {isaddModal && <AddEmployeeModal closeModal={closeAddemployeeModal} />}
+      {isaddModal && <AddEmployeeModal closeModal={closeAddemployeeModal} showSuccessModal={openSuccessModal} />}
+      {isSuccessModal && <PopupModal headerText='Success'  text='employee added succesfully'/>}
       <main className="container">
         <SideBar />
         <section className="employee">
