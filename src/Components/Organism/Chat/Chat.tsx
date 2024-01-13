@@ -28,7 +28,7 @@ const Chat = () => {
         setchatData(item)
         setMessages(item.messages)
       } else {
-        ;('')
+        ('')
       }
     })
   }
@@ -201,6 +201,7 @@ const Chat = () => {
                 )}
               </div>
             </div>
+            
           </section>
         )}
       </section>

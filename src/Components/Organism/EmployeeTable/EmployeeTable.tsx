@@ -92,7 +92,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
               <td>{employee.location}</td>
               <td className="more__icon">
                 <div
-                className='pop__up__container'
+                  className="pop__up__container"
                   onBlur={() => onBlurHandler()}
                   onFocus={() => onFocusHandler()}
                 >
@@ -100,18 +100,20 @@ const EmployeeTable = ({ employeedata }: dataType) => {
                     aria-haspopup="true"
                     onClick={() => onClickHandler(true, employee.user_id)}
                     aria-expanded={selectedMenu}
-                    className='popup__btn'
+                    className="popup__btn"
                   >
-                    <span><BsThreeDots /></span>
+                    <span>
+                      <BsThreeDots />
+                    </span>
                   </button>
                   {selectedMenu !== false &&
-                          selectedId === employee.user_id && (
-                            <div className='pop__up'>
-                             <Button classname='view__btn' value='view'/>
-                             <Button classname='edit__btn' value='edit'/>
-                             <Button classname='status__btn' value='Deactivate'/>
-                            </div>
-                          ) }
+                    selectedId === employee.user_id && (
+                      <div className="pop__up">
+                        <Button classname="view__btn" value="view" />
+                        <Button classname="edit__btn" value="edit" />
+                        <Button classname="status__btn" value="Deactivate" />
+                      </div>
+                    )}
                 </div>
               </td>
             </tr>

@@ -17,7 +17,7 @@ const Employee = () => {
     setAddmodal(false)
   }
 
-  const openSuccessModal=()=>{
+  const openSuccessModal = () => {
     setSuccessModal(true)
   }
 
@@ -25,18 +25,30 @@ const Employee = () => {
     setAddmodal(true)
   }
 
-  const reloadPage=()=>{
-    window.location.reload();
+  const reloadPage = () => {
+    window.location.reload()
   }
 
-  const closeSuccessModal=()=>{
-    setSuccessModal(false)  
+  const closeSuccessModal = () => {
+    setSuccessModal(false)
   }
 
   return (
     <EmployeeStyle>
-      {isaddModal && <AddEmployeeModal closeModal={closeAddemployeeModal} showSuccessModal={openSuccessModal} />}
-      {isSuccessModal && <PopupModal closeSuccessModal={closeSuccessModal}  reloadPage={reloadPage} headerText='Success'  text='Employee added succesfully'/>}
+      {isaddModal && (
+        <AddEmployeeModal
+          closeModal={closeAddemployeeModal}
+          showSuccessModal={openSuccessModal}
+        />
+      )}
+      {isSuccessModal && (
+        <PopupModal
+          closeSuccessModal={closeSuccessModal}
+          reloadPage={reloadPage}
+          headerText="Success"
+          text="Employee added succesfully"
+        />
+      )}
       <main className="container">
         <SideBar />
         <section className="employee">

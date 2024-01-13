@@ -9,9 +9,9 @@ import Text from '../../atoms/Text/Text'
 import Select from 'react-select'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../../../Config/firebase-config'
-import ErrorPopup from '../../Molecule/ErrorPopup/ErrorPopup'
 import { RootStore } from '../../../Config/configstore'
 import { useSelector } from 'react-redux'
+import PopupNotification from '../../Molecule/PopupNotification/PopupNotification'
 
 type AddemployeeType = {
   closeModal: () => void;
@@ -169,7 +169,7 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
 
   return (
     <AddemployeeModalStyle>
-      {iserror && <ErrorPopup text={'An error occured pls try again'} />}
+      {iserror && <PopupNotification popuptype='error' popuptext={'An error occured pls try again'} />}
       <div className="modal-container">
         <div className="modal-content">
           <div className="modal__header">

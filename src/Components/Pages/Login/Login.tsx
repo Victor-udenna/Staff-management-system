@@ -10,12 +10,12 @@ import GoogleButton from '../../atoms/GoogleButton/GoogleButton'
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import { auth, googleProvider } from '../../../Config/firebase-config'
-import ErrorPopup from '../../Molecule/ErrorPopup/ErrorPopup'
-import SuccessPopup from '../../Molecule/SucessPopup/SuccessPopup'
+import PopupNotification from '../../Molecule/PopupNotification/PopupNotification'
 import { AuthUser } from '../../../Config/Authvariable'
 import { useDispatch } from 'react-redux'
 import { saveAuth } from '../../../redux/actions/SaveAction'
 import { TypedDispatch } from '../../../Config/configstore'
+
 
 const Login = () => {
   const navigate = useNavigate()
@@ -138,8 +138,8 @@ const Login = () => {
 
   return (
     <main className="signin__container">
-      {iserrorPopup && <ErrorPopup text={errorText} />}
-      {isuccessPopup && <SuccessPopup text={'Log in successful'} />}
+      {iserrorPopup && <PopupNotification popuptext={errorText}  popuptype={"error"}/>}
+      {isuccessPopup && <PopupNotification popuptype={"success"} popuptext={'Log in successful'}/>}
 
       <div className="signin__img__container">
         <Image className="signin__img" image={bgImg} alt="bg-image" />

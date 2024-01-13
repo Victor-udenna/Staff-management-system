@@ -11,9 +11,9 @@ import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { auth, googleProvider } from '../../../Config/firebase-config'
 import { updateProfile } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import ErrorPopup from '../../Molecule/ErrorPopup/ErrorPopup'
-import SuccessPopup from '../../Molecule/SucessPopup/SuccessPopup'
+import PopupNotification from '../../Molecule/PopupNotification/PopupNotification'
 import { AuthUser } from '../../../Config/Authvariable'
+
 
 const Signup = () => {
   const [username, setUserName] = useState('')
@@ -124,8 +124,8 @@ const Signup = () => {
 
   return (
     <main className="signup__container">
-      {iserrorPopup && <ErrorPopup text={errorText} />}
-      {isuccessPopup && <SuccessPopup text={'Account created successfully'} />}
+      {iserrorPopup && <PopupNotification popuptype='error' popuptext={errorText} />}
+      {isuccessPopup && <PopupNotification popuptype='success' popuptext={'Account created successfully'} />}
       <div className="signup__img__container">
         <Image className="signup__img" image={bgImg} alt="bg-image" />
       </div>
