@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import EmployeeAnalysis from '../../Molecule/EmployeeAnalysis/EmployeeAnalysis'
 import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
 import EmployeeTable from '../../Organism/EmployeeTable/EmployeeTable'
@@ -8,10 +8,28 @@ import EmployeeStyle from './EmployeeStyle'
 import Chatlistdata from '../../../assets/data/Chatlistdata.json'
 import AddEmployeeModal from '../../Organism/AddEmployeeModal/AddEmployeeModal'
 import PopupModal from '../../Molecule/PopupModal/PopupModal'
+import { collection, getDocs, query } from 'firebase/firestore'
+import { db } from '../../../Config/firebase-config'
+
+type UserData = {
+  createdById: string
+  email: string
+  employment_type: string
+  first_name: string
+  id: string
+  is_active: boolean
+  job_title: string
+  last_name: string
+  location: string
+  phone_number: string
+  status: string
+}
 
 const Employee = () => {
+  const employeeDataRef = collection(db, 'Employees')
   const [isaddModal, setAddmodal] = useState(false)
   const [isSuccessModal, setSuccessModal] = useState(false)
+  const [employeeData, setEmployeedata] = useState<Array<UserData>>([])
 
   const closeAddemployeeModal = () => {
     setAddmodal(false)
@@ -32,6 +50,24 @@ const Employee = () => {
   const closeSuccessModal = () => {
     setSuccessModal(false)
   }
+
+  const getEmployeeList = async () => {
+    const employeeDataCollection = employeeDataRef
+    const employeeQuery = query(employeeDataCollection)
+    const querysnapshot = await getDocs(employeeQuery)
+    const fetchdata: Array<UserData> = []
+    querysnapshot.forEach((doc) => {
+      fetchdata.push({ id: doc.id, ...doc.data() } as UserData)
+    })
+
+    setEmployeedata(fetchdata)
+  }
+
+  useEffect(() => {
+    getEmployeeList()
+  }, [])
+
+  console.log(employeeData)
 
   return (
     <EmployeeStyle>
@@ -59,7 +95,7 @@ const Employee = () => {
           />
           <Text classname="header_text" value={'Employee'} />
           <EmployeeAnalysis />
-          <EmployeeTable employeedata={Chatlistdata} />
+          <EmployeeTable employeedata={employeeData} />
         </section>
       </main>
     </EmployeeStyle>
