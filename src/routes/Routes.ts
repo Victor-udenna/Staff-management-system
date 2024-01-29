@@ -1,66 +1,68 @@
-import Settings from "../Components/Pages/Settings/Settings";
-import Overview from "../Components/Pages/Overview/Overview";
-import Employee from "../Components/Pages/Employee/Employee";
-import Payroll from "../Components/Pages/Payroll/Payroll";
-import Attendance from "../Components/Pages/Attendance/Attendance";
-import Help from "../Components/Pages/Help/Help";
-import Communication from "../Components/Pages/Communication/Communication";
+import Settings from '../Components/Pages/Settings/Settings'
+import Overview from '../Components/Pages/Overview/Overview'
+import Employee from '../Components/Pages/Employee/Employee'
+import Payroll from '../Components/Pages/Payroll/Payroll'
+import Attendance from '../Components/Pages/Attendance/Attendance'
+import Help from '../Components/Pages/Help/Help'
+import Communication from '../Components/Pages/Communication/Communication'
 
 const routes = [
   {
     elements: [
       {
-        path: "/dashboard",
+        path: '/dashboard',
         component: Overview,
       },
     ],
   },
   {
-   elements: [
-    {
-        path: "/settings",
+    elements: [
+      {
+        path: '/settings',
         component: Settings,
-    },
-   ],
-  },{
-    elements: [
-        {
-            path: "/employee",
-            component: Employee,
-        },
-    ]
-  },
-  {
-    elements: [
-        {
-            path: "/payroll",
-            component: Payroll,
-        },
+      },
     ],
   },
   {
     elements: [
-        {
-            path: "/attendance",
-            component: Attendance,
-        },
+      {
+        path: '/employee',
+        component: Employee,
+      },
     ],
-  },{
+  },
+  {
     elements: [
-        {
-            path: "/help",
-            component: Help,
-        },
-    ]
-  }
-  ,{
+      {
+        path: '/payroll',
+        component: Payroll,
+      },
+    ],
+  },
+  {
     elements: [
-        {
-            path: "/communication",
-            component: Communication,
-        },
-    ]
-  }
-];
+      {
+        path: '/attendance',
+        component: Attendance,
+      },
+    ],
+  },
+  {
+    elements: [
+      {
+        path: '/help',
+        component: Help,
+      },
+    ],
+  },
+  {
+    elements: [
+      {
+        path: '/communication',
+        component: Communication,
+      },
+    ],
+  },
+]
 
-export default routes;
+export default routes
