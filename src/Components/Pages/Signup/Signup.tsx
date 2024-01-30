@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom'
 import PopupNotification from '../../Molecule/PopupNotification/PopupNotification'
 import { AuthUser } from '../../../Config/Authvariable'
 
-
 const Signup = () => {
   const [username, setUserName] = useState('')
   const [email, setEmail] = useState('')
@@ -27,6 +26,7 @@ const Signup = () => {
   const [showpassword, setShowpassword] = useState<string>('password')
   const [showpasswordtext, setshowpasswordText] =
     useState<string>('show password')
+  const [isloading, setisloading] = useState<boolean>(false)
 
   const navigate = useNavigate()
   let errorMessage
@@ -111,6 +111,7 @@ const Signup = () => {
   const loginWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider)
+      setisloading(true)
       if (auth !== null) {
         sessionStorage.setItem('authState', JSON.stringify(AuthVariable))
       }
@@ -119,13 +120,21 @@ const Signup = () => {
       }, 2000)
     } catch (error) {
       console.log(error)
+      setisloading(false)
     }
   }
 
   return (
     <main className="signup__container">
-      {iserrorPopup && <PopupNotification popuptype='error' popuptext={errorText} />}
-      {isuccessPopup && <PopupNotification popuptype='success' popuptext={'Account created successfully'} />}
+      {iserrorPopup && (
+        <PopupNotification popuptype="error" popuptext={errorText} />
+      )}
+      {isuccessPopup && (
+        <PopupNotification
+          popuptype="success"
+          popuptext={'Account created successfully'}
+        />
+      )}
       <div className="signup__img__container">
         <Image className="signup__img" image={bgImg} alt="bg-image" />
       </div>
@@ -197,7 +206,11 @@ const Signup = () => {
             </Link>
           </div>
         </form>
-        <GoogleButton value="Sign up with Google" onclick={loginWithGoogle} />
+        <GoogleButton
+          isloading={isloading}
+          value="Sign up with Google"
+          onclick={loginWithGoogle}
+        />
       </div>
     </main>
   )

@@ -16,7 +16,6 @@ import { useDispatch } from 'react-redux'
 import { saveAuth } from '../../../redux/actions/SaveAction'
 import { TypedDispatch } from '../../../Config/configstore'
 
-
 const Login = () => {
   const navigate = useNavigate()
   const dispatch: TypedDispatch = useDispatch()
@@ -29,6 +28,7 @@ const Login = () => {
   const [showpassword, setShowpassword] = useState<string>('password')
   const [showpasswordtext, setshowpasswordText] =
     useState<string>('show password')
+  const [isloading, setisloading] = useState<boolean>(false)
 
   let errorMessage
   const AuthVariable = AuthUser
@@ -93,6 +93,7 @@ const Login = () => {
   const loginWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider)
+      setisloading(true)
       if (auth !== null) {
         sessionStorage.setItem('authState', JSON.stringify(AuthVariable))
       }
@@ -103,6 +104,7 @@ const Login = () => {
       }, 2000)
     } catch (error) {
       console.log(error)
+      setisloading(false)
     }
   }
 
@@ -134,12 +136,19 @@ const Login = () => {
 
   useEffect(() => {
     succesTimeout()
-  }, [errorMessage]);
+  }, [errorMessage])
 
   return (
     <main className="signin__container">
-      {iserrorPopup && <PopupNotification popuptext={errorText}  popuptype={"error"}/>}
-      {isuccessPopup && <PopupNotification popuptype={"success"} popuptext={'Log in successful'}/>}
+      {iserrorPopup && (
+        <PopupNotification popuptext={errorText} popuptype={'error'} />
+      )}
+      {isuccessPopup && (
+        <PopupNotification
+          popuptype={'success'}
+          popuptext={'Log in successful'}
+        />
+      )}
 
       <div className="signin__img__container">
         <Image className="signin__img" image={bgImg} alt="bg-image" />
@@ -191,7 +200,11 @@ const Login = () => {
             </Link>
           </div>
         </form>
-        <GoogleButton value="Continue with Google" onclick={loginWithGoogle} />
+        <GoogleButton
+          isloading={isloading}
+          value="Continue with Google"
+          onclick={loginWithGoogle}
+        />
       </div>
     </main>
   )
