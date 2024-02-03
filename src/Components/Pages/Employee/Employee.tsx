@@ -8,7 +8,7 @@ import EmployeeStyle from './EmployeeStyle'
 import AddEmployeeModal from '../../Organism/AddEmployeeModal/AddEmployeeModal'
 import PopupModal from '../../Molecule/PopupModal/PopupModal'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { auth, db } from '../../../Config/firebase-config'
+import { db } from '../../../Config/firebase-config'
 import { useSelector } from 'react-redux'
 import { RootStore } from '../../../Config/configstore'
 
