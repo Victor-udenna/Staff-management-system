@@ -18,9 +18,9 @@ const Chat = () => {
   const [chatdata, setchatData] = useState<any>()
   const [messages, setMessages] = useState<any>()
   const [inputValue, setInputValue] = useState<string>('')
-  const state = useSelector((state: RootStore) => state)
-
-  const chatId = state.chatReducer.result.data.id
+  const chatId = useSelector(
+    (state: RootStore) => state.chatReducer.result.data.id
+  )
 
   const getChatdata = async () => {
     Chatlistdata.map((item: any) => {
@@ -54,8 +54,6 @@ const Chat = () => {
     element.style.height = '34px'
     element.style.height = element.scrollHeight + 'px'
   }
-
-  console.log(chatdata)
 
   return (
     <ChatStyle>
@@ -201,7 +199,6 @@ const Chat = () => {
                 )}
               </div>
             </div>
-            
           </section>
         )}
       </section>

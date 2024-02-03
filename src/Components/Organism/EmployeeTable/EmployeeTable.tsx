@@ -69,7 +69,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
         </thead>
         <tbody>
           {employeedata.map((employee: any) => (
-            <tr>
+            <tr key={employee.id}>
               <td>
                 <input type="checkbox" />
               </td>
@@ -98,7 +98,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
                 >
                   <button
                     aria-haspopup="true"
-                    onClick={() => onClickHandler(true, employee.user_id)}
+                    onClick={() => onClickHandler(true, employee.id)}
                     aria-expanded={selectedMenu}
                     className="popup__btn"
                   >
@@ -107,7 +107,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
                     </span>
                   </button>
                   {selectedMenu !== false &&
-                    selectedId === employee.user_id && (
+                    selectedId === employee.id && (
                       <div className="pop__up">
                         <Button classname="view__btn" value="view" />
                         <Button classname="edit__btn" value="edit" />

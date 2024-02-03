@@ -7,8 +7,10 @@ import Text from '../../atoms/Text/Text'
 import EmployeeStyle from './EmployeeStyle'
 import AddEmployeeModal from '../../Organism/AddEmployeeModal/AddEmployeeModal'
 import PopupModal from '../../Molecule/PopupModal/PopupModal'
-import { collection, getDocs, query } from 'firebase/firestore'
-import { db } from '../../../Config/firebase-config'
+import { collection, getDocs, query, where } from 'firebase/firestore'
+import { auth, db } from '../../../Config/firebase-config'
+import { useSelector } from 'react-redux'
+import { RootStore } from '../../../Config/configstore'
 
 type UserData = {
   createdById: string
@@ -29,6 +31,10 @@ const Employee = () => {
   const [isaddModal, setAddmodal] = useState(false)
   const [isSuccessModal, setSuccessModal] = useState(false)
   const [employeeData, setEmployeedata] = useState<Array<UserData>>([])
+  const userId = useSelector(
+    (state: RootStore) => state.saveAuthReducer.result.data.uid
+  )
+  console.log(userId)
 
   const closeAddemployeeModal = () => {
     setAddmodal(false)
@@ -52,7 +58,10 @@ const Employee = () => {
 
   const getEmployeeList = async () => {
     const employeeDataCollection = employeeDataRef
-    const employeeQuery = query(employeeDataCollection)
+    const employeeQuery = query(
+      employeeDataCollection,
+      where('createdById', '==', userId)
+    )
     const querysnapshot = await getDocs(employeeQuery)
     const fetchdata: Array<UserData> = []
     querysnapshot.forEach((doc) => {
