@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 // 1 #6365EF
@@ -35,7 +35,7 @@
 }
 
 .signin__img__container {
-  background-color: #228B22;
+  background-color: #228b22;
   img {
     width: 80%;
     height: fit-content;
@@ -75,7 +75,7 @@
     padding: 12px;
     border-radius: 10px;
     font-weight: bold;
-    background-color: #228B22;
+    background-color: #228b22;
     color: white;
     border: 0;
     margin-top: 13px;
@@ -86,7 +86,7 @@
   }
 
   .sign_in_button:hover {
-    background-color: #355E3B;
+    background-color: #355e3b;
   }
 
   .label {
@@ -103,10 +103,18 @@
     font-size: 13px;
   }
   a:-webkit-any-link {
-    color:  #228B22;
+    color: #228b22;
     text-decoration: none;
     font-weight: bold;
     font-size: 14px;
     cursor: pointer;
+  }
+
+  .showpassword {
+    cursor: pointer;
+    padding: 7px 0px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #9ca3af;
   }
 }

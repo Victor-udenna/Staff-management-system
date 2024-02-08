@@ -15,6 +15,7 @@ import { AuthUser } from '../../../Config/Authvariable'
 import { useDispatch } from 'react-redux'
 import { saveAuth } from '../../../redux/actions/SaveAction'
 import { TypedDispatch } from '../../../Config/configstore'
+import Text from '../../atoms/Text/Text'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -108,8 +109,8 @@ const Login = () => {
     }
   }
 
-  const showPasswordFunc = (e: any) => {
-    if (e.target.checked) {
+  const showPasswordFunc = () => {
+    if (showpassword == 'password') {
       setShowpassword('text')
       setshowpasswordText('hide password')
     } else {
@@ -180,14 +181,13 @@ const Login = () => {
               }}
             />
           </div>
-          <div className="show_password">
-            <input
-              id="show_password"
-              type="checkbox"
-              onChange={showPasswordFunc}
-            />
-            <label htmlFor="show_password">{showpasswordtext}</label>
-          </div>
+          
+     <div role="button" onClick={showPasswordFunc}>
+     <Text
+            classname="showpassword"
+            value={showpasswordtext}
+          />
+     </div>
           <Button
             classname="sign_in_button"
             isloading={isclicked}
