@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux'
 import { RootStore } from '../../../Config/configstore'
 import EmptyState from '../../Organism/EmptyState/EmptyState'
 
+
 type UserData = {
   createdById: string
   email: string
@@ -101,7 +102,7 @@ const Employee = () => {
             buttonaction={openAddemployeeModal}
           />
 
-          {employeeData.length ? (
+          {employeeData.length > 0 ? (
             <>
               <Text classname="header_text" value={'Employee'} />
               <EmployeeAnalysis />
