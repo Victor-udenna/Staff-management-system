@@ -11,6 +11,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../../Config/firebase-config'
 import { useSelector } from 'react-redux'
 import { RootStore } from '../../../Config/configstore'
+import EmptyState from '../../Organism/EmptyState/EmptyState'
 
 type UserData = {
   createdById: string
@@ -75,8 +76,7 @@ const Employee = () => {
     getEmployeeList()
   }, [])
 
-  console.log(employeeData)
-
+  console.log(employeeData.length)
   return (
     <EmployeeStyle>
       {isaddModal && (
@@ -101,9 +101,19 @@ const Employee = () => {
             placeholder={'Search employee'}
             buttonaction={openAddemployeeModal}
           />
-          <Text classname="header_text" value={'Employee'} />
-          <EmployeeAnalysis />
-          <EmployeeTable employeedata={employeeData} />
+
+          {employeeData.length > 0 ? (
+            <>
+              <Text classname="header_text" value={'Employee'} />
+              <EmployeeAnalysis />
+              <EmployeeTable employeedata={employeeData} />
+            </>
+          ) : (
+            <EmptyState
+              title={'No Employee Found'}
+              desc={`Click "Add Employee to add employee"`}
+            />
+          )}
         </section>
       </main>
     </EmployeeStyle>
