@@ -1,23 +1,28 @@
 import OverviewStyle from './OverviewStyle'
 import SideBar from '../../Organism/SideBar/Sidebar'
 import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
-import { auth } from '../../../Config/firebase-config'
+import { useSelector } from 'react-redux'
+import { RootStore } from '../../../Config/configstore'
 
 const Overview = () => {
-  console.log(auth.currentUser)
+  const state = useSelector(
+    (state: RootStore) => state.saveAuthReducer.result.data
+  )
+
+  const displayName = state.displayName
+
   return (
     <OverviewStyle>
       <main className="Dashboard_container">
         <SideBar />
         <section className="overview">
-          <DashboardHeader buttonaction={() => {""}} />
-          <div>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde iste
-            voluptate laboriosam ab, molestiae nulla dolor optio deserunt quos
-            culpa inventore maiores fugiat ullam totam tempora recusandae id
-            animi quam quibusdam labore! Iusto odit minima inventore sint! Sint,
-            quos iste!
-          </div>
+          <DashboardHeader
+            buttontext="Create"
+            buttonaction={() => {
+              ('')
+            }}
+          />
+          <h1>{`Welcome ${displayName}`}</h1>
         </section>
       </main>
     </OverviewStyle>
