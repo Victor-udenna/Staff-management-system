@@ -12,7 +12,7 @@ import { db } from '../../../Config/firebase-config'
 import { useSelector } from 'react-redux'
 import { RootStore } from '../../../Config/configstore'
 import EmptyState from '../../Organism/EmptyState/EmptyState'
-
+import Loader from '../../Organism/Loader/Loader'
 
 type UserData = {
   createdById: string
@@ -33,6 +33,7 @@ const Employee = () => {
   const [isaddModal, setAddmodal] = useState(false)
   const [isSuccessModal, setSuccessModal] = useState(false)
   const [employeeData, setEmployeedata] = useState<Array<UserData>>([])
+  const [isloading, setislLoading] = useState(false)
   const userId = useSelector(
     (state: RootStore) => state.saveAuthReducer.result.data.uid
   )
@@ -58,18 +59,25 @@ const Employee = () => {
   }
 
   const getEmployeeList = async () => {
-    const employeeDataCollection = employeeDataRef
-    const employeeQuery = query(
-      employeeDataCollection,
-      where('createdById', '==', userId)
-    )
-    const querysnapshot = await getDocs(employeeQuery)
-    const fetchdata: Array<UserData> = []
-    querysnapshot.forEach((doc) => {
-      fetchdata.push({ id: doc.id, ...doc.data() } as UserData)
-    })
+    setislLoading(true)
+    try {
+      const employeeDataCollection = employeeDataRef
+      const employeeQuery = query(
+        employeeDataCollection,
+        where('createdById', '==', userId)
+      )
+      const querysnapshot = await getDocs(employeeQuery)
+      const fetchdata: Array<UserData> = []
+      querysnapshot.forEach((doc) => {
+        fetchdata.push({ id: doc.id, ...doc.data() } as UserData)
+      })
 
-    setEmployeedata(fetchdata)
+      setEmployeedata(fetchdata)
+      setislLoading(false)
+    } catch (err) {
+      console.log('e don cast')
+      setislLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -93,6 +101,8 @@ const Employee = () => {
           text="Employee added succesfully"
         />
       )}
+
+      {isloading && <Loader />}
       <main className="container">
         <SideBar />
         <section className="employee">
@@ -111,7 +121,7 @@ const Employee = () => {
           ) : (
             <EmptyState
               title={'No Employee Found'}
-              desc={`Click "Add Employee to add employee"`}
+              desc={`Click "Add Employee" to add employee`}
             />
           )}
         </section>

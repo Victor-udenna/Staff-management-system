@@ -12,6 +12,7 @@ const AddemployeeModalStyle = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
+  background: rgba(0, 0, 0, 0.8);
   z-index: 5000;
   @keyframes show-bg {
     0% {

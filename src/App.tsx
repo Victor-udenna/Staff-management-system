@@ -6,7 +6,7 @@ import Loader from './Components/Organism/Loader/Loader'
 
 const Login = lazy(() => import('./Components/Pages/Login/Login'))
 const Signup = lazy(() => import('./Components/Pages/Signup/Signup'))
-const PrivateRoute = lazy(()=> import("./Config/PrivateRoute"))
+const PrivateRoute = lazy(() => import('./Config/PrivateRoute'))
 
 function App() {
   return (
