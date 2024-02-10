@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const LoaderStyle = styled.div`
   .loader {
-    background-color: rgba(225, 225, 225, 0.1);
+    background-color: rgba(225, 225, 225, 0.8);
     z-index: 4000;
     position: absolute;
     top: 0;
@@ -13,7 +13,6 @@ const LoaderStyle = styled.div`
     align-items: center;
     justify-content: center;
     font-style: montserrat;
-    
   }
 `
 

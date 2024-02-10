@@ -74,9 +74,8 @@ const Employee = () => {
 
       setEmployeedata(fetchdata)
       setislLoading(false)
-    } 
-    catch (err) {
-      console.log('e don cast')
+    } catch (err) {
+      console.log(err)
       setislLoading(false)
     }
   }
