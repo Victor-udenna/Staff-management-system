@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const LoaderStyle = styled.div`
   .loader {
-    background-color: rgba(225, 225, 225, 0.8);
+    background-color: rgba(225, 225, 225, 0.9);
     z-index: 4000;
     position: absolute;
     top: 0;
