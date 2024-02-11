@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
- export const SideBarStyle = styled.div`
+export const SideBarStyle = styled.div`
   * {
     padding: 0;
   }
@@ -42,18 +42,24 @@ import styled from "styled-components";
   }
 
   .logo_container {
-    text-align: center;
     padding-bottom: 30px;
     padding-top: 10px;
-    color: #228B22
+    color: #228b22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+      rotate: 90deg;
+      margin-left: -10px;
+    }
   }
 
-  .logo {
-    font-family: "Chivo Mono", monospace;
-    font-weight: bold;
-    font-size: 30px;
-    color: #228B22;
-  }
+  // .logo {
+  //   font-family: "Chivo Mono", monospace;
+  //   font-weight: bold;
+  //   font-size: 30px;
+  //   color: #228B22;
+  // }
 
   .nav__link {
     color: black;
@@ -70,7 +76,7 @@ import styled from "styled-components";
       color: inherit;
       background-color: inherit;
     }
-    .active_side_bar{
+    .active_side_bar {
       display: none;
     }
     .link_text {
@@ -80,26 +86,26 @@ import styled from "styled-components";
   }
 
   .active {
-    color: #228B22;
+    color: #228b22;
     // background-color: #e0e7ff;
     background-color: white;
 
     border-radius: 4px;
     font-weight: bold;
-    position: relative; 
-    .active_side_bar{
+    position: relative;
+    .active_side_bar {
       display: flex;
       width: 4px;
       height: 15px;
       border-radius: 4px;
       padding: 10px 0px;
-      background-color: #228B22;
+      background-color: #228b22;
       position: absolute;
-      left: 0px; 
+      left: 0px;
       top: 23%;
     }
-      .link_text {
-      color: #228B22;
+    .link_text {
+      color: #228b22;
       font-weight: 600;
     }
   }
@@ -135,9 +141,9 @@ import styled from "styled-components";
 
   .logout_btn:hover {
     background-color: #e3fae3;
-    border: 1px solid #228B22;
+    border: 1px solid #228b22;
     color: rgb(30, 27, 27);
   }
-`;
+`
 
 // export  SideBarStyle;

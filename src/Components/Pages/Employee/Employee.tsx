@@ -6,9 +6,7 @@ import Text from '../../atoms/Text/Text'
 import EmployeeStyle from './EmployeeStyle'
 import AddEmployeeModal from '../../Organism/AddEmployeeModal/AddEmployeeModal'
 import PopupModal from '../../Molecule/PopupModal/PopupModal'
-// import { collection, getDocs, query, where } from 'firebase/firestore'
 import EmployeeTable from '../../Organism/EmployeeTable/EmployeeTable'
-// import { db } from '../../../Config/firebase-config'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootStore } from '../../../Config/configstore'
 import EmptyState from '../../Organism/EmptyState/EmptyState'
@@ -32,7 +30,7 @@ export type UserData = {
 const Employee = () => {
   const [isaddModal, setAddmodal] = useState(false)
   const [isSuccessModal, setSuccessModal] = useState(false)
-  const dispatch : any = useDispatch()
+  const dispatch: any = useDispatch()
   const userId = useSelector(
     (state: RootStore) => state.saveAuthReducer.result.data.uid
   )
@@ -68,7 +66,6 @@ const Employee = () => {
     fetchData()
   }, [dispatch, userId])
 
-  console.log(employeeData)
   return (
     <EmployeeStyle>
       {isaddModal && (

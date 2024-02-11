@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { BiHelpCircle, BiMessageDetail } from 'react-icons/bi'
 import { BsFileEarmarkText, BsGear, BsCheckCircle } from 'react-icons/bs'
 import { GoPeople, GoHome } from 'react-icons/go'
-import { GiOwl } from 'react-icons/gi'
+import { FaBarsStaggered } from 'react-icons/fa6'
 import { RxExit } from 'react-icons/rx'
 import { SideBarStyle } from './SideBarStyle'
 import { auth } from '../../../Config/firebase-config'
@@ -126,7 +126,7 @@ const SideBar = () => {
         <div className="general">
           <div className="logo_container">
             <p>
-              <GiOwl size={35} />
+              <FaBarsStaggered size={30} />
             </p>
           </div>
           <div className={`nav__link ${overview ? 'active' : ''} `}>

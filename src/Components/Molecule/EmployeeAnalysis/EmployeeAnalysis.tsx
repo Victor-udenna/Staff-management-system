@@ -9,8 +9,6 @@ import { useState } from 'react'
 const EmployeeAnalysis = () => {
   const [filterText, setFilterText] = useState<string>('all')
 
-  console.log(filterText)
-
   return (
     <EmployeeAnalysisStyle>
       <div className="employee_analysis">
