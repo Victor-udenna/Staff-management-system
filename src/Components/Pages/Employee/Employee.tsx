@@ -8,7 +8,7 @@ import AddEmployeeModal from '../../Organism/AddEmployeeModal/AddEmployeeModal'
 import PopupModal from '../../Molecule/PopupModal/PopupModal'
 import EmployeeTable from '../../Organism/EmployeeTable/EmployeeTable'
 import { useSelector, useDispatch } from 'react-redux'
-import { RootStore } from '../../../Config/configstore'
+import { RootStore, TypedDispatch } from '../../../Config/configstore'
 import EmptyState from '../../Organism/EmptyState/EmptyState'
 import Loader from '../../Organism/Loader/Loader'
 import { fetchEmployeeList } from '../../../redux/actions/EmployeeAction'
@@ -30,10 +30,15 @@ export type UserData = {
 const Employee = () => {
   const [isaddModal, setAddmodal] = useState(false)
   const [isSuccessModal, setSuccessModal] = useState(false)
-  const dispatch: any = useDispatch()
+  const dispatch: TypedDispatch = useDispatch()
   const userId = useSelector(
     (state: RootStore) => state.saveAuthReducer.result.data.uid
   )
+  const filtertext = useSelector(
+    (state: RootStore) => state.dataReducer.result.data.id
+  )
+
+  console.log(filtertext)
   const { isLoading, data: employeeData } = useSelector(
     (state: RootStore) => state.employeeReducer
   )
@@ -62,9 +67,17 @@ const Employee = () => {
     const fetchData = async () => {
       await dispatch(fetchEmployeeList(userId))
     }
-
     fetchData()
   }, [dispatch, userId])
+
+  console.log(employeeData)
+
+  const filteredEmployeeData =
+    filtertext == 'all'
+      ? employeeData
+      : employeeData.filter(
+          (employee: UserData) => employee.status == filtertext
+        )
 
   return (
     <EmployeeStyle>
@@ -97,7 +110,7 @@ const Employee = () => {
             <>
               <Text classname="header_text" value={'Employee'} />
               <EmployeeAnalysis />
-              <EmployeeTable employeedata={employeeData} />
+              <EmployeeTable employeedata={filteredEmployeeData} />
             </>
           ) : (
             <EmptyState
