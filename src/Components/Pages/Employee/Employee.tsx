@@ -72,12 +72,9 @@ const Employee = () => {
 
   console.log(employeeData)
 
-  const filteredEmployeeData =
-    filtertext == 'all'
-      ? employeeData
-      : employeeData.filter(
-          (employee: UserData) => employee.status == filtertext
-        )
+  const filteredEmployeeData = filtertext == "all" ? employeeData : employeeData.filter(
+    (employee: UserData) => employee.status == filtertext
+  )
 
   return (
     <EmployeeStyle>
