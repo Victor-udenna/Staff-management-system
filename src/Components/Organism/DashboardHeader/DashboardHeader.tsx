@@ -5,20 +5,31 @@ import Image from '../../atoms/Image/Image'
 import Input from '../../atoms/Input/Input'
 import { CiSearch } from 'react-icons/ci'
 import Text from '../../atoms/Text/Text'
+import { useState } from 'react'
 
 type headerProp = {
   searchterm?: string
   buttonaction: any
-  submit?: () => void
+  // submit?: () => void
   buttontext?: string
   placeholder?: string
+  onchange?: any
+  setSearchTerm?: React.Dispatch<React.SetStateAction<string>>
 }
 
 const DashboardHeader = ({
   placeholder,
   buttontext,
   buttonaction,
+  setSearchTerm,
 }: headerProp) => {
+  const [searchTerm, setSearchTermLocal] = useState('')
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setSearchTermLocal(value)
+    setSearchTerm && setSearchTerm(value)
+  }
   return (
     <DashboardHeaderStyle>
       <div className="dashboard__header">
@@ -27,6 +38,8 @@ const DashboardHeader = ({
             className="dashboard__header__search"
             placeholder={placeholder}
             type="search"
+            value={searchTerm}
+            onChange={handleInputChange}
           />
           <div className="search_icon">
             <CiSearch color={'grey'} size={18} />

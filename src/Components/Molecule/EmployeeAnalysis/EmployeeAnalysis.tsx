@@ -5,7 +5,7 @@ import { FaUserCheck } from 'react-icons/fa'
 import { FaUserClock } from 'react-icons/fa'
 import { FaUserMinus } from 'react-icons/fa'
 import { useState } from 'react'
-import { useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { TypedDispatch } from '../../../Config/configstore'
 import { saveData } from '../../../redux/actions/DataAction'
 

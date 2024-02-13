@@ -30,6 +30,7 @@ export type UserData = {
 const Employee = () => {
   const [isaddModal, setAddmodal] = useState(false)
   const [isSuccessModal, setSuccessModal] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
   const dispatch: TypedDispatch = useDispatch()
   const userId = useSelector(
     (state: RootStore) => state.saveAuthReducer.result.data.uid
@@ -37,8 +38,9 @@ const Employee = () => {
   const filtertext = useSelector(
     (state: RootStore) => state.dataReducer.result.data.id
   )
-
   console.log(filtertext)
+
+  console.log(searchTerm)
   const { isLoading, data: employeeData } = useSelector(
     (state: RootStore) => state.employeeReducer
   )
@@ -72,9 +74,33 @@ const Employee = () => {
 
   console.log(employeeData)
 
-  const filteredEmployeeData = filtertext == "all" ? employeeData : employeeData.filter(
-    (employee: UserData) => employee.status == filtertext
-  )
+  const filteredEmployeeData =
+    filtertext == 'all' || filtertext == undefined
+      ? employeeData
+      : employeeData.filter(
+          (employee: UserData) => employee.status == filtertext
+        )
+
+  // const filteredEmployeeData =
+  // searchTerm === ''
+  //   ? employeeData
+  //   : employeeData.filter((employee: UserData) =>
+  //       employee.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //       employee.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //       employee.job_title.toLowerCase().includes(searchTerm.toLowerCase())
+  //     );
+
+  const handleDataSearch = () => {
+    if (searchTerm === '') {
+      return filteredEmployeeData
+    } else {
+      return filteredEmployeeData.filter((employee: UserData) =>
+      employee.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.job_title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    }
+  }
 
   return (
     <EmployeeStyle>
@@ -101,13 +127,14 @@ const Employee = () => {
             buttontext={'Add employee'}
             placeholder={'Search employee'}
             buttonaction={openAddemployeeModal}
+            setSearchTerm={setSearchTerm}
           />
 
           {employeeData.length > 0 ? (
             <>
               <Text classname="header_text" value={'Employee'} />
               <EmployeeAnalysis />
-              <EmployeeTable employeedata={filteredEmployeeData} />
+              <EmployeeTable employeedata={handleDataSearch()} />
             </>
           ) : (
             <EmptyState
