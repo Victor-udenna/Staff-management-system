@@ -12,6 +12,7 @@ import { RootStore, TypedDispatch } from '../../../Config/configstore'
 import EmptyState from '../../Organism/EmptyState/EmptyState'
 import Loader from '../../Organism/Loader/Loader'
 import { fetchEmployeeList } from '../../../redux/actions/EmployeeAction'
+import useEmployeeCount from '../../../hooks/useEmployeeCount'
 
 export type UserData = {
   createdById: string
@@ -38,12 +39,12 @@ const Employee = () => {
   const filtertext = useSelector(
     (state: RootStore) => state.dataReducer.result.data.id
   )
-  console.log(filtertext)
-
-  console.log(searchTerm)
   const { isLoading, data: employeeData } = useSelector(
     (state: RootStore) => state.employeeReducer
   )
+
+  const { totalemployee, activeemployee, inactiveemployee, pendingemployee } =
+    useEmployeeCount(employeeData)
 
   const closeAddemployeeModal = () => {
     setAddmodal(false)
@@ -72,8 +73,6 @@ const Employee = () => {
     fetchData()
   }, [dispatch, userId])
 
-  console.log(employeeData)
-
   const filteredEmployeeData =
     filtertext == 'all' || filtertext == undefined
       ? employeeData
@@ -81,24 +80,18 @@ const Employee = () => {
           (employee: UserData) => employee.status == filtertext
         )
 
-  // const filteredEmployeeData =
-  // searchTerm === ''
-  //   ? employeeData
-  //   : employeeData.filter((employee: UserData) =>
-  //       employee.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //       employee.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //       employee.job_title.toLowerCase().includes(searchTerm.toLowerCase())
-  //     );
-
   const handleDataSearch = () => {
     if (searchTerm === '') {
       return filteredEmployeeData
     } else {
-      return filteredEmployeeData.filter((employee: UserData) =>
-      employee.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      employee.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      employee.job_title.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+      return filteredEmployeeData.filter(
+        (employee: UserData) =>
+          employee.first_name
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          employee.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          employee.job_title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     }
   }
 
@@ -133,7 +126,12 @@ const Employee = () => {
           {employeeData.length > 0 ? (
             <>
               <Text classname="header_text" value={'Employee'} />
-              <EmployeeAnalysis />
+              <EmployeeAnalysis
+                total={totalemployee}
+                active={activeemployee}
+                inactive={inactiveemployee}
+                pending={pendingemployee}
+              />
               <EmployeeTable employeedata={handleDataSearch()} />
             </>
           ) : (

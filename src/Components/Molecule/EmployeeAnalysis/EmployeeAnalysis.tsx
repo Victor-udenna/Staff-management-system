@@ -9,7 +9,19 @@ import { useDispatch } from 'react-redux'
 import { TypedDispatch } from '../../../Config/configstore'
 import { saveData } from '../../../redux/actions/DataAction'
 
-const EmployeeAnalysis = () => {
+type employeeAnalysis = {
+  total: number
+  active: number
+  inactive: number
+  pending: number
+}
+
+const EmployeeAnalysis = ({
+  total,
+  active,
+  inactive,
+  pending,
+}: employeeAnalysis) => {
   const [filterText, setFilterText] = useState<string>('all')
   const dispatch: TypedDispatch = useDispatch()
 
@@ -43,7 +55,7 @@ const EmployeeAnalysis = () => {
           }`}
         >
           <div>
-            <Text classname="analysis_header" value="20" />
+            <Text classname="analysis_header" value={total} />
             <Text classname="count" value={'All Employee'} />
           </div>
           <MdPeople size={20} />
@@ -55,7 +67,7 @@ const EmployeeAnalysis = () => {
           }`}
         >
           <div>
-            <Text classname="analysis_header" value="11" />
+            <Text classname="analysis_header" value={active} />
             <Text classname="count" value={'Active Employee'} />
           </div>
           <FaUserCheck color="#228b22" size={17} />
@@ -67,7 +79,7 @@ const EmployeeAnalysis = () => {
           }`}
         >
           <div>
-            <Text classname="analysis_header" value="5" />
+            <Text classname="analysis_header" value={inactive} />
             <Text classname="count" value={'Inactive Employee'} />
           </div>
           <FaUserMinus color="red" size={17} />
@@ -79,7 +91,7 @@ const EmployeeAnalysis = () => {
           }`}
         >
           <div>
-            <Text classname="analysis_header" value="4" />
+            <Text classname="analysis_header" value={pending} />
             <Text classname="count" value={'Pending Employee'} />
           </div>
           <FaUserClock color="orange" size={17} />
