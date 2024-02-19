@@ -23,7 +23,7 @@ const FetchMoreStyle = styled.div`
   }
 
   .totaldata {
-    color: grey;
+    color: #9ca3af;
     font-weight: 600;
   }
 

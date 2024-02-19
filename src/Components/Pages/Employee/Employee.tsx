@@ -13,7 +13,6 @@ import EmptyState from '../../Organism/EmptyState/EmptyState'
 import Loader from '../../Organism/Loader/Loader'
 import { fetchEmployeeList } from '../../../redux/actions/EmployeeAction'
 import useEmployeeCount from '../../../hooks/useEmployeeCount'
-import FetchMore from '../../Molecule/FetchMore/FetchMore'
 
 export type UserData = {
   createdById: string
@@ -134,7 +133,6 @@ const Employee = () => {
                 pending={pendingemployee}
               />
               <EmployeeTable employeedata={handleDataSearch()} />
-              <FetchMore/>
             </>
           ) : (
             <EmptyState
