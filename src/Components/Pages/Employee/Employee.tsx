@@ -42,7 +42,6 @@ const Employee = () => {
   const { isLoading, data: employeeData } = useSelector(
     (state: RootStore) => state.employeeReducer
   )
-
   const { totalemployee, activeemployee, inactiveemployee, pendingemployee } =
     useEmployeeCount(employeeData)
 

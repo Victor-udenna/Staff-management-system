@@ -1,9 +1,15 @@
 import Text from '../../atoms/Text/Text'
 import FetchMoreStyle from './FetchMoreStyle'
 
-const FetchMore = () => {
-  const currentLimit = 10
-  const totalLimit = 25
+type FetchMore = {
+currentLimit: number;
+totalCount: number;
+isdisabled: boolean;
+handlePagelimit: any
+}
+
+const FetchMore = ({currentLimit, totalCount, isdisabled, handlePagelimit} : FetchMore) => {
+
   return (
     <FetchMoreStyle>
       <div className="fetchmore">
@@ -11,9 +17,9 @@ const FetchMore = () => {
           {' '}
           <Text classname="count currentdata" value={currentLimit} />
           <Text classname="" value={'of'} />
-          <Text classname="count totaldata" value={totalLimit} />
+          <Text classname="count totaldata" value={totalCount} />
         </div>
-        <button className="fetch_button">Load more</button>
+        <button onClick={handlePagelimit}  disabled={isdisabled} className="fetch_button">Load more</button>
       </div>
     </FetchMoreStyle>
   )

@@ -39,6 +39,13 @@ const FetchMoreStyle = styled.div`
     cursor: pointer;
     background-color: white;
   }
+
+  .fetch_button:disabled {
+    background-color: #dcdfe3;
+    color: #7f8c8d;
+    cursor: not-allowed;
+    border: 1px solid #dcdfe3;
+  }
 `
 
 export default FetchMoreStyle
