@@ -6,7 +6,6 @@ import { BsThreeDots } from 'react-icons/bs'
 import { Button } from '../../atoms/Button/Button'
 import Nodata from '../Nodata/Nodata'
 import FetchMore from '../../Molecule/FetchMore/FetchMore'
-import useEmployeeDataCount from '../../../hooks/useEmployeeDataCount'
 
 type dataType = {
   employeedata: any
@@ -16,9 +15,6 @@ const EmployeeTable = ({ employeedata }: dataType) => {
   let timeOutId: any = null
   const [selectedMenu, setSelectedMenu] = useState(false)
   const [selectedId, setSelectedId] = useState('')
-
-  const { totalCount, currentLimit, isdisabled, pageLimit, setPagelimit } =
-    useEmployeeDataCount(employeedata)
 
   const onClickHandler = (value: boolean, id: string) => {
     if (selectedMenu !== false) {
@@ -57,24 +53,6 @@ const EmployeeTable = ({ employeedata }: dataType) => {
     }
   }
 
-  const handlePagelimit = () => {
-    if (totalCount % 10 !== 0) {
-      setPagelimit(pageLimit + (totalCount % 10))
-    }
-    if (pageLimit < totalCount && totalCount % 10 !== 0) {
-      setPagelimit(totalCount)
-    }
-  }
-
-  console.log(
-    'pagelimit:',
-    pageLimit,
-    'currentLimit:',
-    currentLimit,
-    'totalCount:',
-    totalCount
-  )
-
   return (
     <EmployeeTableStyle>
       <table>
@@ -94,70 +72,64 @@ const EmployeeTable = ({ employeedata }: dataType) => {
         <tbody>
           {employeedata.length > 0 &&
             employeedata.map((employee: any, i: number) => {
-              if (i < pageLimit) {
-                return (
-                  <tr key={employee.id}>
-                    <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td className="employee__name__container">
-                      <Gravatar
-                        background="random"
-                        size={1}
-                        firstname={employee.first_name}
-                        lastname={employee.last_name}
-                        className="employee__avatar"
-                      />
-                      <Text
-                        classname="employee__name"
-                        value={`${employee.first_name} ${employee.last_name}`}
-                      />
-                    </td>
-                    <td>{formatmaillength(employee.email)}</td>
-                    <td>{formatrolelength(employee.job_title)}</td>
-                    <td>17-December 2023</td>
-                    <td>{employee.location}</td>
-                    <td className="more__icon">
-                      <div
-                        className="pop__up__container"
-                        onBlur={() => onBlurHandler()}
-                        onFocus={() => onFocusHandler()}
+              return (
+                <tr key={employee.id}>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td className="employee__name__container">
+                    <Gravatar
+                      background="random"
+                      size={1}
+                      firstname={employee.first_name}
+                      lastname={employee.last_name}
+                      className="employee__avatar"
+                    />
+                    <Text
+                      classname="employee__name"
+                      value={`${employee.first_name} ${employee.last_name}`}
+                    />
+                  </td>
+                  <td>{formatmaillength(employee.email)}</td>
+                  <td>{formatrolelength(employee.job_title)}</td>
+                  <td>17-December 2023</td>
+                  <td>{employee.location}</td>
+                  <td className="more__icon">
+                    <div
+                      className="pop__up__container"
+                      onBlur={() => onBlurHandler()}
+                      onFocus={() => onFocusHandler()}
+                    >
+                      <button
+                        aria-haspopup="true"
+                        onClick={() => onClickHandler(true, employee.id)}
+                        aria-expanded={selectedMenu}
+                        className="popup__btn"
                       >
-                        <button
-                          aria-haspopup="true"
-                          onClick={() => onClickHandler(true, employee.id)}
-                          aria-expanded={selectedMenu}
-                          className="popup__btn"
-                        >
-                          <span>
-                            <BsThreeDots />
-                          </span>
-                        </button>
-                        {selectedMenu !== false &&
-                          selectedId === employee.id && (
-                            <div className="pop__up">
-                              <Button classname="view__btn" value="view" />
-                              <Button classname="edit__btn" value="edit" />
-                              <Button
-                                classname="status__btn"
-                                value="Deactivate"
-                              />
-                            </div>
-                          )}
-                      </div>
-                    </td>
-                  </tr>
-                )
-              }
+                        <span>
+                          <BsThreeDots />
+                        </span>
+                      </button>
+                      {selectedMenu !== false && selectedId === employee.id && (
+                        <div className="pop__up">
+                          <Button classname="view__btn" value="view" />
+                          <Button classname="edit__btn" value="edit" />
+                          <Button classname="status__btn" value="Deactivate" />
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              )
             })}
         </tbody>
       </table>
       {employeedata.length > 0 && (
         <FetchMore
-          isdisabled={isdisabled}
-          currentLimit={currentLimit}
-          totalCount={totalCount}
-          handlePagelimit={handlePagelimit}
+          isdisabled={false}
+          currentLimit={10}
+          totalCount={employeedata.length}
+          handlePagelimit={''}
         />
       )}
       {employeedata < 0 || (employeedata == 0 && <Nodata />)}
