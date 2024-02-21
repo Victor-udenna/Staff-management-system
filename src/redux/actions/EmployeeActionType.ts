@@ -1,4 +1,4 @@
-import { UserData } from "../../Components/Pages/Employee/Employee"
+import { UserData } from '../../Components/Pages/Employee/Employee'
 
 export const FETCH_EMPLOYEE_LIST_REQUEST = 'FETCH_EMPLOYEE_LIST_REQUEST'
 export const FETCH_EMPLOYEE_LIST_SUCCESS = 'FETCH_EMPLOYEE_LIST_SUCCESS'

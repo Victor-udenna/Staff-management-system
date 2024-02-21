@@ -71,7 +71,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
         </thead>
         <tbody>
           {employeedata.length > 0 &&
-            employeedata.map((employee: any, i: number) => {
+            employeedata.map((employee: any) => {
               return (
                 <tr key={employee.id}>
                   <td>
