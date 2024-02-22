@@ -16,7 +16,6 @@ const EmployeeTable = ({ employeedata }: dataType) => {
   let timeOutId: any = null
   const [selectedMenu, setSelectedMenu] = useState(false)
   const [selectedId, setSelectedId] = useState('')
-  const [employeeId, setEmployeeId] = useState('')
   const [viewemployee, setViewEmployee] = useState(false)
 
   const onClickHandler = (value: boolean, id: string) => {

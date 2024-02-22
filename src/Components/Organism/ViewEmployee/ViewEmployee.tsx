@@ -10,14 +10,12 @@ import Select from 'react-select'
 import { IoCloseSharp } from 'react-icons/io5'
 import { UserData } from '../../Pages/Employee/Employee'
 
-
 type ViewemployeeType = {
-  closeModal: () => void;
-  showSuccessModal?: () => void;
+  closeModal: () => void
   employeeId: string
 }
 
-const ViewEmployee = ({closeModal, showSuccessModal, employeeId} : ViewemployeeType) => {
+const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
   const [employee, setEmployee] = useState<any>(null)
 
   const customStyles = {
@@ -47,7 +45,6 @@ const ViewEmployee = ({closeModal, showSuccessModal, employeeId} : ViewemployeeT
     { value: 'hybrid', label: 'Hybrid' },
   ]
 
-
   const jobTitlesOption: any = [
     { value: 'developer', label: 'Developer' },
     { value: 'designer', label: 'Designer' },
@@ -63,17 +60,20 @@ const ViewEmployee = ({closeModal, showSuccessModal, employeeId} : ViewemployeeT
 
   const getEmployeeById = async (employeeId: string) => {
     try {
-      const employeeDocRef = doc(db, 'Employees', employeeId);
-      const docSnapshot = await getDoc(employeeDocRef);
-  
+      const employeeDocRef = doc(db, 'Employees', employeeId)
+      const docSnapshot = await getDoc(employeeDocRef)
+
       if (docSnapshot.exists()) {
-        const employeeData = { id: docSnapshot.id, ...docSnapshot.data() } as UserData;
-        setEmployee(employeeData);
+        const employeeData = {
+          id: docSnapshot.id,
+          ...docSnapshot.data(),
+        } as UserData
+        setEmployee(employeeData)
       } else {
-        console.log('No matching document found.');
+        console.log('No matching document found.')
       }
     } catch (err) {
-      console.error('Error fetching employee by ID:', err);
+      console.error('Error fetching employee by ID:', err)
     }
   }
 
