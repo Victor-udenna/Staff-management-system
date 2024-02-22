@@ -79,7 +79,7 @@ const EmployeeTableStyle = styled.div`
   .pop__up {
     position: absolute;
     top: 40px;
-    background-color: white;
+    background-color: #fff;
     animation: show-bg 0.2s linear forwards;
     z-index: 100;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 2px 3px 0 rgba(0, 0, 0, 0.06);
@@ -105,7 +105,7 @@ const EmployeeTableStyle = styled.div`
       padding: 10px;
       border: none;
       border-radius: 4px;
-      background-color: inherit;
+      background-color: #fff;
       cursor: pointer;
       width: 100%;
     }

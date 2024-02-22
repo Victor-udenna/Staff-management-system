@@ -36,6 +36,8 @@ const Employee = () => {
   const userId = useSelector(
     (state: RootStore) => state.saveAuthReducer.result.data.uid
   )
+
+  console.log(userId)
   const filtertext = useSelector(
     (state: RootStore) => state.dataReducer.result.data.id
   )
@@ -71,6 +73,8 @@ const Employee = () => {
     }
     fetchData()
   }, [dispatch, userId])
+
+  console.log(employeeData)
 
   const filteredEmployeeData =
     filtertext == 'all' || filtertext == undefined

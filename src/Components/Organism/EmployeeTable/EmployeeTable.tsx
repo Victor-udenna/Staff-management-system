@@ -6,6 +6,7 @@ import { BsThreeDots } from 'react-icons/bs'
 import { Button } from '../../atoms/Button/Button'
 import Nodata from '../Nodata/Nodata'
 import FetchMore from '../../Molecule/FetchMore/FetchMore'
+import ViewEmployee from '../ViewEmployee/ViewEmployee'
 
 type dataType = {
   employeedata: any
@@ -15,6 +16,8 @@ const EmployeeTable = ({ employeedata }: dataType) => {
   let timeOutId: any = null
   const [selectedMenu, setSelectedMenu] = useState(false)
   const [selectedId, setSelectedId] = useState('')
+  const [employeeId, setEmployeeId] = useState('')
+  const [viewemployee, setViewEmployee] = useState(false)
 
   const onClickHandler = (value: boolean, id: string) => {
     if (selectedMenu !== false) {
@@ -53,8 +56,21 @@ const EmployeeTable = ({ employeedata }: dataType) => {
     }
   }
 
+  const openViewEmployee = () => {
+    if (selectedId) {
+      setViewEmployee(true)
+    }
+  }
+
+  const closeViewEmployee = () => {
+    setViewEmployee(false)
+  }
+
   return (
     <EmployeeTableStyle>
+      {viewemployee && (
+        <ViewEmployee closeModal={closeViewEmployee} employeeId={selectedId} />
+      )}
       <table>
         <thead>
           <tr>
@@ -112,8 +128,11 @@ const EmployeeTable = ({ employeedata }: dataType) => {
                       </button>
                       {selectedMenu !== false && selectedId === employee.id && (
                         <div className="pop__up">
-                          <Button classname="view__btn" value="view" />
-                          <Button classname="edit__btn" value="edit" />
+                          <Button
+                            classname="view__btn"
+                            onclick={openViewEmployee}
+                            value="view"
+                          />
                           <Button classname="status__btn" value="Deactivate" />
                         </div>
                       )}

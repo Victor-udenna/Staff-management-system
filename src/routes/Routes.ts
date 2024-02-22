@@ -5,7 +5,6 @@ import Payroll from '../Components/Pages/Payroll/Payroll'
 import Attendance from '../Components/Pages/Attendance/Attendance'
 import Help from '../Components/Pages/Help/Help'
 import Communication from '../Components/Pages/Communication/Communication'
-import EmployeeDetails from '../Components/Template/EmployeeDetails/EmployeeDetails'
 
 const routes = [
   {
@@ -61,14 +60,6 @@ const routes = [
       {
         path: '/communication',
         component: Communication,
-      },
-    ],
-  },
-  {
-    elements: [
-      {
-        path: '/employee/employeedetails',
-        component: EmployeeDetails,
       },
     ],
   },
