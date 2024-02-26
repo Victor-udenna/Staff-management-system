@@ -7,6 +7,7 @@ import { Button } from '../../atoms/Button/Button'
 import Nodata from '../Nodata/Nodata'
 import FetchMore from '../../Molecule/FetchMore/FetchMore'
 import ViewEmployee from '../ViewEmployee/ViewEmployee'
+import SuccessModal from '../../Molecule/SuccessModal/SuccessModal'
 
 type dataType = {
   employeedata: any
@@ -17,6 +18,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
   const [selectedMenu, setSelectedMenu] = useState(false)
   const [selectedId, setSelectedId] = useState('')
   const [viewemployee, setViewEmployee] = useState(false)
+  const [isSuccessModal, setSuccessModal] = useState(false)
 
   const onClickHandler = (value: boolean, id: string) => {
     if (selectedMenu !== false) {
@@ -65,10 +67,35 @@ const EmployeeTable = ({ employeedata }: dataType) => {
     setViewEmployee(false)
   }
 
+  const reloadPage = () => {
+    window.location.reload()
+  }
+
+  const showSuccessModal = () => {
+    setSuccessModal(true)
+  }
+
+  const closeSuccessModal = () => {
+    setSuccessModal(false)
+  }
+
   return (
     <EmployeeTableStyle>
       {viewemployee && (
-        <ViewEmployee closeModal={closeViewEmployee} employeeId={selectedId} />
+        <ViewEmployee
+          showSuccessModal={showSuccessModal}
+          closeModal={closeViewEmployee}
+          employeeId={selectedId}
+        />
+      )}
+
+      {isSuccessModal && (
+        <SuccessModal
+          closeSuccessModal={closeSuccessModal}
+          reloadPage={reloadPage}
+          headerText="Success"
+          text="Employee edited Succesfully"
+        />
       )}
       <table>
         <thead>

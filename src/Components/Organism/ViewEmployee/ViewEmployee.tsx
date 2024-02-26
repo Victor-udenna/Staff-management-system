@@ -12,6 +12,7 @@ import Gravatar from '../../atoms/Gravatar/Gravatar'
 type ViewemployeeType = {
   closeModal: () => void
   employeeId: string
+  showSuccessModal: () => void;
 }
 
 interface UpdateData {
@@ -28,7 +29,7 @@ interface UpdateData {
   status: string
 }
 
-const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
+const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: ViewemployeeType) => {
   const [employee, setEmployee] = useState<any>(null)
   const [fields, setFields] = useState({
     email: 'loading',
@@ -40,6 +41,8 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
     status: 'loading',
     employment_type: 'loading',
   })
+
+  const [isloading, setIsloading] = useState(false)
   const isOnline = employee && employee.is_acive
   const defaultValue = employee
 
@@ -156,6 +159,7 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
 
   const updateEmployee = (e: React.FormEvent) => {
     e.preventDefault()
+    setIsloading(true)
     updateDoc(employeeDocRef, {
       email: fields.email,
       employment_type: fields.employment_type,
@@ -168,13 +172,18 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
     })
       .then(() => {
         console.log('Document successfully updated!')
+        setIsloading(false)
+        closeModal()
+        showSuccessModal()
       })
       .catch((error) => {
         console.error('Error updating document: ', error)
+        setIsloading(false)
       })
   }
 
-  console.log(fields)
+
+
   return (
     <ViewEmployeeStyle>
       <div className="modal-container">
@@ -316,10 +325,15 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
             <div className="modal__footer">
               <Button
                 onclick={resetValue}
+                isloading={isloading}
                 classname="cancel__create__btn"
                 value="Reset"
               />
-              <Button classname="create__employee__btn" value="Save changes" />
+              <Button
+                classname="create__employee__btn"
+                isloading={isloading}
+                value="Save changes"
+              />
             </div>
           </form>
         </div>

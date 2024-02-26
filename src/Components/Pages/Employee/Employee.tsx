@@ -5,7 +5,7 @@ import SideBar from '../../Organism/SideBar/Sidebar'
 import Text from '../../atoms/Text/Text'
 import EmployeeStyle from './EmployeeStyle'
 import AddEmployeeModal from '../../Organism/AddEmployeeModal/AddEmployeeModal'
-import PopupModal from '../../Molecule/PopupModal/PopupModal'
+import SuccessModal from '../../Molecule/SuccessModal/SuccessModal'
 import EmployeeTable from '../../Organism/EmployeeTable/EmployeeTable'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootStore, TypedDispatch } from '../../../Config/configstore'
@@ -17,15 +17,15 @@ import useEmployeeCount from '../../../hooks/useEmployeeCount'
 export type UserData = {
   createdById: string
   email: string
-  employment_type: string
+  employment_type: any
   first_name: string
   id: string
   is_active: boolean
-  job_title: string
+  job_title: any
   last_name: string
-  location: string
+  location: any
   phone_number: string
-  status: string
+  status: any
 }
 
 const Employee = () => {
@@ -37,7 +37,6 @@ const Employee = () => {
     (state: RootStore) => state.saveAuthReducer.result.data.uid
   )
 
-  console.log(userId)
   const filtertext = useSelector(
     (state: RootStore) => state.dataReducer.result.data.id
   )
@@ -80,7 +79,7 @@ const Employee = () => {
     filtertext == 'all' || filtertext == undefined
       ? employeeData
       : employeeData.filter(
-          (employee: UserData) => employee.status == filtertext
+          (employee: UserData) => employee.status.value == filtertext
         )
 
   const handleDataSearch = () => {
@@ -107,7 +106,7 @@ const Employee = () => {
         />
       )}
       {isSuccessModal && (
-        <PopupModal
+        <SuccessModal
           closeSuccessModal={closeSuccessModal}
           reloadPage={reloadPage}
           headerText="Success"

@@ -3,15 +3,15 @@ import { useState, useEffect } from 'react'
 type UserData = {
   createdById: string
   email: string
-  employment_type: string
+  employment_type: any
   first_name: string
   id: string
   is_active: boolean
-  job_title: string
+  job_title: any
   last_name: string
-  location: string
+  location: any
   phone_number: string
-  status: string
+  status: any
 }
 
 const useEmployeeCount = (data: any) => {
@@ -24,19 +24,19 @@ const useEmployeeCount = (data: any) => {
     setTotalEmployee(data.length)
 
     const filterActiveEmployee = data.filter(
-      (employee: UserData) => employee.status == 'active'
+      (employee: UserData) => employee.status.value == 'active'
     )
 
     setActiveEmployee(filterActiveEmployee.length)
 
     const filterPendingEmployee = data.filter(
-      (employee: UserData) => employee.status == 'pending'
+      (employee: UserData) => employee.status.value == 'Pending'
     )
 
     setPendingEmployee(filterPendingEmployee.length)
 
     const filterInactiveEmployee = data.filter(
-      (employee: UserData) => employee.status == 'inactive'
+      (employee: UserData) => employee.status.value == 'inactive'
     )
 
     setInactiveEmployee(filterInactiveEmployee.length)

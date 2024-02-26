@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import PopupModalStyle from './PopupModalStyle'
+import SuccessModalStyle from './SuccessModalStyle'
 import Image from '../../atoms/Image/Image'
 import successGif from '../../../assets/success-animation.gif'
 import HeaderText from '../../atoms/HeaderText/HeaderText'
@@ -12,7 +12,7 @@ interface PopupModalprop {
     reloadPage: ()=> void
 }
 
-const PopupModal = ({headerText, text, closeSuccessModal, reloadPage}: PopupModalprop) => {
+const SuccessModal = ({headerText, text, closeSuccessModal, reloadPage}: PopupModalprop) => {
 
 useEffect(()=>{
 window.setTimeout(()=> {
@@ -22,7 +22,7 @@ reloadPage()
 }, [])
 
   return (
-    <PopupModalStyle>
+    <SuccessModalStyle>
       <div className="modal open">
         <div className="modal-content">
           <div className="gif__container">
@@ -41,8 +41,8 @@ reloadPage()
           </div>
         </div>
       </div>
-    </PopupModalStyle>
+    </SuccessModalStyle>
   )
 }
 
-export default PopupModal
+export default SuccessModal

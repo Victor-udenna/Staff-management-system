@@ -41,8 +41,8 @@ const EmployeeAnalysis = ({
   }
 
   const setToPending = () => {
-    dispatch(saveData({ id: 'pending' }))
-    setFilterText('pending')
+    dispatch(saveData({ id: 'Pending' }))
+    setFilterText('Pending')
   }
 
   return (

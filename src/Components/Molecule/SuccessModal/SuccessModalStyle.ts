@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const PopupModalStyle = styled.div`
+const SuccessModalStyle = styled.div`
   .modal.open{
     display: flex;
     align-items: center;
@@ -49,4 +49,4 @@ const PopupModalStyle = styled.div`
   }
 `
 
-export default PopupModalStyle
+export default SuccessModalStyle
