@@ -106,9 +106,9 @@ const EmployeeTable = ({ employeedata }: dataType) => {
                     />
                   </td>
                   <td>{formatmaillength(employee.email)}</td>
-                  <td>{formatrolelength(employee.job_title)}</td>
+                  <td>{formatrolelength(employee.job_title.value)}</td>
                   <td>17-December 2023</td>
-                  <td>{employee.location}</td>
+                  <td>{employee.location.value}</td>
                   <td className="more__icon">
                     <div
                       className="pop__up__container"
@@ -133,6 +133,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
                             value="view"
                           />
                           <Button classname="status__btn" value="Deactivate" />
+                          <Button classname="status__btn" value="Message" />
                         </div>
                       )}
                     </div>

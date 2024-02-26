@@ -13,7 +13,7 @@ const ViewEmployeeStyle = styled.div`
   top: 0;
   width: 100%;
   background: rgba(0, 0, 0, 0.8);
-  z-index: 5000;
+  z-index: 1000;
   @keyframes show-bg {
     0% {
       background: rgba(0, 0, 0, 0);
@@ -50,11 +50,45 @@ const ViewEmployeeStyle = styled.div`
     }
   }
 
+  .header__container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 20px 0px;
+    color: white;
+    position: relative;
+  }
+
+  .employee__img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    color: white;
+  }
+
+  .active_status_icon {
+    width: 15px;
+    height: 15px;
+    background-color: #228b22;
+    border: 1px solid white;
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .inactive_status_icon {
+    width: 15px;
+    height: 15px;
+    border: 1px solid white;
+    background-color: orange;
+    border-radius: 50%;
+    position: absolute;
+    left: 65px;
+    bottom: 27px;
+  }
+
   .header__text {
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 600;
-    padding-top: 30px;
-    padding-bottom: 20px;
   }
 
   .header__desc {

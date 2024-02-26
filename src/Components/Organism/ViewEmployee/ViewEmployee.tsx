@@ -1,22 +1,50 @@
-import { useState, useEffect } from 'react'
-import { doc, getDoc } from 'firebase/firestore'
+import React, { useState, useEffect } from 'react'
+import { collection, doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../../../Config/firebase-config'
 import ViewEmployeeStyle from './ViewEmployeeStyle'
 import Text from '../../atoms/Text/Text'
-import HeaderText from '../../atoms/HeaderText/HeaderText'
 import { Button } from '../../atoms/Button/Button'
 import Input from '../../atoms/Input/Input'
 import Select from 'react-select'
 import { IoCloseSharp } from 'react-icons/io5'
-import { UserData } from '../../Pages/Employee/Employee'
+import Gravatar from '../../atoms/Gravatar/Gravatar'
 
 type ViewemployeeType = {
   closeModal: () => void
   employeeId: string
 }
 
+interface UpdateData {
+  createdById: string
+  email: string
+  employment_type: string | any
+  first_name: string
+  id: string
+  is_active: boolean
+  job_title: string | any
+  last_name: string
+  location: string | any
+  phone_number: string
+  status: string
+}
+
 const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
   const [employee, setEmployee] = useState<any>(null)
+  const [fields, setFields] = useState({
+    email: 'loading',
+    first_name: 'loading',
+    job_title: '',
+    last_name: 'loading',
+    location: 'loading',
+    phone_number: '******',
+    status: 'loading',
+    employment_type: 'loading',
+  })
+  const isOnline = employee && employee.is_acive
+  const defaultValue = employee
+
+  const employeeCollection = collection(db, 'Employees')
+  const employeeDocRef = doc(employeeCollection, employeeId)
 
   const customStyles = {
     control: (provided: any) => ({
@@ -58,6 +86,12 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
     { value: 'supervisor', label: 'Supervisor' },
   ]
 
+  const statusOption: any = [
+    { value: 'active', label: 'Active' },
+    { value: 'inactive', label: 'Inactive' },
+    { value: 'Pending', label: 'pending' },
+  ]
+
   const getEmployeeById = async (employeeId: string) => {
     try {
       const employeeDocRef = doc(db, 'Employees', employeeId)
@@ -67,8 +101,9 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
         const employeeData = {
           id: docSnapshot.id,
           ...docSnapshot.data(),
-        } as UserData
+        } as UpdateData
         setEmployee(employeeData)
+        setFields(employeeData)
       } else {
         console.log('No matching document found.')
       }
@@ -77,49 +112,147 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
     }
   }
 
+  const handleInputChange = async (name: string, value: string | number) => {
+    const fieldValues: any = Object.assign({}, fields)
+    fieldValues[name] = value
+    await setFields(fieldValues)
+  }
+
   useEffect(() => {
     getEmployeeById(employeeId)
-  }, [])
+  }, [employeeId])
 
-  console.log(employee)
+  const handleEmploymentChange = (selected: any) => {
+    return setFields((prev) => ({
+      ...prev,
+      employment_type: selected,
+    }))
+  }
 
+  const handleEmployeeJobtitle = (selected: any) => {
+    return setFields((prev) => ({
+      ...prev,
+      job_title: selected,
+    }))
+  }
+
+  const handleemployeeLocation = (selected: any) => {
+    return setFields((prev) => ({
+      ...prev,
+      location: selected,
+    }))
+  }
+
+  const handleemployeeStatus = (selected: any) => {
+    return setFields((prev) => ({
+      ...prev,
+      status: selected,
+    }))
+  }
+
+  const resetValue = () => {
+    setFields(defaultValue)
+  }
+
+  const updateEmployee = (e: React.FormEvent) => {
+    e.preventDefault()
+    updateDoc(employeeDocRef, {
+      email: fields.email,
+      employment_type: fields.employment_type,
+      first_name: fields.first_name,
+      job_title: fields.job_title,
+      last_name: fields.last_name,
+      location: fields && fields.location,
+      phone_number: fields.phone_number,
+      status: fields.status,
+    })
+      .then(() => {
+        console.log('Document successfully updated!')
+      })
+      .catch((error) => {
+        console.error('Error updating document: ', error)
+      })
+  }
+
+  console.log(fields)
   return (
     <ViewEmployeeStyle>
       <div className="modal-container">
         <div className="modal-content">
           <div className="modal__header">
             <div className="button__container">
-              <button>logo</button>
+              <Text classname="header__text" value="Employee Details" />
               <button onClick={closeModal} className="close__modal__btn">
                 {' '}
                 <IoCloseSharp size={24} />
               </button>
             </div>
-            <HeaderText classname="header__text" value="Add employee" />
-            <Text
-              classname="header__desc"
-              value={'Enter employee information'}
-            />
+
+            <div className="header__container">
+              <Gravatar
+                firstname={employee ? employee.first_name : 'loading'}
+                lastname={employee ? employee.last_name : 'loading'}
+                className="employee__img"
+                background="random"
+                size={1}
+              />
+              {isOnline ? (
+                <div className="active_status_icon"></div>
+              ) : (
+                <div className="inactive_status_icon"></div>
+              )}
+            </div>
           </div>
 
-          <form>
+          <form onSubmit={updateEmployee}>
             <div className="modal__body">
               <div className="modal__input__container">
                 <label htmlFor="first_name">Fisrt name</label>
-                <Input name="first_name" id="first_name" />
+                <Input
+                  name="first_name"
+                  value={fields.first_name}
+                  onChange={(e) =>
+                    handleInputChange(e.target.name, e.target.value)
+                  }
+                  id="first_name"
+                />
               </div>
               <div className="modal__input__container">
                 <label htmlFor="last_name">Last name</label>
-                <Input name="last_name" type="text" id="last_name" />
+                <Input
+                  name="last_name"
+                  type="text"
+                  value={fields.last_name}
+                  onChange={(e) =>
+                    handleInputChange(e.target.name, e.target.value)
+                  }
+                  id="last_name"
+                />
               </div>
 
               <div className="modal__input__container">
                 <label htmlFor="email">Email</label>
-                <Input name="email" type="mail" id="email" />
+                <Input
+                  name="email"
+                  onChange={(e) =>
+                    handleInputChange(e.target.name, e.target.value)
+                  }
+                  type="mail"
+                  value={fields.email}
+                  id="email"
+                />
               </div>
               <div className="modal__input__container">
                 <label htmlFor="phone_number">Mobile</label>
-                <Input name="phone_number" type="tel" id="phone_number" />
+                <Input
+                  name="phone_number"
+                  type="tel"
+                  value={fields.phone_number}
+                  id="phone_number"
+                  onChange={(e) =>
+                    handleInputChange(e.target.name, e.target.value)
+                  }
+                />
               </div>
               <div className="modal__input__container">
                 <label id="jobtitleId " htmlFor="jobtitle">
@@ -127,9 +260,12 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
                 </label>
                 <Select
                   aria-labelledby="jobtitleId"
+                  placeholder={fields.job_title}
                   inputId="jobtitle"
                   styles={customStyles}
                   options={jobTitlesOption}
+                  onChange={handleEmployeeJobtitle}
+                  value={fields.job_title}
                 />
               </div>
 
@@ -139,9 +275,12 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
                 </label>
                 <Select
                   aria-labelledby="employmenttypeId"
+                  placeholder={fields.employment_type}
                   inputId="employementtype"
                   styles={customStyles}
                   options={employmentTypeOptions}
+                  onChange={handleEmploymentChange}
+                  value={fields.employment_type}
                 />
               </div>
 
@@ -151,9 +290,12 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
                 </label>
                 <Select
                   aria-labelledby="locationId"
+                  placeholder={fields.location}
                   inputId="location"
                   styles={customStyles}
                   options={locationTypeOptions}
+                  onChange={handleemployeeLocation}
+                  value={fields.location}
                 />
               </div>
               <div className="modal__input__container">
@@ -162,26 +304,22 @@ const ViewEmployee = ({ closeModal, employeeId }: ViewemployeeType) => {
                 </label>
                 <Select
                   aria-labelledby="statusId"
+                  placeholder={fields.status}
                   inputId="Status"
                   styles={customStyles}
+                  options={statusOption}
+                  onChange={handleemployeeStatus}
+                  value={fields.status}
                 />
               </div>
             </div>
             <div className="modal__footer">
               <Button
-                onclick={() => {
-                  ('')
-                }}
+                onclick={resetValue}
                 classname="cancel__create__btn"
                 value="Reset"
               />
-              <Button
-                onclick={() => {
-                  ('')
-                }}
-                classname="create__employee__btn"
-                value="Add employee"
-              />
+              <Button classname="create__employee__btn" value="Save changes" />
             </div>
           </form>
         </div>

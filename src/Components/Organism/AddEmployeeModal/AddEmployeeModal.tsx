@@ -27,7 +27,7 @@ interface UserData {
   last_name: string
   location: any
   phone_number: number
-  status: string
+  status: any
 }
 
 const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => {
@@ -71,7 +71,7 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
     last_name: '',
     location: '',
     phone_number: 0,
-    status: '',
+    status: { value: '', label: 'pending' },
   })
 
   const [isloading, setisLoading] = useState(false)
@@ -91,13 +91,13 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
     }),
   }
 
-  const handleInputchange = async (name: string, value: any) => {
+  const handleInputchange = async (name: string, value: string | number) => {
     const fieldsValues: any = Object.assign({}, fields)
     fieldsValues[name] = value
     await setFields(fieldsValues)
   }
 
-  const handleEmploymentChange = (selected: any) => {
+  const handleEmploymentChange = (selected: any ) => {
     return setFields((prev) => ({
       ...prev,
       employment_type: selected,
@@ -125,14 +125,14 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
       await addDoc(employeeDataList, {
         createdById: createdById,
         email: fields.email,
-        employment_type: fields.employment_type.value,
+        employment_type: fields.employment_type,
         first_name: fields.first_name,
         is_active: false,
-        job_title: fields.job_title.value,
+        job_title: fields.job_title,
         last_name: fields.last_name,
-        location: fields.location.value,
+        location: fields.location,
         phone_number: fields.phone_number,
-        status: 'pending',
+        status: { value: 'Pending', label: 'pending' },
       })
         closeModal()
         showSuccessModal()
