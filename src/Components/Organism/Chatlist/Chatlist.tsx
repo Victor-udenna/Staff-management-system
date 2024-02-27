@@ -55,6 +55,7 @@ const Chatlist = () => {
   }, [dispatch, userId])
 
   console.log(employeeData, isLoading)
+  console.log(chatId)
 
   return (
     <Chatliststyle>

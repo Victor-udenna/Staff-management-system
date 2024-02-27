@@ -6,44 +6,66 @@ import { RootStore } from '../../../Config/configstore'
 import { useSelector } from 'react-redux'
 import { RiHeadphoneFill } from 'react-icons/ri'
 import { BsChevronDown } from 'react-icons/bs'
-import Chatlistdata from '../../../assets/data/Chatlistdata.json'
 import { useEffect, useState } from 'react'
 import Gravatar from '../../atoms/Gravatar/Gravatar'
 import { IoIosSend } from 'react-icons/io'
 import { FaMicrophone } from 'react-icons/fa'
 import { LuSmilePlus } from 'react-icons/lu'
 import { GoPlus } from 'react-icons/go'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../../../Config/firebase-config'
+
+interface UpdateData {
+  createdById: string
+  email: string
+  employment_type:  any
+  first_name: string
+  id: string
+  is_active: boolean
+  job_title: any
+  last_name: string
+  location:  any
+  phone_number: string
+  status: string
+}
 
 const Chat = () => {
-  const [chatdata, setchatData] = useState<any>()
-  const [messages, setMessages] = useState<any>()
   const [inputValue, setInputValue] = useState<string>('')
-  const chatId = useSelector(
+  const [employeedata, setEmployeedata] = useState<UpdateData>()
+  const employeeId = useSelector(
     (state: RootStore) => state.chatReducer.result.data.id
   )
 
-  const getChatdata = async () => {
-    Chatlistdata.map((item: any) => {
-      if (item.user_id == chatId) {
-        setchatData(item)
-        setMessages(item.messages)
-      } else {
-        ('')
-      }
-    })
-  }
+  // const formatTime = (chatDate: string) => {
+  //   const date = new Date(chatDate)
+  //   const minutes = String(date.getHours()).padStart(2, '0')
+  //   const seconds = String(date.getMinutes()).padStart(2, '0')
+  //   const formattedTime = `${minutes}:${seconds}`
+  //   return formattedTime
+  // }
 
-  const formatTime = (chatDate: string) => {
-    const date = new Date(chatDate)
-    const minutes = String(date.getHours()).padStart(2, '0')
-    const seconds = String(date.getMinutes()).padStart(2, '0')
-    const formattedTime = `${minutes}:${seconds}`
-    return formattedTime
+  const getEmployeeById = async (employeeId: string) => {
+    try {
+      const employeeDocRef = doc(db, 'Employees', employeeId)
+      const docSnapshot = await getDoc(employeeDocRef)
+
+      if (docSnapshot.exists()) {
+        const employeeData = {
+          id: docSnapshot.id,
+          ...docSnapshot.data(),
+        } as UpdateData
+        setEmployeedata(employeeData)
+      } else {
+        console.log('No matching document found.')
+      }
+    } catch (err) {
+      console.error('Error fetching employee by ID:', err)
+    }
   }
 
   useEffect(() => {
-    getChatdata()
-  }, [chatId])
+    getEmployeeById(employeeId)
+  }, [employeeId])
 
   const handleChange = (event: any) => {
     setInputValue(event.target.value)
@@ -58,7 +80,7 @@ const Chat = () => {
   return (
     <ChatStyle>
       <section className="chat_container">
-        {chatId == undefined ? (
+        {employeeId == undefined ? (
           <div className="chat__empty_state">
             <Image className="empty_chat_img" image={EmptychatImg} alt="" />
             <Text
@@ -71,34 +93,26 @@ const Chat = () => {
             <div className="chat__header">
               <div className="chat__profile">
                 <div className="user_avatar_container">
-                  {chatdata && chatdata.image !== null ? (
-                    <Image
-                      alt=""
-                      className="chat_avatar"
-                      image={chatdata ? chatdata.image : ''}
-                    />
-                  ) : (
-                    <Gravatar
-                      className="chat_avatar"
-                      firstname={chatdata ? chatdata.first_name : ''}
-                      lastname={chatdata ? chatdata.last_name : ''}
-                      background="random"
-                      size={0.33}
-                    />
-                  )}
+                  <Gravatar
+                    className="chat_avatar"
+                    firstname={employeedata ? employeedata.first_name : ''}
+                    lastname={employeedata ? employeedata.last_name : ''}
+                    background="random"
+                    size={0.33}
+                  />
                 </div>
                 <div className="chat__profile__text">
                   <Text
                     classname="chat_name"
                     value={
-                      chatdata
-                        ? chatdata.first_name + ' ' + chatdata.last_name
+                      employeedata
+                        ? employeedata.first_name + ' ' + employeedata.last_name
                         : ' '
                     }
                   />
                   <Text
                     classname="company_role"
-                    value={chatdata ? chatdata.job_title : ''}
+                    value={employeedata ? employeedata.job_title.value : ''}
                   />
                 </div>
 
@@ -120,17 +134,17 @@ const Chat = () => {
               <Text
                 classname="welcome__message"
                 value={
-                  chatdata
-                    ? chatdata.first_name +
+                  employeedata
+                    ? employeedata.first_name +
                       ' ' +
-                      chatdata.last_name +
+                      employeedata.last_name +
                       ' ' +
                       'joined this work space'
                     : ''
                 }
               />
 
-              <div className="message_sub_container">
+              {/* <div className="message_sub_container">
                 {messages !== undefined && messages.length > 0
                   ? messages.map((message: any) => {
                       return (
@@ -167,7 +181,7 @@ const Chat = () => {
                       )
                     })
                   : ''}
-              </div>
+              </div> */}
             </div>
 
             <div className="chat__input__container">

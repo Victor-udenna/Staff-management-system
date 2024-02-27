@@ -72,9 +72,10 @@ const ChatStyle = styled.div`
   }
 
   .chat_avatar {
-    width: 45px;
+    width: 40px;
     height: 40px;
     border-radius: 4px;
+    border-radius: 50%;
   }
 
   .chat_name {
@@ -221,7 +222,7 @@ const ChatStyle = styled.div`
       max-height: 200px;
       -ms-overflow-style: none;
       scrollbar-width: none;
-      overflow: hidden
+      overflow: hidden;
       background-color: inherit;
       border: 0px;
       outline: 0px;

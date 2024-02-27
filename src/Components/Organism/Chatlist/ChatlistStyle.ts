@@ -87,12 +87,13 @@ const Chatliststyle = styled.div`
     position: relative;
     cursor: context-menu;
     .message_name {
-      font-size: 10px;
+      font-size: 13px;
       padding-bottom: 4px;
+      font-weight: 600;
     }
 
     .last_text {
-      font-size: 11px;
+      font-size: 12px;
     }
   }
 
@@ -173,7 +174,7 @@ const Chatliststyle = styled.div`
   }
 
   .no_chatlist_desc {
-    font-size: 14px !important;
+    font-size: 13px !important;
     font-style: normal;
     font-weight: 400;
     text-align: center;
