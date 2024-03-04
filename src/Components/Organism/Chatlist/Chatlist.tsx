@@ -95,7 +95,7 @@ const Chatlist = () => {
                       firstname={item.first_name}
                       lastname={item.last_name}
                       background="random"
-                      size={0.33}
+                      size={1}
                     />
                     {/* {item.image == null ? (
                   <Gravatar
@@ -163,7 +163,7 @@ const Chatlist = () => {
           </>
         ) : (
           <>
-            <div className='no__chatlist__container'>
+            <div className="no__chatlist__container">
               <Text classname="no_chatlist" value={'No chat found'} />
               <Text
                 classname="no_chatlist_desc"

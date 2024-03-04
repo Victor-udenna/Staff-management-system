@@ -8,6 +8,10 @@ import Nodata from '../Nodata/Nodata'
 import FetchMore from '../../Molecule/FetchMore/FetchMore'
 import ViewEmployee from '../ViewEmployee/ViewEmployee'
 import SuccessModal from '../../Molecule/SuccessModal/SuccessModal'
+import { useDispatch } from 'react-redux'
+import { TypedDispatch } from '../../../Config/configstore'
+import { saveChat } from '../../../redux/actions/ChatAction'
+import { useNavigate } from 'react-router-dom'
 
 type dataType = {
   employeedata: any
@@ -19,7 +23,8 @@ const EmployeeTable = ({ employeedata }: dataType) => {
   const [selectedId, setSelectedId] = useState('')
   const [viewemployee, setViewEmployee] = useState(false)
   const [isSuccessModal, setSuccessModal] = useState(false)
-
+  const dispatch: TypedDispatch = useDispatch()
+  const navigate = useNavigate()
   const onClickHandler = (value: boolean, id: string) => {
     if (selectedMenu !== false) {
       setSelectedMenu(false)
@@ -77,6 +82,11 @@ const EmployeeTable = ({ employeedata }: dataType) => {
 
   const closeSuccessModal = () => {
     setSuccessModal(false)
+  }
+
+  const messageEmployee = async () => {
+    await dispatch(saveChat({ id: selectedId }))
+    navigate('/Communication')
   }
 
   return (
@@ -160,7 +170,7 @@ const EmployeeTable = ({ employeedata }: dataType) => {
                             value="view"
                           />
                           <Button classname="status__btn" value="Deactivate" />
-                          <Button classname="status__btn" value="Message" />
+                          <Button onclick={messageEmployee} classname="status__btn" value="Message" />
                         </div>
                       )}
                     </div>

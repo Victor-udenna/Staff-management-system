@@ -18,13 +18,13 @@ import { db } from '../../../Config/firebase-config'
 interface UpdateData {
   createdById: string
   email: string
-  employment_type:  any
+  employment_type: any
   first_name: string
   id: string
   is_active: boolean
   job_title: any
   last_name: string
-  location:  any
+  location: any
   phone_number: string
   status: string
 }
@@ -98,7 +98,7 @@ const Chat = () => {
                     firstname={employeedata ? employeedata.first_name : ''}
                     lastname={employeedata ? employeedata.last_name : ''}
                     background="random"
-                    size={0.33}
+                    size={1}
                   />
                 </div>
                 <div className="chat__profile__text">
