@@ -92,10 +92,11 @@ const Employee = () => {
             .toLowerCase()
             .includes(searchTerm.toLowerCase()) ||
           employee.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          employee.job_title.toLowerCase().includes(searchTerm.toLowerCase())
+          employee.job_title.value.toLowerCase().includes(searchTerm.toLowerCase())
       )
     }
   }
+
 
   return (
     <EmployeeStyle>

@@ -23,13 +23,15 @@ const EmployeeTable = ({ employeedata }: dataType) => {
   let timeOutId: any = null
   const [selectedMenu, setSelectedMenu] = useState(false)
   const [selectedId, setSelectedId] = useState('id')
+  const [loadactiveButton, setLoadactivebutton] = useState(false)
+  const [loadinactiveButton, setLoadinactivebutton] = useState(false)
   const [viewemployee, setViewEmployee] = useState(false)
   const [isSuccessModal, setSuccessModal] = useState(false)
   const dispatch: TypedDispatch = useDispatch()
   const navigate = useNavigate()
 
   const employeeCollection = collection(db, 'Employees')
-  const employeeDocRef =  doc(employeeCollection, selectedId)
+  const employeeDocRef = doc(employeeCollection, selectedId)
 
   const onClickHandler = (value: boolean, id: string) => {
     if (selectedMenu !== false) {
@@ -96,25 +98,34 @@ const EmployeeTable = ({ employeedata }: dataType) => {
   }
 
   const setEmployeetoActive = () => {
-    updateDoc(employeeDocRef, {["status"]: {label: "Active", value:"active"}})  .then(() => {
-      console.log('Document successfully updated!');
-      reloadPage()
+    updateDoc(employeeDocRef, {
+      ['status']: { label: 'Active', value: 'active' },
     })
-    .catch((error) => {
-      console.error('Error updating document: ', error);
-    })
+      .then(() => {
+        console.log('Document successfully updated!')
+        setLoadactivebutton(true)
+        reloadPage()
+      })
+      .catch((error) => {
+        console.error('Error updating document: ', error)
+        setLoadactivebutton(false)
+      })
   }
 
   const setEmployeetoInactive = () => {
-    updateDoc(employeeDocRef, {["status"]: {label: "Inctive", value:"inactive"}})  .then(() => {
-      console.log('Document successfully updated!');
-      reloadPage()
+    updateDoc(employeeDocRef, {
+      ['status']: { label: 'Inctive', value: 'inactive' },
     })
-    .catch((error) => {
-      console.error('Error updating document: ', error);
-    })
+      .then(() => {
+        console.log('Document successfully updated!')
+        setLoadinactivebutton(true)
+        reloadPage()
+      })
+      .catch((error) => {
+        setLoadinactivebutton(false)
+        console.error('Error updating document: ', error)
+      })
   }
-
 
   return (
     <EmployeeTableStyle>
@@ -196,20 +207,22 @@ const EmployeeTable = ({ employeedata }: dataType) => {
                             onclick={openViewEmployee}
                             value="view"
                           />
-                          {employee.status.value == 'Pending' && (
-                            <Button onclick={setEmployeetoActive} classname="status__btn" value="Activate" />
-                          )}
-                          {employee.status.value == 'active' && (
+                          {employee.status.value == 'active' ? (
                             <Button
                               classname="status__btn"
                               value="Deactivate"
+                              isloading={loadinactiveButton}
                               onclick={setEmployeetoInactive}
+                            />
+                          ) : (
+                            <Button
+                              onclick={setEmployeetoActive}
+                              isloading={loadactiveButton}
+                              classname="status__btn"
+                              value="Activate"
                             />
                           )}
 
-                          {employee.status.value == 'inactive' && (
-                            <Button classname="status__btn" onclick={setEmployeetoActive} value="Activate" />
-                          )}
                           <Button
                             onclick={messageEmployee}
                             classname="status__btn"
