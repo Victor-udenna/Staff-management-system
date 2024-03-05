@@ -30,7 +30,7 @@ const EmployeeAnalysisStyle = styled.div`
 
   .active,
   .inactive,
-  .pending,
+  .Pending,
   .total {
     .count {
       font-size: 13px;
@@ -56,7 +56,7 @@ const EmployeeAnalysisStyle = styled.div`
     }
   }
 
-  .pending {
+  .Pending {
     .count {
       color: orange;
     }
@@ -74,7 +74,7 @@ const EmployeeAnalysisStyle = styled.div`
     border: 1.4px solid red;
   }
 
-  .analysis_card.pending.is_active {
+  .analysis_card.Pending.is_active {
     border: 1.4px solid orange;
   }
 `

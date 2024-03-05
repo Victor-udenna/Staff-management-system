@@ -12,6 +12,8 @@ import { useDispatch } from 'react-redux'
 import { TypedDispatch } from '../../../Config/configstore'
 import { saveChat } from '../../../redux/actions/ChatAction'
 import { useNavigate } from 'react-router-dom'
+import { db } from '../../../Config/firebase-config'
+import { doc, collection, updateDoc } from 'firebase/firestore'
 
 type dataType = {
   employeedata: any
@@ -20,11 +22,15 @@ type dataType = {
 const EmployeeTable = ({ employeedata }: dataType) => {
   let timeOutId: any = null
   const [selectedMenu, setSelectedMenu] = useState(false)
-  const [selectedId, setSelectedId] = useState('')
+  const [selectedId, setSelectedId] = useState('id')
   const [viewemployee, setViewEmployee] = useState(false)
   const [isSuccessModal, setSuccessModal] = useState(false)
   const dispatch: TypedDispatch = useDispatch()
   const navigate = useNavigate()
+
+  const employeeCollection = collection(db, 'Employees')
+  const employeeDocRef =  doc(employeeCollection, selectedId)
+
   const onClickHandler = (value: boolean, id: string) => {
     if (selectedMenu !== false) {
       setSelectedMenu(false)
@@ -88,6 +94,27 @@ const EmployeeTable = ({ employeedata }: dataType) => {
     await dispatch(saveChat({ id: selectedId }))
     navigate('/Communication')
   }
+
+  const setEmployeetoActive = () => {
+    updateDoc(employeeDocRef, {["status"]: {label: "Active", value:"active"}})  .then(() => {
+      console.log('Document successfully updated!');
+      reloadPage()
+    })
+    .catch((error) => {
+      console.error('Error updating document: ', error);
+    })
+  }
+
+  const setEmployeetoInactive = () => {
+    updateDoc(employeeDocRef, {["status"]: {label: "Inctive", value:"inactive"}})  .then(() => {
+      console.log('Document successfully updated!');
+      reloadPage()
+    })
+    .catch((error) => {
+      console.error('Error updating document: ', error);
+    })
+  }
+
 
   return (
     <EmployeeTableStyle>
@@ -169,8 +196,25 @@ const EmployeeTable = ({ employeedata }: dataType) => {
                             onclick={openViewEmployee}
                             value="view"
                           />
-                          <Button classname="status__btn" value="Deactivate" />
-                          <Button onclick={messageEmployee} classname="status__btn" value="Message" />
+                          {employee.status.value == 'Pending' && (
+                            <Button onclick={setEmployeetoActive} classname="status__btn" value="Activate" />
+                          )}
+                          {employee.status.value == 'active' && (
+                            <Button
+                              classname="status__btn"
+                              value="Deactivate"
+                              onclick={setEmployeetoInactive}
+                            />
+                          )}
+
+                          {employee.status.value == 'inactive' && (
+                            <Button classname="status__btn" onclick={setEmployeetoActive} value="Activate" />
+                          )}
+                          <Button
+                            onclick={messageEmployee}
+                            classname="status__btn"
+                            value="Message"
+                          />
                         </div>
                       )}
                     </div>

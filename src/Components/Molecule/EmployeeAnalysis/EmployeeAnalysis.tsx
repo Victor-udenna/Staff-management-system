@@ -86,8 +86,8 @@ const EmployeeAnalysis = ({
         </button>
         <button
           onClick={setToPending}
-          className={`analysis_card pending ${
-            filterText == 'pending' ? 'is_active' : ''
+          className={`analysis_card Pending ${
+            filterText == 'Pending' ? 'is_active' : ''
           }`}
         >
           <div>

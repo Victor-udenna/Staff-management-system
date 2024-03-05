@@ -12,7 +12,7 @@ import Gravatar from '../../atoms/Gravatar/Gravatar'
 type ViewemployeeType = {
   closeModal: () => void
   employeeId: string
-  showSuccessModal: () => void;
+  showSuccessModal: () => void
 }
 
 interface UpdateData {
@@ -29,7 +29,11 @@ interface UpdateData {
   status: string
 }
 
-const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: ViewemployeeType) => {
+const ViewEmployee = ({
+  closeModal,
+  employeeId,
+  showSuccessModal,
+}: ViewemployeeType) => {
   const [employee, setEmployee] = useState<any>(null)
   const [fields, setFields] = useState({
     email: 'loading',
@@ -53,13 +57,20 @@ const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: Viewemployee
     control: (provided: any) => ({
       ...provided,
       width: 271,
+      fontSize: '14px',
       border: '1.4px solid #dfe6df',
+      color: 'grey',
     }),
     input: (provided: any) => ({
       ...provided,
       '&:focus': {
         outline: '1.4px solid #afe1af',
       },
+    }),
+    option: (provided: any, state: any) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? '#afe1af' : 'white',
+      color: state.isFocused ? 'white' : 'black',
     }),
   }
 
@@ -182,8 +193,6 @@ const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: Viewemployee
       })
   }
 
-
-
   return (
     <ViewEmployeeStyle>
       <div className="modal-container">
@@ -224,6 +233,7 @@ const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: Viewemployee
                     handleInputChange(e.target.name, e.target.value)
                   }
                   id="first_name"
+                  required
                 />
               </div>
               <div className="modal__input__container">
@@ -236,6 +246,7 @@ const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: Viewemployee
                     handleInputChange(e.target.name, e.target.value)
                   }
                   id="last_name"
+                  required
                 />
               </div>
 
@@ -249,6 +260,7 @@ const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: Viewemployee
                   type="mail"
                   value={fields.email}
                   id="email"
+                  required
                 />
               </div>
               <div className="modal__input__container">
@@ -261,6 +273,7 @@ const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: Viewemployee
                   onChange={(e) =>
                     handleInputChange(e.target.name, e.target.value)
                   }
+                  required
                 />
               </div>
               <div className="modal__input__container">
@@ -275,6 +288,7 @@ const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: Viewemployee
                   options={jobTitlesOption}
                   onChange={handleEmployeeJobtitle}
                   value={fields.job_title}
+                  required
                 />
               </div>
 
@@ -290,6 +304,7 @@ const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: Viewemployee
                   options={employmentTypeOptions}
                   onChange={handleEmploymentChange}
                   value={fields.employment_type}
+                  required
                 />
               </div>
 
@@ -305,6 +320,7 @@ const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: Viewemployee
                   options={locationTypeOptions}
                   onChange={handleemployeeLocation}
                   value={fields.location}
+                  required
                 />
               </div>
               <div className="modal__input__container">
@@ -319,6 +335,7 @@ const ViewEmployee = ({ closeModal, employeeId, showSuccessModal }: Viewemployee
                   options={statusOption}
                   onChange={handleemployeeStatus}
                   value={fields.status}
+                  required
                 />
               </div>
             </div>

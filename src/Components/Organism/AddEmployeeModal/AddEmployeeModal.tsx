@@ -199,6 +199,7 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
                     handleInputchange(e.target.name, e.target.value)
                   }
                   id="first_name"
+                  required
                 />
               </div>
               <div className="modal__input__container">
@@ -211,6 +212,7 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
                   }
                   type="text"
                   id="last_name"
+                  required
                 />
               </div>
 
@@ -224,6 +226,7 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
                   }
                   type="mail"
                   id="email"
+                  required
                 />
               </div>
               <div className="modal__input__container">
@@ -236,6 +239,7 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
                   }
                   type="tel"
                   id="phone_number"
+                  required
                 />
               </div>
               <div className="modal__input__container">
@@ -249,6 +253,7 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
                   styles={customStyles}
                   onChange={handleEmployeeJobtitle}
                   value={fields.job_title}
+                  required
                 />
               </div>
 
@@ -263,6 +268,7 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
                   styles={customStyles}
                   value={fields.employment_type}
                   onChange={handleEmploymentChange}
+                  required
                 />
               </div>
 
@@ -277,6 +283,7 @@ const AddEmployeeModal = ({ closeModal, showSuccessModal }: AddemployeeType) => 
                   styles={customStyles}
                   onChange={handleemployeeLocation}
                   value={fields.location}
+                  required
                 />
               </div>
             </div>
