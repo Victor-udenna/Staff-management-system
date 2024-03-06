@@ -164,7 +164,8 @@ const ViewEmployee = ({
     }))
   }
 
-  const resetValue = () => {
+  const resetValue = (e: React.FormEvent) => {
+    e.preventDefault()
     setFields(defaultValue)
   }
 
