@@ -2,6 +2,7 @@ import PayrollStyle from './PayrollStyle'
 import Text from '../../atoms/Text/Text'
 import SideBar from '../../Organism/SideBar/Sidebar'
 import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
+import PayrollAnalysis from '../../PayrollAnalysis/PayrollAnalysis'
 
 const Payroll = () => {
   return (
@@ -16,6 +17,7 @@ const Payroll = () => {
             }}
           />
           <Text classname="header_text" value={'Payroll'} />
+          <PayrollAnalysis/>
         </section>
       </main>
     </PayrollStyle>
