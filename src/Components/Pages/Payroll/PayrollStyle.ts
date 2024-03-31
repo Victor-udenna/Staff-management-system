@@ -19,6 +19,16 @@ const PayrollStyle = styled.div`
     overflow: hidden;
     color: black;
   }
+
+  .header_text {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: -0.36px;
+    color: #051226;
+    padding: 24px 0px 40px 0px;
+  }
 `
 
 export default PayrollStyle

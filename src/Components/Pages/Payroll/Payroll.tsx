@@ -9,8 +9,13 @@ const Payroll = () => {
       <main className="container">
         <SideBar />
         <section className="payroll">
-          <DashboardHeader buttonaction={() => {}} />
-          <Text classname="" value={'Payroll'} />
+          <DashboardHeader
+            buttontext="Add Payroll"
+            buttonaction={() => {
+              ('')
+            }}
+          />
+          <Text classname="header_text" value={'Payroll'} />
         </section>
       </main>
     </PayrollStyle>
