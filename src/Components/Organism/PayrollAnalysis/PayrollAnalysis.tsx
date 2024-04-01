@@ -1,4 +1,3 @@
-import React from 'react'
 import PayrollAnalysisStyle from './PayrollAnalysisStly'
 import Text from '../../atoms/Text/Text'
 import { MdPeople } from 'react-icons/md'
