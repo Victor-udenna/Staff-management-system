@@ -343,7 +343,6 @@ const ViewEmployee = ({
             <div className="modal__footer">
               <Button
                 onclick={resetValue}
-                isloading={isloading}
                 classname="cancel__create__btn"
                 value="Reset"
               />

@@ -2,7 +2,7 @@ import PayrollStyle from './PayrollStyle'
 import Text from '../../atoms/Text/Text'
 import SideBar from '../../Organism/SideBar/Sidebar'
 import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
-import PayrollAnalysis from '../../PayrollAnalysis/PayrollAnalysis'
+import PayrollAnalysis from '../../Organism/PayrollAnalysis/PayrollAnalysis'
 
 const Payroll = () => {
   return (
