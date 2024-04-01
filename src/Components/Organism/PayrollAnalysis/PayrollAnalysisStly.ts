@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const PayrollAnalysisStyle = styled.div`
-.payroll_analysis {
+  .payroll_analysis {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -71,14 +71,12 @@ const PayrollAnalysisStyle = styled.div`
   }
 
   .analysis_card.inactive.is_active {
-    border: 1.4px solid red;
+    border: 1.4px solid #dfe6df;
   }
 
   .analysis_card.Pending.is_active {
-    border: 1.4px solid orange;
+    border: 1.4px solid #dfe6df;
   }
-
 `
 
-
-export default PayrollAnalysisStyle;
+export default PayrollAnalysisStyle
