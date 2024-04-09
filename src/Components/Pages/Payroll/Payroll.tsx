@@ -4,6 +4,10 @@ import SideBar from '../../Organism/SideBar/Sidebar'
 import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
 import PayrollAnalysis from '../../Organism/PayrollAnalysis/PayrollAnalysis'
 import { MdHistory } from 'react-icons/md'
+import GrossPayment from '../../Organism/GrossPayment/GrossPayment'
+import NetPayment from '../../Organism/NetPayment/NetPayment'
+import THolding from '../../Organism/THolding/THolding'
+import TaxDeduction from '../../Organism/TaxDeduction/TaxDeduction'
 
 const Payroll = () => {
   return (
@@ -28,6 +32,10 @@ const Payroll = () => {
             </button>
           </div>
           <PayrollAnalysis />
+          <GrossPayment />
+          <NetPayment />
+          <THolding />
+          <TaxDeduction />
         </section>
       </main>
     </PayrollStyle>

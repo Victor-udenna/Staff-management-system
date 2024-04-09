@@ -54,8 +54,8 @@ const PayrollStyle = styled.div`
     }
   }
 
-  .transaction-button:hover{
-    background-color: #e3fae3 ;
+  .transaction-button:hover {
+    background-color: #e3fae3;
   }
 `
 
