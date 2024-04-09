@@ -5,7 +5,9 @@ const GrossPayment = () => {
   return (
     <GrossPaymentStyle>
       <section>
-        <HeaderText classname="gross-header" value="Gross Payment" />
+        <div className="gross-header_container">
+          <HeaderText classname="gross-header" value="Gross Payment" />
+        </div>
       </section>
     </GrossPaymentStyle>
   )

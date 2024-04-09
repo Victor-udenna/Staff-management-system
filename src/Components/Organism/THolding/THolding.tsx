@@ -5,10 +5,12 @@ const THolding = () => {
   return (
     <THoldingStyle>
       <section>
-        <HeaderText classname="th-header" value="Total Witholding" />
+        <div className="th-header_container">
+          <HeaderText classname="th-header" value="Total Witholding" />
+        </div>
       </section>
     </THoldingStyle>
   )
 }
 
-export default THolding;
+export default THolding

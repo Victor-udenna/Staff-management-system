@@ -33,9 +33,9 @@ const Payroll = () => {
           </div>
           <PayrollAnalysis />
           <GrossPayment />
-          <NetPayment />
-          <THolding />
-          <TaxDeduction />
+          {/* <NetPayment /> */}
+          {/* <THolding /> */}
+          {/* <TaxDeduction /> */}
         </section>
       </main>
     </PayrollStyle>

@@ -5,7 +5,9 @@ const NetPayment = () => {
   return (
     <NetPaymentStyle>
       <section>
-        <HeaderText classname="netpayment-header" value="Net Payment" />
+        <div className="netpayment-header_container">
+          <HeaderText classname="netpayment-header" value="Net Payment" />
+        </div>
       </section>
     </NetPaymentStyle>
   )
