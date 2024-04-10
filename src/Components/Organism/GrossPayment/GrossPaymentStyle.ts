@@ -16,6 +16,15 @@ const GrossPaymentStyle = styled.div`
     font-weight: 600;
     font-size: 17px;
   }
+
+  .gross-card_container{
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
 `
 
 export default GrossPaymentStyle
