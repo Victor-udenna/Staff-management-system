@@ -38,7 +38,7 @@ const GrossPaymentCardStyle = styled.div`
   }
 
   .card__footer {
-    padding-top: 10px;
+    padding-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
