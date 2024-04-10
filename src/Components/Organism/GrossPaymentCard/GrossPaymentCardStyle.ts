@@ -16,8 +16,8 @@ const GrossPaymentCardStyle = styled.div`
     padding-bottom: 10px;
     border-bottom: 1px solid #dfe6df;
     .card_avatar {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
     }
 
