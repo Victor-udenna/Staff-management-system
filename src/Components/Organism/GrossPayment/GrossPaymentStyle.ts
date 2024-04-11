@@ -17,13 +17,12 @@ const GrossPaymentStyle = styled.div`
     font-size: 17px;
   }
 
-  .gross-card_container{
-    margin-top: 40px;
+  .gross-card_container {
+    display: grid;
+    grid-template-columns: repeat(3, 4fr);
+    margin-top: 24px;
+    gap: 24px;
     width: 100%;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
   }
 `
 

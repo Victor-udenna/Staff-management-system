@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 const GrossPaymentCardStyle = styled.div`
   .gross-card {
-    width: 320px;
     border-radius: 8px;
     border: 1px solid #dfe6df;
     padding: 16px;
