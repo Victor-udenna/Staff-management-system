@@ -16,6 +16,14 @@ const NetPaymentStyle = styled.div`
     font-weight: 600;
     font-size: 17px;
   }
+
+  .net-card_container {
+    display: grid;
+    grid-template-columns: repeat(3, 4fr);
+    margin-top: 24px;
+    gap: 24px;
+    width: 100%;
+  }
 `
 
 export default NetPaymentStyle

@@ -10,40 +10,40 @@ type GrosspaymentType = {
 
 const grossPayments: GrosspaymentType[] = [
   {
-    firstName: "John",
-    lastName: "Doe",
-    role: "Manager"
+    firstName: 'John',
+    lastName: 'Doe',
+    role: 'Manager',
   },
   {
-    firstName: "Alice",
-    lastName: "Smith",
-    role: "Engineer"
+    firstName: 'Alice',
+    lastName: 'Smith',
+    role: 'Engineer',
   },
   {
-    firstName: "Bob",
-    lastName: "Johnson",
-    role: "Analyst"
+    firstName: 'Bob',
+    lastName: 'Johnson',
+    role: 'Analyst',
   },
   {
-    firstName: "Emily",
-    lastName: "Brown",
-    role: "Designer"
+    firstName: 'Emily',
+    lastName: 'Brown',
+    role: 'Designer',
   },
   {
-    firstName: "David",
-    lastName: "Williams",
-    role: "Developer"
+    firstName: 'David',
+    lastName: 'Williams',
+    role: 'Developer',
   },
   {
-    firstName: "Sarah",
-    lastName: "Jones",
-    role: "Product Manager"
+    firstName: 'Sarah',
+    lastName: 'Jones',
+    role: 'Product Manager',
   },
   {
-    firstName: "Michael",
-    lastName: "Davis",
-    role: "Sales Representative"
-  }
+    firstName: 'Michael',
+    lastName: 'Davis',
+    role: 'Sales Representative',
+  },
 ]
 
 const GrossPayment = () => {

@@ -4,12 +4,19 @@ import SideBar from '../../Organism/SideBar/Sidebar'
 import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
 import PayrollAnalysis from '../../Organism/PayrollAnalysis/PayrollAnalysis'
 import { MdHistory } from 'react-icons/md'
-import GrossPayment from '../../Organism/GrossPayment/GrossPayment'
-// import NetPayment from '../../Organism/NetPayment/NetPayment'
+// import GrossPayment from '../../Organism/GrossPayment/GrossPayment'
+import NetPayment from '../../Organism/NetPayment/NetPayment'
+import { useNavigate } from 'react-router-dom'
 // import THolding from '../../Organism/THolding/THolding'
 // import TaxDeduction from '../../Organism/TaxDeduction/TaxDeduction'
 
 const Payroll = () => {
+  const navigate = useNavigate()
+
+  const gotoTransactions = () => {
+    navigate('/payroll/transactions')
+  }
+
   return (
     <PayrollStyle>
       <main className="container">
@@ -23,7 +30,7 @@ const Payroll = () => {
           />
           <div className="payroll-button__container">
             <Text classname="header_text" value={'Payroll'} />
-            <button className="transaction-button">
+            <button onClick={gotoTransactions} className="transaction-button">
               <Text
                 value={'Transaction History'}
                 classname="transaction-button__text"
@@ -32,8 +39,8 @@ const Payroll = () => {
             </button>
           </div>
           <PayrollAnalysis />
-          <GrossPayment />
-          {/* <NetPayment /> */}
+          {/* <GrossPayment /> */}
+          <NetPayment />
           {/* <THolding /> */}
           {/* <TaxDeduction /> */}
         </section>
