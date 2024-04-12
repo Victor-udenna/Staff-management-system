@@ -1,37 +1,53 @@
-import { useState } from 'react'
 import SideBar from '../../Organism/SideBar/Sidebar'
 import SettingsStyle from './SettingsStyle'
 import Text from '../../atoms/Text/Text'
 import { Button } from '../../atoms/Button/Button'
 import Image from '../../atoms/Image/Image'
 import Input from '../../atoms/Input/Input'
-import { VscMultipleWindows } from 'react-icons/vsc'
 import EmailVerification from '../../Molecule/EmailVerification/EmailVerification'
-import ViewActivityModal from '../../Organism/ViewActivityModal/ViewActivityModal'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 import { RootStore } from '../../../Config/configstore'
 
 const Settings = () => {
-  const [isActivityModal, setActivityModal] = useState(false)
-
-  const state = useSelector((state: RootStore)=> state.saveAuthReducer)
+  const state = useSelector((state: RootStore) => state.saveAuthReducer)
   const userName = state.result.data.displayName
   const userImg = state.result.data.photoURL
-  const isverified = state.result.data.emailVerified;
-  const openActivityModal = () => {
-    setActivityModal(true)
-  }
-
-  const closeActivityModal = () => {
-    setActivityModal(false)
-  }
+  const isverified = state.result.data.emailVerified
+  const dateCreated = parseInt(state.result.data.createdAt)
+  const lastLogin = parseInt(state.result.data.lastLoginAt)
 
   const userAvatar = `https://ui-avatars.com/api/?name=${userName}+${''}&background=${'228B22'}&color=fff&font-size=${0.33}&bold=${true}`
 
+  const convertTimestampToDate = (timestamp: number) => {
+    const date = new Date(timestamp)
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ]
+    const dayOfWeek = daysOfWeek[date.getUTCDay()]
+    const day = date.getUTCDate().toString().padStart(2, '0')
+    const month = months[date.getUTCMonth()]
+    const year = date.getUTCFullYear()
+    const hours = date.getUTCHours().toString().padStart(2, '0')
+    const minutes = date.getUTCMinutes().toString().padStart(2, '0')
+    const seconds = date.getUTCSeconds().toString().padStart(2, '0')
+    const formattedDate = `${dayOfWeek}, ${day} ${month} ${year} ${hours}:${minutes}:${seconds} GMT`
+    return formattedDate
+  }
+
   return (
     <SettingsStyle>
-      {isActivityModal && <ViewActivityModal closeModal={closeActivityModal} />}
-
       <main className="container">
         <SideBar />
         <section className="settings">
@@ -81,7 +97,7 @@ const Settings = () => {
                       classname="change__password__button"
                     />
                   </div>
-                  {<EmailVerification  isVerified={isverified}/>}
+                  {<EmailVerification isVerified={isverified} />}
                 </div>
               </div>
             </form>
@@ -94,31 +110,40 @@ const Settings = () => {
                 <Text classname="recent__activity__title" value="Last Login" />
                 <Text
                   classname="recent__activity__text"
-                  value="2023-09-09T19"
+                  value={
+                    lastLogin ? convertTimestampToDate(lastLogin) : 'loading..'
+                  }
                 />
               </div>
               <div className="recent__activity__wrapper">
                 <Text
                   classname="recent__activity__title"
-                  value="Password Updated at"
+                  value="Date created"
                 />
                 <Text
                   classname="recent__activity__text"
-                  value="2023-09-09T19"
+                  value={
+                    dateCreated
+                      ? convertTimestampToDate(dateCreated)
+                      : 'loading..'
+                  }
                 />
               </div>
               <div className="recent__activity__wrapper">
                 <Text classname="recent__activity__title" value="Status" />
                 <Text classname="recent__activity__text" value="Active" />
               </div>
-
-              <button id="view__activity__btn" onClick={openActivityModal}>
-                <Text classname="" value="view all" />
-                <VscMultipleWindows size={20} />
-              </button>
+              <div className="recent__activity__wrapper">
+                <Text
+                  classname="recent__activity__title"
+                  value="Password Updated at"
+                />
+                <Text classname="recent__activity__text" value="Active" />
+              </div>
             </div>
             <div></div>
           </div>
+
           <form className="security_container_form">
             <div className="security__container">
               <Text classname="section__header__text" value="Security" />
