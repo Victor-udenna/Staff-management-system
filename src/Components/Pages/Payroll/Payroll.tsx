@@ -2,11 +2,11 @@ import PayrollStyle from './PayrollStyle'
 import Text from '../../atoms/Text/Text'
 import SideBar from '../../Organism/SideBar/Sidebar'
 import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
-import PayrollAnalysis from '../../Organism/PayrollAnalysis/PayrollAnalysis'
 import { MdHistory } from 'react-icons/md'
 // import GrossPayment from '../../Organism/GrossPayment/GrossPayment'
 import NetPayment from '../../Organism/NetPayment/NetPayment'
 import { useNavigate } from 'react-router-dom'
+import PayrollNav from '../../Organism/PayrollNav/PayrollNav'
 // import THolding from '../../Organism/THolding/THolding'
 // import TaxDeduction from '../../Organism/TaxDeduction/TaxDeduction'
 
@@ -38,7 +38,7 @@ const Payroll = () => {
               <MdHistory color="#228b22" size={18} />
             </button>
           </div>
-          <PayrollAnalysis />
+          <PayrollNav />
           {/* <GrossPayment /> */}
           <NetPayment />
           {/* <THolding /> */}
