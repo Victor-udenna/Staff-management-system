@@ -18,6 +18,7 @@ const Settings = () => {
 
   const userAvatar = `https://ui-avatars.com/api/?name=${userName}+${''}&background=${'228B22'}&color=fff&font-size=${0.33}&bold=${true}`
 
+
   const convertTimestampToDate = (timestamp: number) => {
     const date = new Date(timestamp)
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -45,6 +46,9 @@ const Settings = () => {
     const formattedDate = `${dayOfWeek}, ${day} ${month} ${year} ${hours}:${minutes}:${seconds} GMT`
     return formattedDate
   }
+
+
+
 
   return (
     <SettingsStyle>
@@ -138,7 +142,7 @@ const Settings = () => {
                   classname="recent__activity__title"
                   value="Password Updated at"
                 />
-                <Text classname="recent__activity__text" value="Active" />
+                <Text classname="recent__activity__text" value="-- -- --" />
               </div>
             </div>
             <div></div>
