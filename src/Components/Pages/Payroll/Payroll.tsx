@@ -46,7 +46,9 @@ const Payroll = () => {
             </button>
           </div>
           <PayrollNav />
-          {(payrollTab == undefined || payrollTab == 'Gross Pay') && <GrossPayment />}
+          {(payrollTab == undefined || payrollTab == 'Gross Pay') && (
+            <GrossPayment />
+          )}
           {payrollTab == 'Net Pay' && <NetPayment />}
           {payrollTab == 'Total witholding' && <THolding />}
           {payrollTab == 'Tax and Deduction' && <TaxDeduction />}

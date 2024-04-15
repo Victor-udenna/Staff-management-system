@@ -33,7 +33,7 @@ const PayrollNav = () => {
           <Button
             onclick={setToGrossPay}
             classname={`${
-              payrollTab == 'Gross Pay' || payrollTab == 'undefined'
+              payrollTab === undefined || payrollTab === 'Gross Pay'
                 ? 'payroll-nav_button active'
                 : 'payroll-nav_button'
             }`}
