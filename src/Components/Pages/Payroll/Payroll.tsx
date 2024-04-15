@@ -3,12 +3,14 @@ import Text from '../../atoms/Text/Text'
 import SideBar from '../../Organism/SideBar/Sidebar'
 import DashboardHeader from '../../Organism/DashboardHeader/DashboardHeader'
 import { MdHistory } from 'react-icons/md'
-// import GrossPayment from '../../Organism/GrossPayment/GrossPayment'
+import GrossPayment from '../../Organism/GrossPayment/GrossPayment'
 import NetPayment from '../../Organism/NetPayment/NetPayment'
 import { useNavigate } from 'react-router-dom'
 import PayrollNav from '../../Organism/PayrollNav/PayrollNav'
-// import THolding from '../../Organism/THolding/THolding'
-// import TaxDeduction from '../../Organism/TaxDeduction/TaxDeduction'
+import THolding from '../../Organism/THolding/THolding'
+import { useSelector } from 'react-redux'
+import { RootStore } from '../../../Config/configstore'
+import TaxDeduction from '../../Organism/TaxDeduction/TaxDeduction'
 
 const Payroll = () => {
   const navigate = useNavigate()
@@ -16,6 +18,11 @@ const Payroll = () => {
   const gotoTransactions = () => {
     navigate('/payroll/transactions')
   }
+
+  const payrollTab = useSelector(
+    (state: RootStore) => state.dataReducer.result.data.payrolltab
+  )
+  console.log(payrollTab)
 
   return (
     <PayrollStyle>
@@ -39,10 +46,10 @@ const Payroll = () => {
             </button>
           </div>
           <PayrollNav />
-          {/* <GrossPayment /> */}
-          <NetPayment />
-          {/* <THolding /> */}
-          {/* <TaxDeduction /> */}
+          {(payrollTab == undefined || payrollTab == 'Gross Pay') && <GrossPayment />}
+          {payrollTab == 'Net Pay' && <NetPayment />}
+          {payrollTab == 'Total witholding' && <THolding />}
+          {payrollTab == 'Tax and Deduction' && <TaxDeduction />}
         </section>
       </main>
     </PayrollStyle>

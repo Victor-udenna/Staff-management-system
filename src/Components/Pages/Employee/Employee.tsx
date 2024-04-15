@@ -40,6 +40,8 @@ const Employee = () => {
   const filtertext = useSelector(
     (state: RootStore) => state.dataReducer.result.data.id
   )
+
+  console.log(filtertext)
   const { isLoading, data: employeeData } = useSelector(
     (state: RootStore) => state.employeeReducer
   )
@@ -92,11 +94,12 @@ const Employee = () => {
             .toLowerCase()
             .includes(searchTerm.toLowerCase()) ||
           employee.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          employee.job_title.value.toLowerCase().includes(searchTerm.toLowerCase())
+          employee.job_title.value
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
       )
     }
   }
-
 
   return (
     <EmployeeStyle>
