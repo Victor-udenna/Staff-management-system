@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { BiHelpCircle, BiMessageDetail } from 'react-icons/bi'
-import { BsFileEarmarkText, BsGear, BsCheckCircle } from 'react-icons/bs'
+import { BiMessageDetail } from 'react-icons/bi'
+import { BsFileEarmarkText, BsGear } from 'react-icons/bs'
 import { GoPeople, GoHome } from 'react-icons/go'
 import { FaBarsStaggered } from 'react-icons/fa6'
 import { RxExit } from 'react-icons/rx'
@@ -18,8 +18,8 @@ const SideBar = () => {
   const [overview, setOverview] = useState(false)
   const [payroll, setPayroll] = useState(false)
   const [employee, setEmployee] = useState(false)
-  const [attendance, setAttendance] = useState(false)
-  const [help, setHelp] = useState(false)
+  // const [attendance, setAttendance] = useState(false)
+  // const [help, setHelp] = useState(false)
   const [settings, setSettings] = useState(false)
   const [communication, setCommunication] = useState(false)
   const [islogoutopen, setislogoutOpen] = useState(false)
@@ -35,50 +35,50 @@ const SideBar = () => {
       setOverview(true)
       setPayroll(false)
       setEmployee(false)
-      setAttendance(false)
-      setHelp(false)
+      // setAttendance(false)
+      // setHelp(false)
       setSettings(false)
     } else if (location.pathname.includes('payroll')) {
       setOverview(false)
       setPayroll(true)
       setEmployee(false)
-      setAttendance(false)
-      setHelp(false)
+      // setAttendance(false)
+      // setHelp(false)
       setSettings(false)
     } else if (location.pathname.includes('employee')) {
       setOverview(false)
       setPayroll(false)
       setEmployee(true)
-      setAttendance(false)
-      setHelp(false)
+      // setAttendance(false)
+      // setHelp(false)
       setSettings(false)
     } else if (location.pathname.includes('attendance')) {
       setOverview(false)
       setPayroll(false)
       setEmployee(false)
-      setAttendance(true)
-      setHelp(false)
+      // setAttendance(true)
+      // setHelp(false)
       setSettings(false)
     } else if (location.pathname.includes('help')) {
       setOverview(false)
       setPayroll(false)
-      setEmployee(false)
-      setAttendance(false)
-      setHelp(true)
+      // setEmployee(false)
+      // setAttendance(false)
+      // setHelp(true)
       setSettings(false)
     } else if (location.pathname.includes('settings')) {
       setOverview(false)
       setPayroll(false)
       setEmployee(false)
-      setAttendance(false)
-      setHelp(false)
+      // setAttendance(false)
+      // setHelp(false)
       setSettings(true)
     } else if (location.pathname.includes('Communication')) {
       setOverview(false)
       setPayroll(false)
       setEmployee(false)
-      setAttendance(false)
-      setHelp(false)
+      // setAttendance(false)
+      // setHelp(false)
       setSettings(false)
       setCommunication(true)
     }
