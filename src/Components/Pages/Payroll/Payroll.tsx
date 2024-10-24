@@ -22,7 +22,6 @@ const Payroll = () => {
   const payrollTab = useSelector(
     (state: RootStore) => state.dataReducer.result.data.payrolltab
   )
-  console.log(payrollTab)
 
   return (
     <PayrollStyle>

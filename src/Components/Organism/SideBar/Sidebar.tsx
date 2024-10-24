@@ -157,7 +157,7 @@ const SideBar = () => {
               <span className="link_text">Employee</span>
             </Link>
           </div>
-          <div className={`nav__link ${attendance ? 'active' : ''} `}>
+          {/* <div className={`nav__link ${attendance ? 'active' : ''} `}>
             <Link to="/attendance">
               <div className="active_side_bar"></div>{' '}
               <span className="icon">
@@ -165,7 +165,7 @@ const SideBar = () => {
               </span>
               <span className="link_text">Attendance</span>
             </Link>
-          </div>
+          </div> */}
 
           <div className={`nav__link ${communication ? 'active' : ''} `}>
             <Link to="/Communication">
@@ -179,7 +179,7 @@ const SideBar = () => {
         </div>
         <div className="others">
           <div>
-            <div className={`nav__link ${help ? 'active' : ''} `}>
+            {/* <div className={`nav__link ${help ? 'active' : ''} `}>
               <Link to="/help">
                 <div className="active_side_bar"></div>{' '}
                 <span>
@@ -187,7 +187,7 @@ const SideBar = () => {
                 </span>
                 <span className="link_text">Help</span>
               </Link>
-            </div>
+            </div> */}
             <div className={`nav__link ${settings ? 'active' : ''} `}>
               <Link to="/settings">
                 <div className="active_side_bar"></div>{' '}

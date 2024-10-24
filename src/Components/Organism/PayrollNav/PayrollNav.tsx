@@ -18,13 +18,13 @@ const PayrollNav = () => {
     dispatch(saveData({ payrolltab: 'Net Pay' }))
   }
 
-  const setToTholding = () => {
-    dispatch(saveData({ payrolltab: 'Total witholding' }))
-  }
+  // const setToTholding = () => {
+  //   dispatch(saveData({ payrolltab: 'Total witholding' }))
+  // }
 
-  const setToTaxDeduction = () => {
-    dispatch(saveData({ payrolltab: 'Tax and Deduction' }))
-  }
+  // const setToTaxDeduction = () => {
+  //   dispatch(saveData({ payrolltab: 'Tax and Deduction' }))
+  // }
 
   return (
     <PayrollNavStyle>
@@ -48,7 +48,7 @@ const PayrollNav = () => {
             }`}
             value="Net Pay"
           />
-          <Button
+          {/* <Button
             onclick={setToTaxDeduction}
             classname={`${
               payrollTab == 'Tax and Deduction'
@@ -65,7 +65,7 @@ const PayrollNav = () => {
                 : 'payroll-nav_button'
             }`}
             value="Total Witholding"
-          />
+          /> */}
         </div>
       </nav>
     </PayrollNavStyle>

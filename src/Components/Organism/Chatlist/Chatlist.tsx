@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { TypedDispatch, RootStore } from '../../../Config/configstore'
 import { saveChat } from '../../../redux/actions/ChatAction'
 import { fetchEmployeeList } from '../../../redux/actions/EmployeeAction'
+import Loader from '../Loader/Loader'
 
 const Chatlist = () => {
   const [selectChat, setSelectedchat] = useState<string>('')
@@ -59,6 +60,7 @@ const Chatlist = () => {
 
   return (
     <Chatliststyle>
+      {isLoading && <Loader />}
       <Text classname="header_text" value="Chats" />
       <div className="chat_list">
         <div className="chat__input_container">
